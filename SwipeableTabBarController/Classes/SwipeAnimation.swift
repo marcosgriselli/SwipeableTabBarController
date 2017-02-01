@@ -8,20 +8,20 @@
 
 import UIKit
 
-
 // TODO (marcosgriselli): Support different types of swipe animations (overlap, side by side, push-style?)
 class SwipeAnimation: NSObject {
     
     fileprivate var animationDuration: TimeInterval!
     fileprivate var animationStarted = false
-    
+    fileprivate var animationType: SwipeAnimationType!
     // TODO (marcosgriselli): add support for snapshot views.
     
     var fromLeft = false
     
-    init(animationDuration: TimeInterval? = 0.33) {
+    init(animationDuration: TimeInterval? = 0.33, animationType: SwipeAnimationType? = .push) {
         super.init()
         self.animationDuration = animationDuration
+        self.animationType = animationType
     }
 }
 
@@ -50,23 +50,14 @@ extension SwipeAnimation: UIViewControllerAnimatedTransitioning {
         let screenWidth = UIScreen.main.bounds.size.width
         fromView?.endEditing(true)
         
-        containerView.addSubview(fromView!)
-        fromView?.frame = CGRect(x: 0,
-                                 y: 0,
-                                 width: fromView!.frame.width,
-                                 height: fromView!.frame.height)
-        
-        containerView.addSubview(toView!)
-        toView?.frame = CGRect(x: fromLeft ? -screenWidth : screenWidth,
-                               y: 0,
-                               width: toView!.frame.width,
-                               height: toView!.frame.height)
+        animationType.addTo(containerView: containerView, fromView: fromView!, toView: toView!)
+        animationType.prepare(fromView: fromView, toView: toView, direction: fromLeft)
         
         UIView.animate(withDuration: duration,
                        delay: 0.0,
                        options: [.curveEaseOut],
                        animations: {
-                        toView?.frame.origin.x = 0
+                        self.animationType.animation(fromView: fromView, toView: toView, direction: self.fromLeft)
         },
                        completion: {[unowned self] completed in
                         self.animationStarted = false

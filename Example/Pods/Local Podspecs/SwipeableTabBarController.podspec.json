@@ -11,7 +11,7 @@
   "authors": "Marcos Griselli",
   "social_media_url": "http://twitter.com/marcosgriselli",
   "source": {
-    "git": "https://github.com/marcosgriselli/MGSwipeableTabBarController.git",
+    "git": "https://github.com/marcosgriselli/SwipeableTabBarController.git",
     "tag": "0.1.0"
   },
   "source_files": [

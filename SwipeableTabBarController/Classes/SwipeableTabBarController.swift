@@ -15,7 +15,7 @@ open class SwipeableTabBarController: UITabBarController {
     fileprivate var swipeInteractor: SwipeInteractor!
     fileprivate var swipeAnimatedTransitioning: SwipeAnimation!
     
-    private let kSelectedIndexKey = "selectedIndex"
+    private let kSelectedViewControllerKey = "selectedViewController"
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,7 +25,11 @@ open class SwipeableTabBarController: UITabBarController {
     private func setup() {
         // Set the interactor that will handle the swipes
         swipeInteractor = SwipeInteractor()
-        
+        swipeInteractor.onfinishTransition = {
+            if let controllers = self.viewControllers {
+                self.selectedViewController = controllers[self.selectedIndex]
+            }
+        }
         // Set the animation to excecute with swipe percentage
         swipeAnimatedTransitioning = SwipeAnimation()
 
@@ -33,21 +37,15 @@ open class SwipeableTabBarController: UITabBarController {
         delegate = self
 
         // Observe selected index changes to wire the gesture recognizer to the viewController.
-        addObserver(self, forKeyPath: kSelectedIndexKey, options: .new, context: nil)
+        addObserver(self, forKeyPath: kSelectedViewControllerKey, options: .new, context: nil)
     }
 
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == kSelectedIndexKey {
-            if let controllers = viewControllers {
-                let selectedController = controllers[selectedIndex]
+        if keyPath == kSelectedViewControllerKey {
+            if let selectedController = selectedViewController {
                 swipeInteractor.wireTo(viewController: selectedController)
             }
         }
-    }
-    
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-        selectedIndex = 0
     }
 }
 
@@ -66,6 +64,6 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
     }
     
     public func tabBarController(_ tabBarController: UITabBarController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return swipeInteractor.interactionInProgress ? swipeInteractor : nil;
+        return swipeInteractor.interactionInProgress ? swipeInteractor : nil
     }
 }

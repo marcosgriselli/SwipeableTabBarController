@@ -18,7 +18,9 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     private let kSwipeGestureKey = "kSwipeableTabBarControllerGestureKey"
     
     var interactionInProgress = false
-
+    
+    typealias Closure = (() -> ())
+    var onfinishTransition: Closure?
     
     /// Sets the viewController to be the one in charge of handling the swipe transition.
     ///
@@ -40,6 +42,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
         }
         
         panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeInteractor.handlePan(_:)))
+        panRecognizer?.isEnabled = true
         view.addGestureRecognizer(panRecognizer!)
         objc_setAssociatedObject(view, kSwipeGestureKey, panRecognizer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
@@ -70,8 +73,9 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
         case .changed:
             if interactionInProgress {
                 var fraction = fabs(translation.x/UIScreen.main.bounds.size.width)
-                fraction = min(max(fraction, 0.0), 1.0)
+                fraction = min(max(fraction, 0.0), 0.99)
                 shouldCompleteTransition = (fraction > 0.5);
+                
                 self.update(fraction)
             }
             
@@ -89,7 +93,10 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
                 if !shouldCompleteTransition || recognizer.state == .cancelled {
                     cancel()
                 } else {
+                    // Avoid launching a new transaction while the previous one is finishing.
+                    recognizer.isEnabled = false
                     finish()
+                    onfinishTransition?()
                 }
             }
             
