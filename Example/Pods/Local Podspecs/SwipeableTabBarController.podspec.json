@@ -1,0 +1,22 @@
+{
+  "name": "SwipeableTabBarController",
+  "version": "0.1.0",
+  "summary": "A short description of SwipeableTabBarController.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/marcosgriselli/SwipeableTabBarController",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "marcosgriselli": "marcosgriselli@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/marcosgriselli/SwipeableTabBarController.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SwipeableTabBarController/Classes/**/*"
+}

@@ -1,0 +1,16 @@
+PODS:
+  - SwipeableTabBarController (0.1.0)
+
+DEPENDENCIES:
+  - SwipeableTabBarController (from `../`)
+
+EXTERNAL SOURCES:
+  SwipeableTabBarController:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SwipeableTabBarController: 5ad8830568f5da84b36463fa06cf07b4e3a0de9f
+
+PODFILE CHECKSUM: d3f307060c5f87973f664a4561212d2562d0cc25
+
+COCOAPODS: 1.2.0
