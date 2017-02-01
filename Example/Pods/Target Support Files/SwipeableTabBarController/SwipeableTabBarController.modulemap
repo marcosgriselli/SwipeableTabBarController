@@ -1,0 +1,6 @@
+framework module SwipeableTabBarController {
+  umbrella header "SwipeableTabBarController-umbrella.h"
+
+  export *
+  module * { export * }
+}

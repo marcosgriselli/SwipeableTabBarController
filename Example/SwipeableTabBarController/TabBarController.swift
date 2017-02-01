@@ -7,7 +7,8 @@
 //
 
 import UIKit
+import SwipeableTabBarController
 
-class TabBarController: UITabBarController {
+class TabBarController: SwipeableTabBarController {
     
 }

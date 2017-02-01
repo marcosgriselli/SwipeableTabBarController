@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  SwipeableTabBarController: 5ad8830568f5da84b36463fa06cf07b4e3a0de9f
+  SwipeableTabBarController: 55cd47f6fe845238b75baaae8e10d04089caa5b0
 
 PODFILE CHECKSUM: d3f307060c5f87973f664a4561212d2562d0cc25
 

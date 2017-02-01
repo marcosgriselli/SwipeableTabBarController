@@ -8,14 +8,14 @@
 
 import UIKit
 
-public class SwipeableTabBarController: UITabBarController {
+open class SwipeableTabBarController: UITabBarController {
     
     // TODO (marcosgriselli): Create protocols for this so users
     // can swap for their own interactors/animations
     fileprivate var swipeInteractor: SwipeInteractor!
     fileprivate var swipeAnimatedTransitioning: SwipeAnimation!
     
-    private let kSelectedIndexKey = "kSwipeableTabBarControllerSelectedIndex"
+    private let kSelectedIndexKey = "selectedIndex"
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -36,7 +36,7 @@ public class SwipeableTabBarController: UITabBarController {
         addObserver(self, forKeyPath: kSelectedIndexKey, options: .new, context: nil)
     }
 
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == kSelectedIndexKey {
             if let controllers = viewControllers {
                 let selectedController = controllers[selectedIndex]
@@ -45,14 +45,13 @@ public class SwipeableTabBarController: UITabBarController {
         }
     }
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         selectedIndex = 0
     }
 }
 
 extension SwipeableTabBarController: UITabBarControllerDelegate {
-    
     
     public func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     

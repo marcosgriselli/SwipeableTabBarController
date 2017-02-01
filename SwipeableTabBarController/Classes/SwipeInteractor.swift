@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class SwipeInteractor: UIPercentDrivenInteractiveTransition {
+class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     
     private var viewController: UIViewController!
     private var rightToLeftSwipe = false
