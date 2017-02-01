@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SwipeableTabBarController_Example' do
+  pod 'SwipeableTabBarController', :path => '../'
+
+  target 'SwipeableTabBarController_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
