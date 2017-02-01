@@ -10,6 +10,7 @@ import UIKit
 
 class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     
+    // MARK: - Private
     private var viewController: UIViewController!
     private var rightToLeftSwipe = false
     private var shouldCompleteTransition = false
@@ -17,6 +18,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     private let kSwipeVelocityForComplete: CGFloat = 200.0
     private let kSwipeGestureKey = "kSwipeableTabBarControllerGestureKey"
     
+    // MARK: - Public
     var interactionInProgress = false
     
     typealias Closure = (() -> ())

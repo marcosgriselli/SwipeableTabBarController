@@ -8,11 +8,24 @@
 
 import UIKit
 
+
+/// Different types of interactive animations.
+///
+/// - overlap: Previously selected tab will stay in place while the new tab slides in.
+/// - sideBySide: Both tabs move side by side as the animation takes place.
+/// - push: Replicates iOS default push animation.
 enum SwipeAnimationType {
     case overlap
     case sideBySide
     case push
+
     
+    /// Setup the views hirearchy for different animations types.
+    ///
+    /// - Parameters:
+    ///   - containerView: View that will contain the tabs views that will perform the animation
+    ///   - fromView: Previously selected tab view.
+    ///   - toView: New selected tab view.
     func addTo(containerView: UIView, fromView: UIView, toView: UIView) {
         switch self {
         case .push:
@@ -23,7 +36,14 @@ enum SwipeAnimationType {
             containerView.addSubview(toView)
         }
     }
+
     
+    /// Setup the views position prior to the animation start.
+    ///
+    /// - Parameters:
+    ///   - from: Previously selected tab view.
+    ///   - to: New selected tab view.
+    ///   - direction: Direction in which the views will animate.
     func prepare(fromView from: UIView?, toView to: UIView?, direction: Bool) {
         let screenWidth = UIScreen.main.bounds.size.width
         switch self {
@@ -38,7 +58,14 @@ enum SwipeAnimationType {
             from?.frame.origin.x = 0
         }
     }
+
     
+    /// The animation to take place.
+    ///
+    /// - Parameters:
+    ///   - from: Previously selected tab view.
+    ///   - to: New selected tab view.
+    ///   - direction: Direction in which the views will animate.
     func animation(fromView from: UIView?, toView to: UIView?, direction: Bool) {
         let screenWidth = UIScreen.main.bounds.size.width
         switch self {

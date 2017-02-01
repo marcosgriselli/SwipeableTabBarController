@@ -8,7 +8,6 @@
 
 import UIKit
 
-// TODO (marcosgriselli): Support different types of swipe animations (overlap, side by side, push-style?)
 class SwipeAnimation: NSObject {
     
     fileprivate var animationDuration: TimeInterval!
@@ -18,7 +17,7 @@ class SwipeAnimation: NSObject {
     
     var fromLeft = false
     
-    init(animationDuration: TimeInterval? = 0.33, animationType: SwipeAnimationType? = .push) {
+    init(animationDuration: TimeInterval? = 0.33, animationType: SwipeAnimationType? = .sideBySide) {
         super.init()
         self.animationDuration = animationDuration
         self.animationType = animationType
