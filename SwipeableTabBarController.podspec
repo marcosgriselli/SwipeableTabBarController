@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.author   	 = "Marcos Griselli"
   s.social_media_url   = "http://twitter.com/marcosgriselli"
 
-  s.source       = { :git => "https://github.com/marcosgriselli/MGSwipeableTabBarController.git", :tag => "0.1.0" }
+  s.source       = { :git => "https://github.com/marcosgriselli/SwipeableTabBarController.git", :tag => "0.1.0" }
   s.source_files  = "SwipeableTabBarController", "SwipeableTabBarController/**/*.{h,m,swift}"
 end
