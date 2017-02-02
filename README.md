@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
 [![Platform](https://img.shields.io/cocoapods/p/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
 
-![](https://github.com/marcosgriselli/SwipeableTabBarController/blob/master/SwipeableTabBarController.gif)
+![](./SwipeableTabBarController.gif)
 
 ## Usage 
 
