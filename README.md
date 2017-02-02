@@ -5,11 +5,23 @@
 [![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
 [![Platform](https://img.shields.io/cocoapods/p/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
 
+[[https://github.com/marcosgriselli/SwipeableTabBarController/blob/master/SwipeableTabBarController.gif|alt=SwipeableTabBarController]]
+
+## Usage 
+
+If you don't need subclassing `UITabBarController` just set the `UITabBarController` on the Storyboard to be of class `SwipeableTabBarController`.
+
+Otherwise make a sublcass of `SwipeableTabBarController`. Example:
+
+`import SwipeableTabBarController
+
+class TabBarController: SwipeableTabBarController {
+    // Do all your subclassing.
+}`
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
 
 ## Installation
 
