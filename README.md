@@ -13,11 +13,13 @@ If you don't need subclassing `UITabBarController` just set the `UITabBarControl
 
 Otherwise make a sublcass of `SwipeableTabBarController`. Example:
 
-`import SwipeableTabBarController
+```swift
+import SwipeableTabBarController
 
 class TabBarController: SwipeableTabBarController {
     // Do all your subclassing.
-}`
+}
+```
 
 ## Example
 
