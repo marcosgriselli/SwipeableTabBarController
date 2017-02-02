@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVd-pz-o0e">
-                                <rect key="frame" x="172.5" y="279" width="30.5" height="60"/>
+                                <rect key="frame" x="173" y="279" width="31" height="60"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -30,8 +30,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="gVd-pz-o0e" firstAttribute="centerY" secondItem="g8b-bt-KVY" secondAttribute="centerY" id="0Bg-Ba-7vw"/>
-                            <constraint firstItem="gVd-pz-o0e" firstAttribute="centerX" secondItem="g8b-bt-KVY" secondAttribute="centerX" id="7wJ-nz-BIo"/>
+                            <constraint firstItem="gVd-pz-o0e" firstAttribute="centerY" secondItem="g8b-bt-KVY" secondAttribute="centerY" id="Dul-P8-BZs"/>
+                            <constraint firstItem="gVd-pz-o0e" firstAttribute="leading" secondItem="g8b-bt-KVY" secondAttribute="leading" constant="173" id="Kbn-yP-kXg"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="FJa-9R-qxI"/>

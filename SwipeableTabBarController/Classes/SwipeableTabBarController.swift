@@ -43,7 +43,7 @@ open class SwipeableTabBarController: UITabBarController {
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == kSelectedViewControllerKey {
             if let selectedController = selectedViewController {
-                swipeInteractor.wireTo(viewController: selectedController)
+                swipeInteractor.wireTo(viewController: selectedController.firstController())
             }
         }
     }
@@ -58,7 +58,7 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
               let toVCIndex   = tabBarController.viewControllers?.index(of: toVC) else {
                 return nil
         }
-        
+
         swipeAnimatedTransitioning.fromLeft = fromVCIndex > toVCIndex
         return swipeAnimatedTransitioning
     }

@@ -22,7 +22,7 @@ pod "SwipeableTabBarController"
 
 ## Author
 
-marcosgriselli, marcosgriselli@gmail.com
+[@marcosgriselli](https://twitter.com/marcosgriselli) 
 
 ## License
 

@@ -14,6 +14,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     private var viewController: UIViewController!
     private var rightToLeftSwipe = false
     private var shouldCompleteTransition = false
+    private var canceled = false
     
     private let kSwipeVelocityForComplete: CGFloat = 200.0
     private let kSwipeGestureKey = "kSwipeableTabBarControllerGestureKey"
@@ -74,7 +75,18 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
             }
         case .changed:
             if interactionInProgress {
-                var fraction = fabs(translation.x/UIScreen.main.bounds.size.width)
+                let translationValue = translation.x/UIScreen.main.bounds.size.width
+                
+                // TODO (marcosgriselli): support dual side swipping in one drag.
+                if rightToLeftSwipe && translationValue > 0 {
+                    self.update(0)
+                    return
+                } else if !rightToLeftSwipe && translationValue < 0 {
+                    self.update(0)
+                    return
+                }
+                
+                var fraction = fabs(translationValue)
                 fraction = min(max(fraction, 0.0), 0.99)
                 shouldCompleteTransition = (fraction > 0.5);
                 
