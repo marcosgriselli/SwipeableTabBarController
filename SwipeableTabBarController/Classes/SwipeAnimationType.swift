@@ -14,7 +14,7 @@ import UIKit
 /// - overlap: Previously selected tab will stay in place while the new tab slides in.
 /// - sideBySide: Both tabs move side by side as the animation takes place.
 /// - push: Replicates iOS default push animation.
-enum SwipeAnimationType {
+public enum SwipeAnimationType {
     case overlap
     case sideBySide
     case push

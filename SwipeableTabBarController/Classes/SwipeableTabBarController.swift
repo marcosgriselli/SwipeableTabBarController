@@ -47,6 +47,10 @@ open class SwipeableTabBarController: UITabBarController {
             }
         }
     }
+
+    open func setSwipeAnimation(type: SwipeAnimationType) {
+        swipeAnimatedTransitioning.animationType = type
+    }
 }
 
 extension SwipeableTabBarController: UITabBarControllerDelegate {

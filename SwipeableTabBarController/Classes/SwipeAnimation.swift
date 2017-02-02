@@ -12,10 +12,10 @@ class SwipeAnimation: NSObject {
     
     fileprivate var animationDuration: TimeInterval!
     fileprivate var animationStarted = false
-    fileprivate var animationType: SwipeAnimationType!
     // TODO (marcosgriselli): add support for snapshot views.
     
     var fromLeft = false
+    var animationType: SwipeAnimationType!
     
     init(animationDuration: TimeInterval? = 0.33, animationType: SwipeAnimationType? = .sideBySide) {
         super.init()
