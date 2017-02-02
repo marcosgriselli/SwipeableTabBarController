@@ -5,19 +5,21 @@
 [![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
 [![Platform](https://img.shields.io/cocoapods/p/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
 
-[[https://github.com/marcosgriselli/SwipeableTabBarController/blob/master/SwipeableTabBarController.gif|alt=SwipeableTabBarController]]
+![](https://github.com/marcosgriselli/SwipeableTabBarController/blob/master/SwipeableTabBarController.gif)
 
 ## Usage 
 
-If you don't need subclassing `UITabBarController` just set the `UITabBarController` on the Storyboard to be of class `SwipeableTabBarController`.
+If you don't need subclassing `UITabBarController` just set the `UITabBarController` on the Storyboard to be of type `SwipeableTabBarController`.
 
-Otherwise make a sublcass of `SwipeableTabBarController`. Example:
+Otherwise make a sublcass of `SwipeableTabBarController`. 
+
+Example:
 
 ```swift
 import SwipeableTabBarController
 
 class TabBarController: SwipeableTabBarController {
-    // Do all your subclassing.
+    // Do all your subclassing as a regular UITabBarController.
 }
 ```
 
