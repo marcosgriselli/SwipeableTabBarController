@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
 [![Platform](https://img.shields.io/cocoapods/p/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
 
-<a href="url"><img src="./SwipeableTabBarController.gif" align="left" height="650" width="375" ></a>
+<a href="url"><img src="./SwipeableTabBarController.gif" height="650" width="375" ></a><br />
 
 ## Usage 
 
