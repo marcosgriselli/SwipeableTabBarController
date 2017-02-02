@@ -46,7 +46,6 @@ extension SwipeAnimation: UIViewControllerAnimatedTransitioning {
         let duration = transitionDuration(using: transitionContext)
         let toView = toViewController.view
         let fromView = fromViewController.view
-        let screenWidth = UIScreen.main.bounds.size.width
         fromView?.endEditing(true)
         
         animationType.addTo(containerView: containerView, fromView: fromView!, toView: toView!)
