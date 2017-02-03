@@ -1,6 +1,6 @@
 {
   "name": "SwipeableTabBarController",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "summary": "A UITabBarController where you can swipe interactively between tabs.",
   "description": "Subclass of UITabBarController that adds a swipe recognizer to the lowest UIViewController so you can interactively change tabs.",
   "homepage": "https://github.com/marcosgriselli/SwipeableTabBarController",
@@ -12,7 +12,7 @@
   "social_media_url": "http://twitter.com/marcosgriselli",
   "source": {
     "git": "https://github.com/marcosgriselli/SwipeableTabBarController.git",
-    "tag": "0.1.0"
+    "tag": "0.1.2"
   },
   "source_files": [
     "SwipeableTabBarController",
