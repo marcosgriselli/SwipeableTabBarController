@@ -1,9 +1,9 @@
 # SwipeableTabBarController
 
-[![CI Status](http://img.shields.io/travis/marcosgriselli/SwipeableTabBarController.svg?style=flat)](https://travis-ci.org/marcosgriselli/SwipeableTabBarController)
 [![Version](https://img.shields.io/cocoapods/v/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
 [![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
-[![Platform](https://img.shields.io/cocoapods/p/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
+![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg)
+![Swift 3.0+](https://img.shields.io/badge/Swift-3.0%2B-orange.svg)
 
 <a href="url"><img src="./SwipeableTabBarController.gif" height="650" width="375" ></a><br />
 
