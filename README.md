@@ -33,19 +33,19 @@ setSwipeAnimation(type: SwipeAnimationType.push)
 
 If you are supporting just one type of animation call it on `viewDidLoad()` otherwise call it as you need to change the desired animation.
 
-** Side by Side (default) **
+#### Side by Side (default)
 
-<a href="url"><img src="./GIFs/SideBySideAnimation.gif" height="216" width="125" ></a>
+<a href="url"><img src="./GIFs/SideBySideAnimation.gif" align= height="216" width="125" ></a>
 
 The default animation is `SwipeAnimationType.sideBySide` where the newly selected tab will move in at the same speed the previous one moves out.
 
-** Overlap **
+#### Overlap
 
 <a href="url"><img src="./GIFs/OverlapAnimation.gif" height="216" width="125" ></a>
 
 `SwipeAnimationType.overlap` the newly selected tab will move in to take the central place on top of the previous one which will hold it's position.
 
-** Push **
+#### Push
 
 <a href="url"><img src="./GIFs/PushAnimation.gif" height="216" width="125" ></a>
 
