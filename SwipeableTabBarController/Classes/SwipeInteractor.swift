@@ -45,6 +45,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
         }
         
         panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeInteractor.handlePan(_:)))
+        panRecognizer?.delegate = self
         panRecognizer?.isEnabled = true
         view.addGestureRecognizer(panRecognizer!)
         objc_setAssociatedObject(view, kSwipeGestureKey, panRecognizer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
@@ -116,5 +117,13 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
             
         default : break
         }
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+extension SwipeInteractor: UIGestureRecognizerDelegate {
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

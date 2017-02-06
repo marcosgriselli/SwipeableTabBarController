@@ -11,7 +11,7 @@
 
 If you don't need subclassing `UITabBarController` just set the `UITabBarController` on the Storyboard to be of type `SwipeableTabBarController`.
 
-Otherwise make a sublcass of `SwipeableTabBarController`.
+Otherwise, make a subclass of `SwipeableTabBarController`.
 
 Example:
 
@@ -49,7 +49,7 @@ The default animation is `SwipeAnimationType.sideBySide` where the newly selecte
 
 <a href="url"><img src="./GIFs/PushAnimation.gif" height="216" width="125" ></a>
 
-`SwipeAnimationType.push` follows iOS default push animation where the top view moves away while the bottom one slightly moves behind. In this case the top view will be the previously selected tab view.
+`SwipeAnimationType.push` follows iOS default push animation where the top view moves away while the bottom one slightly moves behind. In this case, the top view will be the previously selected tab view.
 
 ## Example
 
@@ -72,7 +72,7 @@ pod "SwipeableTabBarController"
 * iOS 8.0+
 
 ### Contributing
-Feel free to collaborate with ideas 💭 , issues ⁉️ and/or pull requests 🔃.
+Feel free to collaborate with ideas 💭, issues ⁉️ and/or pull requests 🔃.
 
 If you use SwipeableTabBarController in your app I'd love to hear about it and feature your animation here!
 
