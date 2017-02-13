@@ -8,10 +8,13 @@
 
 import UIKit
 
+/// Responsible of adding the `UIPanGestureRecognizer` to the current 
+/// tab selected on the `UITabBarController` subclass.
 class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     
     // MARK: - Private
     private var viewController: UIViewController!
+    fileprivate var panRecognizer: UIPanGestureRecognizer?
     private var rightToLeftSwipe = false
     private var shouldCompleteTransition = false
     private var canceled = false
@@ -38,7 +41,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     ///
     /// - Parameter view: `UITabBarController` tab controller's view (`UINavigationControllers` not included).
     func prepareGestureRecognizer(inView view: UIView) {
-        var panRecognizer = objc_getAssociatedObject(view, kSwipeGestureKey) as? UIPanGestureRecognizer
+        panRecognizer = objc_getAssociatedObject(view, kSwipeGestureKey) as? UIPanGestureRecognizer
         
         if let swipe = panRecognizer {
             view.removeGestureRecognizer(swipe)
@@ -124,6 +127,11 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
 extension SwipeInteractor: UIGestureRecognizerDelegate {
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer == panRecognizer {
+            if let point = panRecognizer?.translation(in: panRecognizer?.view?.superview) {
+                return fabs(point.x) < 5
+            }
+        }
         return true
     }
 }

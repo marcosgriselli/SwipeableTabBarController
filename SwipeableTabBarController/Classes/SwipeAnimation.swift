@@ -8,24 +8,23 @@
 
 import UIKit
 
-class SwipeAnimation: NSObject {
+/// Swipe animation conforming to `UIViewControllerAnimatedTransitioning`
+/// Can be replaced by any other class confirming to `UIViewControllerTransitioning`
+/// on your `SwipeableTabBarController` subclass.
+class SwipeAnimation: NSObject, SwipeTransitioningProtocol {
     
     fileprivate var animationDuration: TimeInterval!
     fileprivate var animationStarted = false
+    
     // TODO (marcosgriselli): add support for snapshot views.
-    
     var fromLeft = false
-    var animationType: SwipeAnimationType!
+    var animationType: SwipeAnimationTypeProtocol = SwipeAnimationType.sideBySide
     
-    init(animationDuration: TimeInterval? = 0.33, animationType: SwipeAnimationType? = .sideBySide) {
+    init(animationDuration: TimeInterval = 0.33, animationType: SwipeAnimationTypeProtocol = SwipeAnimationType.sideBySide) {
         super.init()
         self.animationDuration = animationDuration
         self.animationType = animationType
     }
-}
-
-// MARK: - UIViewControllerAnimatedTransitioning
-extension SwipeAnimation: UIViewControllerAnimatedTransitioning {
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return (transitionContext?.isAnimated == true) ? animationDuration : 0

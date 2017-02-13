@@ -8,17 +8,23 @@
 
 import UIKit
 
+/// `UITabBarController` subclass with a `selectedViewController` property observer,
+/// `SwipeInteractor` that handles the swiping between tabs gesture, and a `SwipeTransitioningProtocol`
+/// that determines the animation to be added. Use it or subclass it.
 open class SwipeableTabBarController: UITabBarController {
-    
-    // TODO (marcosgriselli): Create protocols for this so users
-    // can swap for their own interactors/animations
+
     fileprivate var swipeInteractor: SwipeInteractor!
-    fileprivate var swipeAnimatedTransitioning: SwipeAnimation!
-    
+    fileprivate var swipeAnimatedTransitioning: SwipeTransitioningProtocol!
+
     private let kSelectedViewControllerKey = "selectedViewController"
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setup()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
 
@@ -48,11 +54,16 @@ open class SwipeableTabBarController: UITabBarController {
         }
     }
 
-    open func setSwipeAnimation(type: SwipeAnimationType) {
+    open func setSwipeAnimation(type: SwipeAnimationTypeProtocol) {
         swipeAnimatedTransitioning.animationType = type
+    }
+    
+    open func setAnimationTransitioning(animation: SwipeTransitioningProtocol) {
+        swipeAnimatedTransitioning = animation
     }
 }
 
+// MARK: - UITabBarControllerDelegate
 extension SwipeableTabBarController: UITabBarControllerDelegate {
     
     public func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
