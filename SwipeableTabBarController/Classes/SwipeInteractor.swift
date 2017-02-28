@@ -20,7 +20,9 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     private var canceled = false
     
     private let kSwipeVelocityForComplete: CGFloat = 200.0
-    private let kSwipeGestureKey = "kSwipeableTabBarControllerGestureKey"
+    fileprivate struct AssociatedKey {
+        static var swipeGestureKey = "kSwipeableTabBarControllerGestureKey"
+    }
     
     // MARK: - Public
     var interactionInProgress = false
@@ -41,7 +43,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     ///
     /// - Parameter view: `UITabBarController` tab controller's view (`UINavigationControllers` not included).
     func prepareGestureRecognizer(inView view: UIView) {
-        panRecognizer = objc_getAssociatedObject(view, kSwipeGestureKey) as? UIPanGestureRecognizer
+        panRecognizer = objc_getAssociatedObject(view, &AssociatedKey.swipeGestureKey) as? UIPanGestureRecognizer
         
         if let swipe = panRecognizer {
             view.removeGestureRecognizer(swipe)
@@ -51,7 +53,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
         panRecognizer?.delegate = self
         panRecognizer?.isEnabled = true
         view.addGestureRecognizer(panRecognizer!)
-        objc_setAssociatedObject(view, kSwipeGestureKey, panRecognizer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(view, &AssociatedKey.swipeGestureKey, panRecognizer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
     
     

@@ -1,5 +1,5 @@
 PODS:
-  - SwipeableTabBarController (0.1.3)
+  - SwipeableTabBarController (1.0.0)
 
 DEPENDENCIES:
   - SwipeableTabBarController (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  SwipeableTabBarController: 5d3e2ddcf249d9833ae24f84b3794c07448a619e
+  SwipeableTabBarController: b5147296183d9d893305df1ca15eaedb63ba4203
 
 PODFILE CHECKSUM: f67e1bb33d518210012c1afff09b6ff119d43a60
 
