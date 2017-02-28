@@ -54,12 +54,28 @@ open class SwipeableTabBarController: UITabBarController {
         }
     }
 
+    /// Modify the swipe animation, it can be one of the default `SwipeAnimationType` or your own type 
+    /// conforming to `SwipeAnimationTypeProtocol`.
+    ///
+    /// - Parameter type: object conforming to `SwipeAnimationTypeProtocol`.
     open func setSwipeAnimation(type: SwipeAnimationTypeProtocol) {
         swipeAnimatedTransitioning.animationType = type
     }
-    
+
+    /// Modify the transitioning animation.
+    ///
+    /// - Parameter animation: UIViewControllerAnimatedTransitioning conforming to 
+    /// `SwipeTransitioningProtocol`.
     open func setAnimationTransitioning(animation: SwipeTransitioningProtocol) {
         swipeAnimatedTransitioning = animation
+    }
+
+    /// Toggle the diagonal swipe to remove the just `perfect` horizontal swipe interaction 
+    /// needed to perform the transition.
+    ///
+    /// - Parameter enabled: Bool value to the corresponding diagnoal swipe support.
+    open func setDiagonalSwipe(enabled: Bool) {
+        swipeInteractor.isDiagonalSwipeEnabled = enabled
     }
 }
 

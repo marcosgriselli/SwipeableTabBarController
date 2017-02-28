@@ -7,6 +7,21 @@
 
 <a href="url"><img src="./GIFs/SwipeableTabBarController.gif" height="650" width="375" ></a><br />
 
+## Installation
+
+### CocoaPods
+
+SwipeableTabBarController is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "SwipeableTabBarController"
+```
+
+### Manual
+
+Drop the classes inside of SwipeableTabBarController/Classes into your project.
+
 ## Usage
 
 If you don't need subclassing `UITabBarController` just set the `UITabBarController` on the Storyboard to be of type `SwipeableTabBarController`.
@@ -51,18 +66,19 @@ The default animation is `SwipeAnimationType.sideBySide` where the newly selecte
 
 `SwipeAnimationType.push` follows iOS default push animation where the top view moves away while the bottom one slightly moves behind. In this case, the top view will be the previously selected tab view.
 
+### Restricted Swipe
+
+You can choose to restrict your swiping to perfect horizontal swipe or support diagonal movement as well. I recommend enabling horizontal swipe if you are not using any kind of scrollViews on your controllers.
+
+Default value is ```false```
+
+```swift
+setDiagonalSwipe(enabled: true)
+```
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Installation
-
-SwipeableTabBarController is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod "SwipeableTabBarController"
-```
 
 ## Project Details
 
