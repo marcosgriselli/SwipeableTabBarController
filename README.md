@@ -1,9 +1,9 @@
 # SwipeableTabBarController
 
-[![Version](https://img.shields.io/cocoapods/v/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
-[![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg?style=flat)](http://cocoapods.org/pods/SwipeableTabBarController)
-![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg)
-![Swift 3.0+](https://img.shields.io/badge/Swift-3.0%2B-orange.svg)
+[![Version](https://img.shields.io/cocoapods/v/SwipeableTabBarController.svg?style=flat-square)](http://cocoapods.org/pods/SwipeableTabBarController)
+[![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg?style=flat-square)](http://cocoapods.org/pods/SwipeableTabBarController)
+![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg?style=flat-square)
+![Swift 3.0+](https://img.shields.io/badge/Swift-3.0%2B-orange.svg?style=flat-square)
 
 <a href="url"><img src="./GIFs/SwipeableTabBarController.gif" height="650" width="375" ></a><br />
 
@@ -76,6 +76,16 @@ Default value is ```false```
 setDiagonalSwipe(enabled: true)
 ```
 
+### Disable Interaction
+
+Support for disabling/enabling the interactor, this can be used on a controller that uses horizontal scrollView or a Map (in the example).
+
+Default value is ```true```
+
+```swift
+setTabBarSwipe(enabled: false)
+``` 
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -95,6 +105,9 @@ If you use SwipeableTabBarController in your app I'd love to hear about it and f
 ### Author
 
 Marcos Griselli | <a href="url"><img src="./Resources/twitterIcon.png" height="15" width="17" ></a> [@marcosgriselli](https://twitter.com/marcosgriselli)
+
+
+[![Twitter Follow](https://img.shields.io/twitter/follow/marcosgriselli.svg?style=social)](https://twitter.com/marcosgriselli)
 
 ### License
 

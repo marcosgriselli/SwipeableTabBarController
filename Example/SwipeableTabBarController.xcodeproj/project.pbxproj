@@ -13,6 +13,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		E64F61AD98188094869A8782 /* Pods_SwipeableTabBarController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692DBA431883E20F1F56CE7 /* Pods_SwipeableTabBarController_Example.framework */; };
 		FBA2190D1E42743A008DF29E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA2190C1E42743A008DF29E /* TabBarController.swift */; };
+		FBF5515E1E6B2ED00093A73F /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF5515D1E6B2ED00093A73F /* MapController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		C3528B053D04AB01140FD5D6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D6C027CBAE6C33E555F01AEC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FBA2190C1E42743A008DF29E /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		FBF5515D1E6B2ED00093A73F /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				FBA2190C1E42743A008DF29E /* TabBarController.swift */,
+				FBF5515D1E6B2ED00093A73F /* MapController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				FBF5515E1E6B2ED00093A73F /* MapController.swift in Sources */,
 				FBA2190D1E42743A008DF29E /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

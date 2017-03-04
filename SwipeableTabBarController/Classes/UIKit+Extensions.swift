@@ -8,17 +8,22 @@
 
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
     
-    
-    /// Get the first controller on a tab stack.
+    /// Get the first controller on a navigation stack.
     ///
     /// - Returns: The current tab view controller or the navigation first controller so there's no 
-    ///            so there's no interaction with navigation controllers that push other vcs.
-    func firstController() -> UIViewController {
+    ///            swipe interaction when the navigation controller pushes a new view controller.
+    public func firstController() -> UIViewController {
         if let navigation = self as? UINavigationController {
             return (navigation.viewControllers.first ?? self)
         }
         return self
+    }
+    
+    public func setTabBarSwipe(enabled: Bool) {
+        if let swipeTabBarController = tabBarController as? SwipeableTabBarController {
+            swipeTabBarController.isSwipeEnabled = enabled
+        }
     }
 }

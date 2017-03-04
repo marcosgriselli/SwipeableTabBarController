@@ -13,9 +13,9 @@ import UIKit
 /// that determines the animation to be added. Use it or subclass it.
 open class SwipeableTabBarController: UITabBarController {
 
+    // MARK: - Private API
     fileprivate var swipeInteractor: SwipeInteractor!
     fileprivate var swipeAnimatedTransitioning: SwipeTransitioningProtocol!
-
     private let kSelectedViewControllerKey = "selectedViewController"
 
     required public init?(coder aDecoder: NSCoder) {
@@ -45,8 +45,12 @@ open class SwipeableTabBarController: UITabBarController {
         // Observe selected index changes to wire the gesture recognizer to the viewController.
         addObserver(self, forKeyPath: kSelectedViewControllerKey, options: .new, context: nil)
     }
-
+    
+    // MARK: - Public API
+    
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        // .selectedViewController changes so we setup the swipe interactor to the new selected Controller.
         if keyPath == kSelectedViewControllerKey {
             if let selectedController = selectedViewController {
                 swipeInteractor.wireTo(viewController: selectedController.firstController())
@@ -54,7 +58,7 @@ open class SwipeableTabBarController: UITabBarController {
         }
     }
 
-    /// Modify the swipe animation, it can be one of the default `SwipeAnimationType` or your own type 
+    /// Modify the swipe animation, it can be one of the default `SwipeAnimationType` or your own type
     /// conforming to `SwipeAnimationTypeProtocol`.
     ///
     /// - Parameter type: object conforming to `SwipeAnimationTypeProtocol`.
@@ -76,6 +80,11 @@ open class SwipeableTabBarController: UITabBarController {
     /// - Parameter enabled: Bool value to the corresponding diagnoal swipe support.
     open func setDiagonalSwipe(enabled: Bool) {
         swipeInteractor.isDiagonalSwipeEnabled = enabled
+    }
+    
+    /// Enables/Disables swipes on the tabbar controller.
+    open var isSwipeEnabled = true {
+        didSet { swipeInteractor.isEnabled = isSwipeEnabled }
     }
 }
 

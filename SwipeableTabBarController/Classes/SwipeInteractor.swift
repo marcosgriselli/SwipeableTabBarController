@@ -41,7 +41,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     /// Sets the viewController to be the one in charge of handling the swipe transition.
     ///
     /// - Parameter viewController: `UIViewController` in charge of the the transition.
-    func wireTo(viewController: UIViewController) {
+    public func wireTo(viewController: UIViewController) {
         self.viewController = viewController
         prepareGestureRecognizer(inView: viewController.view)
     }
@@ -50,7 +50,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     /// Adds the `UIPanGestureRecognizer` to the controller's view to handle swiping.
     ///
     /// - Parameter view: `UITabBarController` tab controller's view (`UINavigationControllers` not included).
-    func prepareGestureRecognizer(inView view: UIView) {
+    public func prepareGestureRecognizer(inView view: UIView) {
         panRecognizer = objc_getAssociatedObject(view, &AssociatedKey.swipeGestureKey) as? UIPanGestureRecognizer
         
         if let swipe = panRecognizer {
@@ -59,7 +59,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
         
         panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeInteractor.handlePan(_:)))
         panRecognizer?.delegate = self
-        panRecognizer?.isEnabled = true
+        panRecognizer?.isEnabled = isEnabled
         view.addGestureRecognizer(panRecognizer!)
         objc_setAssociatedObject(view, &AssociatedKey.swipeGestureKey, panRecognizer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
@@ -138,6 +138,17 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
         }
     }
     
+    /// enables/disables the entire interactor. 
+    public var isEnabled = true {
+        didSet { panRecognizer?.isEnabled = isEnabled }
+    }
+    
+    /// Checks for the diagonal swipe support. It evaluates if the current gesture is diagonal or Y-Axis based.
+    ///
+    /// - Parameters:
+    ///   - yTranslation: gesture translation on the Y-axis.
+    ///   - yVelocity: gesture velocity on the Y-axis.
+    /// - Returns: boolean determing wether the interaction should take place or not.
     private func shouldSuspendInteraction(yTranslation: CGFloat, yVelocity: CGFloat) -> Bool {
         if !isDiagonalSwipeEnabled {
             // Cancel interaction if the movement is on the Y axis.
