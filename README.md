@@ -7,6 +7,11 @@
 
 <a href="url"><img src="./GIFs/SwipeableTabBarController.gif"></a><br />
 
+
+The iPhone mockups can be found [here](https://pixabay.com/en/phone-iphone-black-cellphone-1830479/) &  [here](https://pixabay.com/en/iphone-iphone-6s-smartphone-mobile-1936818/).
+
+All the designs belong to [To Do App UI kit](https://www.invisionapp.com/do) by [Invision](https://www.invisionapp.com).
+
 ## Installation
 
 ### CocoaPods
