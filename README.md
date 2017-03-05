@@ -5,7 +5,7 @@
 ![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg?style=flat-square)
 ![Swift 3.0+](https://img.shields.io/badge/Swift-3.0%2B-orange.svg?style=flat-square)
 
-<a href="url"><img src="./GIFs/SwipeableTabBarController.gif" height="650" width="375" ></a><br />
+<a href="url"><img src="./GIFs/SwipeableTabBarController.gif"></a><br />
 
 ## Installation
 
@@ -56,13 +56,13 @@ The default animation is `SwipeAnimationType.sideBySide` where the newly selecte
 
 #### Overlap
 
-<a href="url"><img src="./GIFs/OverlapAnimation.gif" height="216" width="125" ></a>
+<a href="url"><img src="./GIFs/OverlapAnimation.gif" height="240" width="125" ></a>
 
 `SwipeAnimationType.overlap` the newly selected tab will move in to take the central place on top of the previous one which will hold it's position.
 
 #### Push
 
-<a href="url"><img src="./GIFs/PushAnimation.gif" height="216" width="125" ></a>
+<a href="url"><img src="./GIFs/PushAnimation.gif" height="240" width="125" ></a>
 
 `SwipeAnimationType.push` follows iOS default push animation where the top view moves away while the bottom one slightly moves behind. In this case, the top view will be the previously selected tab view.
 
@@ -84,7 +84,7 @@ Default value is ```true```
 
 ```swift
 setTabBarSwipe(enabled: false)
-``` 
+```
 
 ## Example
 
