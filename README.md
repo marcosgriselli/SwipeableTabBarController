@@ -55,7 +55,7 @@ If you are supporting just one type of animation call it on `viewDidLoad()` othe
 
 #### Side by Side (default)
 
-<a href="url"><img src="./GIFs/SideBySideAnimation.gif" align= height="216" width="125" ></a>
+<a href="url"><img src="./GIFs/SideBySideAnimation.gif" height="216" width="125" ></a>
 
 The default animation is `SwipeAnimationType.sideBySide` where the newly selected tab will move in at the same speed the previous one moves out.
 
