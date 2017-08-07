@@ -16,6 +16,7 @@ open class SwipeableTabBarController: UITabBarController {
     // MARK: - Private API
     fileprivate var swipeInteractor: SwipeInteractor!
     fileprivate var swipeAnimatedTransitioning: SwipeTransitioningProtocol!
+    fileprivate var animationEnabled: Bool = true
     private let kSelectedViewControllerKey = "selectedViewController"
 
     required public init?(coder aDecoder: NSCoder) {
@@ -81,7 +82,13 @@ open class SwipeableTabBarController: UITabBarController {
     open func setDiagonalSwipe(enabled: Bool) {
         swipeInteractor.isDiagonalSwipeEnabled = enabled
     }
-    
+
+    /// Toggles the transition animation
+    ///
+    /// - Parameter enabled: Bool value to set if it should animate the transition
+    open func setAnimation(enabled: Bool) {
+        animationEnabled = enabled
+    }
     /// Enables/Disables swipes on the tabbar controller.
     open var isSwipeEnabled = true {
         didSet { swipeInteractor.isEnabled = isSwipeEnabled }
@@ -92,7 +99,10 @@ open class SwipeableTabBarController: UITabBarController {
 extension SwipeableTabBarController: UITabBarControllerDelegate {
     
     public func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    
+
+        // Checks if the animation is enabled and if not returns the new controller instantly.
+        guard animationEnabled else { return nil }
+        
         // Get the indexes of the ViewControllers involved in the animation to determine the animation flow. 
         guard let fromVCIndex = tabBarController.viewControllers?.index(of: fromVC),
               let toVCIndex   = tabBarController.viewControllers?.index(of: toVC) else {
