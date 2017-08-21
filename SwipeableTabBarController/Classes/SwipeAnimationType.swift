@@ -23,6 +23,7 @@ public enum SwipeAnimationType: SwipeAnimationTypeProtocol {
     case overlap
     case sideBySide
     case push
+    case none
 
     
     /// Setup the views hirearchy for different animations types.
@@ -61,6 +62,8 @@ public enum SwipeAnimationType: SwipeAnimationTypeProtocol {
             let scaledWidth = screenWidth/6
             to?.frame.origin.x = direction ? -scaledWidth : scaledWidth
             from?.frame.origin.x = 0
+        case .none:
+            break
         }
     }
 
@@ -82,6 +85,8 @@ public enum SwipeAnimationType: SwipeAnimationTypeProtocol {
         case .push:
             to?.frame.origin.x = 0
             from?.frame.origin.x = direction ? screenWidth : -screenWidth
+        case .none:
+            break
         }
     }
 }
