@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EZ7-1I-Ge6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EZ7-1I-Ge6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +23,7 @@
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="O8t-Ed-2U9" kind="relationship" relationship="viewControllers" id="3Oe-4W-vkF"/>
+                        <segue destination="ALp-Rj-Ymi" kind="relationship" relationship="viewControllers" id="3Oe-4W-vkF"/>
                         <segue destination="4Ne-fv-cGU" kind="relationship" relationship="viewControllers" id="Fqq-hX-sUc"/>
                         <segue destination="cp8-kB-t65" kind="relationship" relationship="viewControllers" id="YF6-dj-uck"/>
                     </connections>
@@ -55,13 +55,11 @@
                             <constraint firstItem="nPA-NT-yai" firstAttribute="top" secondItem="fo4-CJ-M6j" secondAttribute="top" id="zTJ-N2-j2D"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" image="fluid_graph" id="Nld-LB-bzc">
-                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="hiE-qE-B6m"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVy-of-7A9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="356" y="-573"/>
+            <point key="canvasLocation" x="1295.2" y="-573.46326836581716"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="mBO-s7-vNi">
@@ -126,6 +124,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mHd-oM-kEK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="356" y="803"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WrB-OJ-Fog">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ALp-Rj-Ymi" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" image="fluid_graph" id="Nld-LB-bzc">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yDe-wy-Ehw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="O8t-Ed-2U9" kind="relationship" relationship="rootViewController" id="wLM-qk-3Ag"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mgc-8e-8qL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="356" y="-573.46326836581716"/>
         </scene>
     </scenes>
     <resources>
