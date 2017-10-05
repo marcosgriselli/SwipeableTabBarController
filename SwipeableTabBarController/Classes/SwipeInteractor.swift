@@ -68,7 +68,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     /// Handles the swiping with progress
     ///
     /// - Parameter recognizer: `UIPanGestureRecognizer` in the current tab controller's view.
-    func handlePan(_ recognizer: UIPanGestureRecognizer) {
+    @objc func handlePan(_ recognizer: UIPanGestureRecognizer) {
         
         let translation = recognizer.translation(in: recognizer.view?.superview)
         let velocity = recognizer.velocity(in: recognizer.view)
