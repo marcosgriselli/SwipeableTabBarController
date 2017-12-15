@@ -46,10 +46,14 @@ class SwipeAnimation: NSObject, SwipeTransitioningProtocol {
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-        let containerView = transitionContext.containerView
-        guard let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
-            let toViewController = transitionContext.viewController(forKey:
-                UITransitionContextViewControllerKey.to)
+        // Pre check if there's a previous transition runing and cancel the current one.
+        if animationStarted {
+            return transitionContext.completeTransition(false)
+        }
+
+        guard let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from),
+            let toView = transitionContext.view(forKey:
+                UITransitionContextViewKey.to)
             else {
                 return transitionContext.completeTransition(false)
         }
@@ -57,13 +61,12 @@ class SwipeAnimation: NSObject, SwipeTransitioningProtocol {
         animationStarted = true
         
         let duration = transitionDuration(using: transitionContext)
-        let toView = toViewController.view
-        let fromView = fromViewController.view
-        fromView?.endEditing(true)
-        
-        animationType.addTo(containerView: containerView, fromView: fromView!, toView: toView!)
+        fromView.endEditing(true)
+
+        let containerView = transitionContext.containerView
+        animationType.addTo(containerView: containerView, fromView: fromView, toView: toView)
         animationType.prepare(fromView: fromView, toView: toView, direction: fromLeft)
-        
+    
         UIView.animate(withDuration: duration,
                        delay: 0.0,
                        options: [.curveEaseOut],
