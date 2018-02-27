@@ -99,7 +99,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Project Details
 
 ### Requirements
-* Swift 3.0
+* Swift 4.0
 * Xcode 8.0+
 * iOS 8.0+
 
