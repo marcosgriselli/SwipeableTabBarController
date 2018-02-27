@@ -127,7 +127,6 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
 
     public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         currentAnimatedTransitioningType = tapAnimatedTransitioning
-        
         return true
     }
 }

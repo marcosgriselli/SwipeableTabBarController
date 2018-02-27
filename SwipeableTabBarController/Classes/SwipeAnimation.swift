@@ -89,7 +89,7 @@ class SwipeAnimation: NSObject, SwipeTransitioningProtocol {
     private func finishedTransition(fromView: UIView?,
                                     toView: UIView?,
                                     in context: UIViewControllerContextTransitioning) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+        DispatchQueue.main.async {
             self.animationStarted = false
             if context.transitionWasCancelled {
                 toView?.removeFromSuperview()
@@ -97,6 +97,6 @@ class SwipeAnimation: NSObject, SwipeTransitioningProtocol {
                 fromView?.removeFromSuperview()
             }
             context.completeTransition(!context.transitionWasCancelled)
-        })
+        }
     }
 }
