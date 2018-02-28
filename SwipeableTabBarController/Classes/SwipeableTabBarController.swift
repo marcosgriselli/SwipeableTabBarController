@@ -14,10 +14,10 @@ import UIKit
 open class SwipeableTabBarController: UITabBarController {
 
     // MARK: - Private API
-    fileprivate var swipeInteractor: SwipeInteractor!
-    fileprivate var swipeAnimatedTransitioning: SwipeTransitioningProtocol!
-    fileprivate var tapAnimatedTransitioning: SwipeTransitioningProtocol!
-    fileprivate var currentAnimatedTransitioningType: SwipeTransitioningProtocol!
+    fileprivate var swipeInteractor = SwipeInteractor()
+    fileprivate var swipeAnimatedTransitioning: SwipeTransitioningProtocol = SwipeAnimation()
+    fileprivate var tapAnimatedTransitioning: SwipeTransitioningProtocol = SwipeAnimation()
+    fileprivate var currentAnimatedTransitioningType: SwipeTransitioningProtocol = SwipeAnimation()
 
     private let kSelectedViewControllerKey = "selectedViewController"
 
@@ -32,18 +32,12 @@ open class SwipeableTabBarController: UITabBarController {
     }
 
     private func setup() {
-        // Set the interactor that will handle the swipes
-        swipeInteractor = SwipeInteractor()
+        // Set the closure for finishing the transition
         swipeInteractor.onfinishTransition = {
             if let controllers = self.viewControllers {
                 self.selectedViewController = controllers[self.selectedIndex]
             }
         }
-
-        // Set the animation to excecute with swipe percentage
-        swipeAnimatedTransitioning = SwipeAnimation()
-        tapAnimatedTransitioning = swipeAnimatedTransitioning
-        currentAnimatedTransitioningType = swipeAnimatedTransitioning
 
         // UITabBarControllerDelegate for transitions.
         delegate = self
@@ -77,7 +71,7 @@ open class SwipeableTabBarController: UITabBarController {
     ///
     /// - Parameter type: object conforming to `SwipeAnimationTypeProtocol`.
     open func setTapAnimation(type: SwipeAnimationTypeProtocol) {
-        tapAnimatedTransitioning = SwipeAnimation(animationType: type)
+        tapAnimatedTransitioning.animationType = type
     }
 
     /// Modify the transitioning animation.
