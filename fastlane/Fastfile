@@ -2,16 +2,32 @@ default_platform(:ios)
 
 platform :ios do
 
-  desc "Release a new version of the pod"
-  lane :release do
+  desc "Release a new version with a patch bump_type"
+  lane :patch do
+    release("patch")
+  end
+
+  desc "Release a new version with a minor bump_type"
+  lane :minor do
+    release("minor")
+  end
+
+  desc "Release a new version with a major bump_type"
+  lane :major do
+    release("major")
+  end
+
+  def release(type)
     pod_lib_lint
-    version = version_bump_podspec(path: "SwipeableTabBarController.podspec", bump_type: "patch")
-    git_add(path: "./SwipeableTabBarController.podspec")
-    git_commit(path: ["./SwipeableTabBarController.podspec"], message: "#{version} release")
-    changelog_from_git_commits(pretty: "- (%ae) %s", include_merges: false)
-    add_git_tag(
-  		tag: "#{version}"
-	)
+    podspec_name = "SwipeableTabBarController.podspec"
+    version = version_bump_podspec(path: podspec_name,
+                                   bump_type: type)
+    increment_version_number(version_number: version)
+    #cocoapods
+    git_add
+    git_commit(path: ".",
+               message: "#{version} release")
+    add_git_tag(tag: "#{version}")
     push_to_git_remote
     pod_push
   end

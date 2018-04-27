@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/cocoapods/v/SwipeableTabBarController.svg?style=flat-square)](http://cocoapods.org/pods/SwipeableTabBarController)
 [![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg?style=flat-square)](http://cocoapods.org/pods/SwipeableTabBarController)
 ![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg?style=flat-square)
-![Swift 3.0+](https://img.shields.io/badge/Swift-3.0%2B-orange.svg?style=flat-square)
+![Swift 4.1](https://img.shields.io/badge/Swift-4.1-orange.svg?style=flat-square)
 [![codebeat badge](https://codebeat.co/badges/0cb2f5b2-5bd1-4cbe-8581-3ca3df0e79ab)](https://codebeat.co/projects/github-com-marcosgriselli-swipeabletabbarcontroller-master)
 
 <a href="url"><img src="./GIFs/SwipeableTabBarController.gif"></a><br />
@@ -99,7 +99,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Project Details
 
 ### Requirements
-* Swift 4.0
+* Swift 4.1
 * Xcode 8.0+
 * iOS 8.0+
 

@@ -15,4 +15,5 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/marcosgriselli/SwipeableTabBarController.git", :tag => s.version.to_s }
   s.source_files  = "SwipeableTabBarController", "SwipeableTabBarController/**/*.{h,m,swift}"
+  s.swift_version = '4.1'
 end
