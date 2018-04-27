@@ -14,17 +14,13 @@ import UIKit
 class SwipeAnimation: NSObject, SwipeTransitioningProtocol {
 
     /// Duration of the transition animation.
-    fileprivate var animationDuration: TimeInterval!
+    fileprivate var animationDuration: TimeInterval
 
-    /// Is currently performing an animation
-    fileprivate var animationStarted = false
-    
     // TODO: - (marcosgriselli) add support for snapshot views.
-    /// Side which de animation will be performed from.
+    // MARK: - SwipeTransitioningProtocol
     var fromLeft = false
-
-    /// Swipe animation type to perform animation
     var animationType: SwipeAnimationTypeProtocol = SwipeAnimationType.sideBySide
+    var transitionStarted = false
 
     /// Init with injectable parameters
     ///
@@ -33,9 +29,9 @@ class SwipeAnimation: NSObject, SwipeTransitioningProtocol {
     ///   - animationType: animation type to perform while transitioning
     init(animationDuration: TimeInterval = 0.33,
          animationType: SwipeAnimationTypeProtocol = SwipeAnimationType.sideBySide) {
-        super.init()
         self.animationDuration = animationDuration
         self.animationType = animationType
+        super.init()
     }
 
     // MARK: - UIViewControllerAnimatedTransitioning
@@ -47,7 +43,7 @@ class SwipeAnimation: NSObject, SwipeTransitioningProtocol {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
         // Pre check if there's a previous transition runing and cancel the current one.
-        if animationStarted {
+        if transitionStarted {
             return transitionContext.completeTransition(false)
         }
 
@@ -58,7 +54,7 @@ class SwipeAnimation: NSObject, SwipeTransitioningProtocol {
                 return transitionContext.completeTransition(false)
         }
         
-        animationStarted = true
+        transitionStarted = true
         
         let duration = transitionDuration(using: transitionContext)
         fromView.endEditing(true)
@@ -90,10 +86,16 @@ class SwipeAnimation: NSObject, SwipeTransitioningProtocol {
                                     toView: UIView?,
                                     in context: UIViewControllerContextTransitioning) {
         DispatchQueue.main.async {
-            self.animationStarted = false
+            self.transitionStarted = false
             if context.transitionWasCancelled {
+                self.animationType.animation(fromView: toView,
+                                             toView: fromView,
+                                             direction: self.fromLeft)
                 toView?.removeFromSuperview()
             } else {
+                self.animationType.animation(fromView: fromView,
+                                             toView: toView,
+                                             direction: self.fromLeft)
                 fromView?.removeFromSuperview()
             }
             context.completeTransition(!context.transitionWasCancelled)

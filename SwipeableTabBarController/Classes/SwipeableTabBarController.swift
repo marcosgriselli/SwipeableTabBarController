@@ -46,6 +46,11 @@ open class SwipeableTabBarController: UITabBarController {
         addObserver(self, forKeyPath: kSelectedViewControllerKey, options: .new, context: nil)
     }
 
+    /// Checks if a transition is being performed.
+    private var isTransitioning: Bool {
+        return swipeAnimatedTransitioning.transitionStarted || tapAnimatedTransitioning.transitionStarted
+    }
+
     // MARK: - Public API
 
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -120,6 +125,10 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
     }
 
     public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        // Transitioning or interacting.
+        if isTransitioning || swipeInteractor.interactionInProgress {
+            return false
+        }
         currentAnimatedTransitioningType = tapAnimatedTransitioning
         return true
     }
