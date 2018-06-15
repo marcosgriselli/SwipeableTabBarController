@@ -1,4 +1,5 @@
-# SwipeableTabBarController
+![SwipeableTabBarController](https://github.com/Tobaloidee/SwipeableTabBarController/blob/master/Logo/logotype-a-readme.png)
+
 
 [![Version](https://img.shields.io/cocoapods/v/SwipeableTabBarController.svg?style=flat-square)](http://cocoapods.org/pods/SwipeableTabBarController)
 [![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg?style=flat-square)](http://cocoapods.org/pods/SwipeableTabBarController)
