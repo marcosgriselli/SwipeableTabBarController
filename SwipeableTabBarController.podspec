@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwipeableTabBarController'
-  s.version          = '1.2.1'
+  s.version          = '1.2.2'
   s.summary          = 'A UITabBarController where you can swipe interactively between tabs.'
 
   s.description  = "Subclass of UITabBarController that adds a swipe recognizer to the lowest UIViewController so you can interactively change tabs."
