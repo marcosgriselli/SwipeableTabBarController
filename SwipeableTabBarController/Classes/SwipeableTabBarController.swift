@@ -39,6 +39,12 @@ open class SwipeableTabBarController: UITabBarController {
             }
         }
 
+        // Make swipeAnimatedTransitioning the current one when the user begins the
+        // swipe interaction.
+        swipeInteractor.willBeginTransition = {
+            self.currentAnimatedTransitioningType = self.swipeAnimatedTransitioning
+        }
+
         // UITabBarControllerDelegate for transitions.
         delegate = self
 
@@ -83,7 +89,7 @@ open class SwipeableTabBarController: UITabBarController {
     ///
     /// - Parameter animation: UIViewControllerAnimatedTransitioning conforming to
     /// `SwipeTransitioningProtocol`.
-    open func setAnimationTransitioning(animation: SwipeTransitioningProtocol) {
+    open func setSwipeAnimationTransitioning(animation: SwipeTransitioningProtocol) {
         swipeAnimatedTransitioning = animation
     }
 
@@ -118,10 +124,6 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
 
     open func tabBarController(_ tabBarController: UITabBarController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return swipeInteractor.interactionInProgress ? swipeInteractor : nil
-    }
-
-    open func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        currentAnimatedTransitioningType = swipeAnimatedTransitioning
     }
 
     open func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {

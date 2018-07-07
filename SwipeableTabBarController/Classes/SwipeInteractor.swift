@@ -37,6 +37,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     
     typealias Closure = (() -> ())
     var onfinishTransition: Closure?
+    var willBeginTransition: Closure?
     
     /// Sets the viewController to be the one in charge of handling the swipe transition.
     ///
@@ -84,11 +85,13 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
             rightToLeftSwipe = velocity.x < 0
             if rightToLeftSwipe {
                 if viewController.tabBarController!.selectedIndex < viewController.tabBarController!.viewControllers!.count - 1 {
+                    willBeginTransition?()
                     interactionInProgress = true
                     viewController.tabBarController?.selectedIndex += 1
                 }
             } else {
                 if viewController.tabBarController!.selectedIndex > 0 {
+                    willBeginTransition?()
                     interactionInProgress = true
                     viewController.tabBarController?.selectedIndex -= 1
                 }
