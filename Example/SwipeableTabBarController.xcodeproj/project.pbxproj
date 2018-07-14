@@ -12,6 +12,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		E64F61AD98188094869A8782 /* Pods_SwipeableTabBarController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692DBA431883E20F1F56CE7 /* Pods_SwipeableTabBarController_Example.framework */; };
+		FB884EE420FA547E00876693 /* Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB884EE320FA547E00876693 /* Designable.swift */; };
 		FBA2190D1E42743A008DF29E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA2190C1E42743A008DF29E /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		99E2359BA9BB7BC67896FEFA /* Pods-SwipeableTabBarController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeableTabBarController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeableTabBarController_Example/Pods-SwipeableTabBarController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		C3528B053D04AB01140FD5D6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D6C027CBAE6C33E555F01AEC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		FB884EE320FA547E00876693 /* Designable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Designable.swift; sourceTree = "<group>"; };
 		FBA2190C1E42743A008DF29E /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +86,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				FBA2190C1E42743A008DF29E /* TabBarController.swift */,
+				FB884EE320FA547E00876693 /* Designable.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -237,6 +240,7 @@
 			files = (
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				FBA2190D1E42743A008DF29E /* TabBarController.swift in Sources */,
+				FB884EE420FA547E00876693 /* Designable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

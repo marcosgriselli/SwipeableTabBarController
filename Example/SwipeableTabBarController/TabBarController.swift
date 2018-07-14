@@ -14,9 +14,8 @@ class TabBarController: SwipeableTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         selectedViewController = viewControllers?[0]
-        tabBar.unselectedItemTintColor = UIColor.white.withAlphaComponent(0.6)
         setSwipeAnimation(type: SwipeAnimationType.sideBySide)
-        setTapAnimation(type: SwipeAnimationType.overlap)
-        setDiagonalSwipe(enabled: true)
+        setTapAnimation(type: SwipeAnimationType.sideBySide)
+        setDiagonalSwipe(enabled: false)
     }
 }
