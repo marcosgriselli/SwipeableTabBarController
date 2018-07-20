@@ -20,6 +20,7 @@ open class SwipeableTabBarController: UITabBarController {
     fileprivate var currentAnimatedTransitioningType: SwipeTransitioningProtocol = SwipeAnimation()
 
     private let kSelectedViewControllerKey = "selectedViewController"
+    private let kSelectedIndexKey = "selectedIndex"
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -50,6 +51,7 @@ open class SwipeableTabBarController: UITabBarController {
 
         // Observe selected index changes to wire the gesture recognizer to the viewController.
         addObserver(self, forKeyPath: kSelectedViewControllerKey, options: .new, context: nil)
+        addObserver(self, forKeyPath: kSelectedIndexKey, options: .new, context: nil)
     }
 
     /// Checks if a transition is being performed.
@@ -62,7 +64,7 @@ open class SwipeableTabBarController: UITabBarController {
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 
         // .selectedViewController changes so we setup the swipe interactor to the new selected Controller.
-        if keyPath == kSelectedViewControllerKey {
+        if keyPath == kSelectedViewControllerKey || keyPath == kSelectedIndexKey {
             if let selectedController = selectedViewController {
                 swipeInteractor.wireTo(viewController: selectedController.firstController())
             }
