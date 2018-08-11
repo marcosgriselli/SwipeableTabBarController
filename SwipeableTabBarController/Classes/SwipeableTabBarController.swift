@@ -15,9 +15,9 @@ open class SwipeableTabBarController: UITabBarController {
 
     // MARK: - Private API
     fileprivate var swipeInteractor = SwipeInteractor()
-    fileprivate var swipeAnimatedTransitioning: SwipeTransitioningProtocol = SwipeAnimation()
-    fileprivate var tapAnimatedTransitioning: SwipeTransitioningProtocol = SwipeAnimation()
-    fileprivate var currentAnimatedTransitioningType: SwipeTransitioningProtocol = SwipeAnimation()
+    fileprivate var swipeAnimatedTransitioning: SwipeTransitioningProtocol? = SwipeAnimation()
+    fileprivate var tapAnimatedTransitioning: SwipeTransitioningProtocol? = SwipeAnimation()
+    fileprivate var currentAnimatedTransitioningType: SwipeTransitioningProtocol? = SwipeAnimation()
 
     private let kSelectedViewControllerKey = "selectedViewController"
     private let kSelectedIndexKey = "selectedIndex"
@@ -56,7 +56,9 @@ open class SwipeableTabBarController: UITabBarController {
 
     /// Checks if a transition is being performed.
     private var isTransitioning: Bool {
-        return swipeAnimatedTransitioning.transitionStarted || tapAnimatedTransitioning.transitionStarted
+        return [swipeAnimatedTransitioning, tapAnimatedTransitioning]
+            .compactMap { $0 }
+            .contains { $0.transitionStarted }
     }
 
     // MARK: - Public API
@@ -76,7 +78,7 @@ open class SwipeableTabBarController: UITabBarController {
     ///
     /// - Parameter type: object conforming to `SwipeAnimationTypeProtocol`.
     open func setSwipeAnimation(type: SwipeAnimationTypeProtocol) {
-        swipeAnimatedTransitioning.animationType = type
+        swipeAnimatedTransitioning?.animationType = type
     }
 
     /// Modify the swipe animation, it can be one of the default `SwipeAnimationType` or your own type
@@ -84,15 +86,23 @@ open class SwipeableTabBarController: UITabBarController {
     ///
     /// - Parameter type: object conforming to `SwipeAnimationTypeProtocol`.
     open func setTapAnimation(type: SwipeAnimationTypeProtocol) {
-        tapAnimatedTransitioning.animationType = type
+        tapAnimatedTransitioning?.animationType = type
     }
 
-    /// Modify the transitioning animation.
+    /// Modify the transitioning animation for swipes.
     ///
-    /// - Parameter animation: UIViewControllerAnimatedTransitioning conforming to
+    /// - Parameter transition: UIViewControllerAnimatedTransitioning conforming to
     /// `SwipeTransitioningProtocol`.
-    open func setSwipeAnimationTransitioning(animation: SwipeTransitioningProtocol) {
-        swipeAnimatedTransitioning = animation
+    open func setSwipeTransitioning(transition: SwipeTransitioningProtocol?) {
+        swipeAnimatedTransitioning = transition
+    }
+    
+    /// Modify the transitioning animation for taps.
+    ///
+    /// - Parameter transition: UIViewControllerAnimatedTransitioning conforming to
+    /// `SwipeTransitioningProtocol`.
+    open func setTapTransitioning(transition: SwipeTransitioningProtocol?) {
+        tapAnimatedTransitioning = transition
     }
 
     /// Toggle the diagonal swipe to remove the just `perfect` horizontal swipe interaction
@@ -120,7 +130,7 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
                 return nil
         }
 
-        currentAnimatedTransitioningType.fromLeft = fromVCIndex > toVCIndex
+        currentAnimatedTransitioningType?.fromLeft = fromVCIndex > toVCIndex
         return currentAnimatedTransitioningType
     }
 
