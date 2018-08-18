@@ -13,8 +13,8 @@ class TabBarController: SwipeableTabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedIndex = 1
-        
+//        selectedIndex = 1
+        selectedViewController = viewControllers![1]
         /// Set the animation type for swipe
         setSwipeAnimation(type: SwipeAnimationType.sideBySide)
         /// Set the animation type for tap
@@ -25,5 +25,9 @@ class TabBarController: SwipeableTabBarController {
         
         /// Set swipe to only work when strictly horizontal.
         setDiagonalSwipe(enabled: false)
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        // Handle didSelect viewController method here
     }
 }

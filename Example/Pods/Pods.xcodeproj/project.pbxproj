@@ -19,6 +19,7 @@
 		A217DCB1994D85FD04413BB3E57D6C92 /* SwipeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543E797A7FC45915DD4509F46479D31 /* SwipeAnimation.swift */; };
 		C77AA003E031404D88AE58EC2CC8E4C7 /* SwipeableTabBarController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C17AD2600688316BD3BB0554486CC51A /* SwipeableTabBarController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC4F601486A5846011F63BEB2A40C9E1 /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937ECA20AA0703B443A04B096D7E658C /* UIKit+Extensions.swift */; };
+		FB3830CD2128CADF0024293B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3830CC2128CADF0024293B /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		DE3B4F7F2EA46E77A15224183AA046C3 /* SwipeableTabBarController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwipeableTabBarController.swift; sourceTree = "<group>"; };
 		E543E797A7FC45915DD4509F46479D31 /* SwipeAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwipeAnimation.swift; sourceTree = "<group>"; };
 		F16AAF4F7B35430EFAF533BBD44F4022 /* Pods-SwipeableTabBarController_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwipeableTabBarController_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		FB3830CC2128CADF0024293B /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				CFC4578DE925635B7ABD3BA438EB3210 /* SwipeInteractor.swift */,
 				317D59B131D1AAF5BCED032ECB879A6C /* SwipeTransitioningProtocol.swift */,
 				937ECA20AA0703B443A04B096D7E658C /* UIKit+Extensions.swift */,
+				FB3830CC2128CADF0024293B /* Utilities.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				6A8896C31E9B7ED254F4B41B76398A0F /* SwipeAnimationType.swift in Sources */,
 				064954BF9A1DDDFAA425C05292A5D1AD /* SwipeInteractor.swift in Sources */,
 				79E4004BC0DC712393390E25F552A0CC /* SwipeTransitioningProtocol.swift in Sources */,
+				FB3830CD2128CADF0024293B /* Utilities.swift in Sources */,
 				CC4F601486A5846011F63BEB2A40C9E1 /* UIKit+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -34,15 +34,16 @@ open class SwipeableTabBarController: UITabBarController {
 
     private func setup() {
         // Set the closure for finishing the transition
-        swipeInteractor.onfinishTransition = {
-            if let controllers = self.viewControllers {
-                self.selectedViewController = controllers[self.selectedIndex]
+        swipeInteractor.onfinishTransition = { [unowned self] in
+            if let controllers = self.viewControllers, let selectedController = controllers[safe: self.selectedIndex] {
+                self.selectedViewController = selectedController
+                self.delegate?.tabBarController?(self, didSelect: selectedController)
             }
         }
 
         // Make swipeAnimatedTransitioning the current one when the user begins the
         // swipe interaction.
-        swipeInteractor.willBeginTransition = {
+        swipeInteractor.willBeginTransition = { [unowned self] in
             self.currentAnimatedTransitioningType = self.swipeAnimatedTransitioning
         }
 
