@@ -43,6 +43,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     ///
     /// - Parameter viewController: `UIViewController` in charge of the the transition.
     public func wireTo(viewController: UIViewController) {
+        if self.viewController === viewController { return }
         self.viewController = viewController
         prepareGestureRecognizer(inView: viewController.view)
     }
