@@ -109,6 +109,10 @@ Feel free to collaborate with ideas 💭, issues ⁉️ and/or pull requests �
 
 If you use SwipeableTabBarController in your app I'd love to hear about it and feature your animation here!
 
+### Contributors
+
+[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/0)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/0)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/1)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/1)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/2)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/2)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/3)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/3)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/4)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/4)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/5)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/5)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/6)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/6)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/7)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/7)
+
 ### Author
 
 Marcos Griselli | <a href="url"><img src="./Resources/twitterIcon.png" height="15" width="17" ></a> [@marcosgriselli](https://twitter.com/marcosgriselli)
