@@ -110,7 +110,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
                     return
                 }
                 
-                var fraction = fabs(translationValue)
+                var fraction = abs(translationValue)
                 fraction = min(max(fraction, 0.0), 0.99)
                 shouldCompleteTransition = (fraction > 0.5);
                 
@@ -156,8 +156,8 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     private func shouldSuspendInteraction(yTranslation: CGFloat, yVelocity: CGFloat) -> Bool {
         if !isDiagonalSwipeEnabled {
             // Cancel interaction if the movement is on the Y axis.
-            let isTranslatingOnYAxis = fabs(yTranslation) > InteractionConstants.yTranslationForSuspend
-            let hasVelocityOnYAxis = fabs(yVelocity) > InteractionConstants.yVelocityForSuspend
+            let isTranslatingOnYAxis = abs(yTranslation) > InteractionConstants.yTranslationForSuspend
+            let hasVelocityOnYAxis = abs(yVelocity) > InteractionConstants.yVelocityForSuspend
             
             return isTranslatingOnYAxis || hasVelocityOnYAxis
         }
@@ -171,7 +171,7 @@ extension SwipeInteractor: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer == panRecognizer {
             if let point = panRecognizer?.translation(in: panRecognizer?.view?.superview) {
-                return fabs(point.x) < InteractionConstants.xTranslationForRecognition
+                return abs(point.x) < InteractionConstants.xTranslationForRecognition
             }
         }
         return true
