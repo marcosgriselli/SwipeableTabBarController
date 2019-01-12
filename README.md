@@ -7,7 +7,7 @@
 ![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat-square)
 [![codebeat badge](https://codebeat.co/badges/0cb2f5b2-5bd1-4cbe-8581-3ca3df0e79ab)](https://codebeat.co/projects/github-com-marcosgriselli-swipeabletabbarcontroller-master)
 
-<a href="url"><img src="./GIFs/SwipeableTabBarController.gif"></a><br />
+<a href="url"><img src="./GIFs/SwipeableTabBarController_new.gif"></a><br />
 
 
 Video created with [Morten Just](https://twitter.com/mortenjust)'s [Design Camera](https://www.designcamera.app)
