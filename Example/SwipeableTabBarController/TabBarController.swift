@@ -18,7 +18,7 @@ class TabBarController: SwipeableTabBarController {
         /// Set the animation type for swipe
         setSwipeAnimation(type: SwipeAnimationType.sideBySide)
         /// Set the animation type for tap
-        setTapAnimation(type: SwipeAnimationType.sideBySide)
+        setTapAnimation(type: SwipeAnimationType.overlap)
     
         /// Disable custom transition on tap.
 //        setTapTransitioning(transition: nil)
