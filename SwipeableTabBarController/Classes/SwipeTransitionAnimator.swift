@@ -75,7 +75,7 @@ class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
         
         let duration = transitionDuration(using: transitionContext)
         
-        UIView.animate(withDuration: duration, animations: {
+        UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
             fromView.frame = fromFrame.offsetBy(dx: fromFrame.size.width * offset.dx,
                                                 dy: fromFrame.size.height * offset.dy)
             toView.frame = toFrame

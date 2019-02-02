@@ -18,6 +18,9 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     private var initialLocationInContainerView: CGPoint = CGPoint()
     private var initialTranslationInContainerView: CGPoint = CGPoint()
     
+    private struct InteractionConstants {
+        static let xVelocityForComplete: CGFloat = 200.0
+    }
     
     init(gestureRecognizer: UIPanGestureRecognizer) {
         self.gestureRecognizer = gestureRecognizer
@@ -81,12 +84,9 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
                 // ensure it will not be called again before deallocation.
                 gestureRecognizer.removeTarget(self, action: #selector(gestureRecognizeDidUpdate(_:)))
             } else {
-                // We have been dragging! Update the transition context
-                // accordingly.
                 update(percentForGesture(gestureRecognizer))
             }
         case .ended:
-            // Dragging has finished.
             // Complete or cancel, depending on how far we've dragged.
             if percentForGesture(gestureRecognizer) >= 0.4 {
                 finish()
