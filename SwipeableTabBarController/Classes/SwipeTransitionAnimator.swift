@@ -43,42 +43,18 @@ class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
-        let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
-        
         let containerView = transitionContext.containerView
         let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from)!
         let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)!
-        
-        let fromFrame = transitionContext.initialFrame(for: fromViewController)
-        let toFrame = transitionContext.finalFrame(for: toViewController)
-        
-        // Based on the configured targetEdge, derive a normalized vector that will
-        // be used to offset the frame of the view controllers.
-        var offset: CGVector
-        switch targetEdge {
-        case .left:
-            offset = CGVector(dx: -1.0, dy: 0.0)
-        case .right:
-            offset = CGVector(dx: 1.0, dy: 0.0)
-        default:
-            fatalError("targetEdge must be one of UIRectEdge.left, or UIRectEdge.right.")
-        }
-        
-        // The toView starts off-screen and slides in as the fromView slides out.
-        fromView.frame = fromFrame
-        toView.frame = toFrame.offsetBy(dx: toFrame.size.width * offset.dx * -1,
-                                        dy: toFrame.size.height * offset.dy * -1)
-        
-        // We are responsible for adding the incoming view to the containerView.
-        containerView.addSubview(toView)
+        let fromRight = targetEdge == .right
+
+        animationType.addTo(containerView: containerView, fromView: fromView, toView: toView)
+        animationType.prepare(fromView: fromView, toView: toView, direction: fromRight)
         
         let duration = transitionDuration(using: transitionContext)
         
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
-            fromView.frame = fromFrame.offsetBy(dx: fromFrame.size.width * offset.dx,
-                                                dy: fromFrame.size.height * offset.dy)
-            toView.frame = toFrame
+            self.animationType.animation(fromView: fromView, toView: toView, direction: fromRight)
         }, completion: { _ in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })

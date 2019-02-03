@@ -10,8 +10,8 @@ import UIKit
 
 public protocol SwipeAnimationTypeProtocol {
     func addTo(containerView: UIView, fromView: UIView, toView: UIView)
-    func prepare(fromView from: UIView?, toView to: UIView?, direction: Bool)
-    func animation(fromView from: UIView?, toView to: UIView?, direction: Bool)
+    func prepare(fromView from: UIView, toView to: UIView, direction: Bool)
+    func animation(fromView from: UIView, toView to: UIView, direction: Bool)
 }
 
 /// Different types of interactive animations.
@@ -23,8 +23,6 @@ public enum SwipeAnimationType: SwipeAnimationTypeProtocol {
     case overlap
     case sideBySide
     case push
-    case none
-
     
     /// Setup the views hirearchy for different animations types.
     ///
@@ -35,14 +33,11 @@ public enum SwipeAnimationType: SwipeAnimationTypeProtocol {
     public func addTo(containerView: UIView, fromView: UIView, toView: UIView) {
         switch self {
         case .push:
-            containerView.addSubview(toView)
-            containerView.addSubview(fromView)
+            containerView.insertSubview(toView, belowSubview: fromView)
         default:
-            containerView.addSubview(fromView)
             containerView.addSubview(toView)
         }
     }
-
     
     /// Setup the views position prior to the animation start.
     ///
@@ -50,43 +45,38 @@ public enum SwipeAnimationType: SwipeAnimationTypeProtocol {
     ///   - from: Previously selected tab view.
     ///   - to: New selected tab view.
     ///   - direction: Direction in which the views will animate.
-    public func prepare(fromView from: UIView?, toView to: UIView?, direction: Bool) {
+    public func prepare(fromView from: UIView, toView to: UIView, direction: Bool) {
         let screenWidth = UIScreen.main.bounds.size.width
         switch self {
         case .overlap:
-            to?.frame.origin.x = direction ? -screenWidth : screenWidth
+            to.frame.origin.x = direction ? -screenWidth : screenWidth
         case .sideBySide:
-            from?.frame.origin.x = 0
-            to?.frame.origin.x = direction ? -screenWidth : screenWidth
+            from.frame.origin.x = 0
+            to.frame.origin.x = direction ? -screenWidth : screenWidth
         case .push:
             let scaledWidth = screenWidth/6
-            to?.frame.origin.x = direction ? -scaledWidth : scaledWidth
-            from?.frame.origin.x = 0
-        case .none:
-            break
+            to.frame.origin.x = direction ? -scaledWidth : scaledWidth
+            from.frame.origin.x = 0
         }
     }
 
-    
     /// The animation to take place.
     ///
     /// - Parameters:
     ///   - from: Previously selected tab view.
     ///   - to: New selected tab view.
     ///   - direction: Direction in which the views will animate.
-    public func animation(fromView from: UIView?, toView to: UIView?, direction: Bool) {
+    public func animation(fromView from: UIView, toView to: UIView, direction: Bool) {
         let screenWidth = UIScreen.main.bounds.size.width
         switch self {
         case .overlap:
-            to?.frame.origin.x = 0
+            to.frame.origin.x = 0
         case .sideBySide:
-            from?.frame.origin.x = direction ? screenWidth : -screenWidth
-            to?.frame.origin.x = 0
+            from.frame.origin.x = direction ? screenWidth : -screenWidth
+            to.frame.origin.x = 0
         case .push:
-            to?.frame.origin.x = 0
-            from?.frame.origin.x = direction ? screenWidth : -screenWidth
-        case .none:
-            break
+            to.frame.origin.x = 0
+            from.frame.origin.x = direction ? screenWidth : -screenWidth
         }
     }
 }

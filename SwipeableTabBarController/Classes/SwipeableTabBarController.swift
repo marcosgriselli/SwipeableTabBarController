@@ -17,7 +17,7 @@ open class SwipeableTabBarController: UITabBarController {
     // MARK: - Private API
     private var swipeAnimatedTransitioning: SwipeTransitioningProtocol? = SwipeTransitionAnimator()
     private var tapAnimatedTransitioning: SwipeTransitioningProtocol? = SwipeTransitionAnimator()
-    private var currentAnimatedTransitioningType: SwipeTransitioningProtocol? = SwipeTransitionAnimator()
+    private var currentAnimatedTransitioningType: SwipeTransitioningProtocol?
     
     private var panGestureRecognizer: UIPanGestureRecognizer!
 
@@ -34,6 +34,7 @@ open class SwipeableTabBarController: UITabBarController {
     private func setup() {
         // UITabBarControllerDelegate for transitions.
         delegate = self
+        currentAnimatedTransitioningType = tapAnimatedTransitioning
         // Gesture setup
         panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerDidPan(_:)))
         view.addGestureRecognizer(panGestureRecognizer)
@@ -88,25 +89,22 @@ open class SwipeableTabBarController: UITabBarController {
     }
 
     @IBAction func panGestureRecognizerDidPan(_ sender: UIPanGestureRecognizer) {
+        if sender.state == .ended {
+            currentAnimatedTransitioningType = tapAnimatedTransitioning
+        }
         // Do not attempt to begin an interactive transition if one is already
         // ongoing
         if transitionCoordinator != nil {
             return
         }
         
-        // TODO: - Support
-//        if sender.state == .began {
-//            currentAnimatedTransitioningType = swipeAnimatedTransitioning
-//        }
+        if sender.state == .began {
+            currentAnimatedTransitioningType = swipeAnimatedTransitioning
+        }
 
         if sender.state == .began || sender.state == .changed {
             beginInteractiveTransitionIfPossible(sender)
         }
-
-        // TODO: - Support
-//        if sender.state == .ended {
-//            currentAnimatedTransitioningType = tapAnimatedTransitioning
-//        }
     }
     
     private func beginInteractiveTransitionIfPossible(_ sender: UIPanGestureRecognizer) {
@@ -147,7 +145,6 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
             let toVCIndex = tabBarController.viewControllers?.index(of: toVC) else {
                 return nil
         }
-
         let edge: UIRectEdge = fromVCIndex > toVCIndex ? .right : .left
         currentAnimatedTransitioningType?.targetEdge = edge
         return currentAnimatedTransitioningType
