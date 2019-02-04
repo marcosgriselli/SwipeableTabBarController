@@ -152,7 +152,7 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
 
     open func tabBarController(_ tabBarController: UITabBarController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         if panGestureRecognizer.state == .began || panGestureRecognizer.state == .changed {
-            return SwipeInteractor(gestureRecognizer: panGestureRecognizer)
+            return SwipeInteractor(gestureRecognizer: panGestureRecognizer, edge: currentAnimatedTransitioningType?.targetEdge ?? .right)
         } else {
             return nil
         }

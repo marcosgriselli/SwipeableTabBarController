@@ -15,15 +15,16 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     // MARK: - Private
     private weak var transitionContext: UIViewControllerContextTransitioning?
     private var gestureRecognizer: UIPanGestureRecognizer
+    private var edge: UIRectEdge
     private var initialLocationInContainerView: CGPoint = CGPoint()
     private var initialTranslationInContainerView: CGPoint = CGPoint()
     
-    private struct InteractionConstants {
-        static let xVelocityForComplete: CGFloat = 200.0
-    }
+    private let xVelocityForComplete: CGFloat = 200.0
+    private let xVelocityForCancel: CGFloat = 30.0
     
-    init(gestureRecognizer: UIPanGestureRecognizer) {
+    init(gestureRecognizer: UIPanGestureRecognizer, edge: UIRectEdge) {
         self.gestureRecognizer = gestureRecognizer
+        self.edge = edge
         super.init()
         
         // Add self as an observer of the gesture recognizer so that this
@@ -87,8 +88,19 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
                 update(percentForGesture(gestureRecognizer))
             }
         case .ended:
-            // Complete or cancel, depending on how far we've dragged.
-            if percentForGesture(gestureRecognizer) >= 0.4 {
+            let transitionContainerView = transitionContext?.containerView
+            let velocityInContainerView = gestureRecognizer.velocity(in: transitionContainerView)
+            let shouldComplete: Bool
+            switch edge {
+            case .left:
+                shouldComplete = (percentForGesture(gestureRecognizer) >= 0.4 && velocityInContainerView.x < xVelocityForCancel) || velocityInContainerView.x < -xVelocityForComplete
+            case .right:
+                shouldComplete = (percentForGesture(gestureRecognizer) >= 0.4 && velocityInContainerView.x > -xVelocityForCancel) || velocityInContainerView.x > xVelocityForComplete
+            default:
+                fatalError("\(edge) is unsupported.")
+            }
+
+            if shouldComplete {
                 finish()
             } else {
                 cancel()
