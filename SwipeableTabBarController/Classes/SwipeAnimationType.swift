@@ -8,6 +8,8 @@
 
 import UIKit
 
+/// TODO (marcosgriselli): - Come up with a simpler protocol based on starting and ending vectors.
+
 public protocol SwipeAnimationTypeProtocol {
     func addTo(containerView: UIView, fromView: UIView, toView: UIView)
     func prepare(fromView from: UIView, toView to: UIView, direction: Bool)

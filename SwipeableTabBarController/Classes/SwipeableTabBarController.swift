@@ -6,7 +6,7 @@
 //  Copyright © 2017 Marcos Griselli. All rights reserved.
 //
 
-import UIKit
+import UIKit 
 
 /// `UITabBarController` subclass with a `selectedViewController` property observer,
 /// `SwipeInteractor` that handles the swiping between tabs gesture, and a `SwipeTransitioningProtocol`
@@ -14,12 +14,28 @@ import UIKit
 @objc(SwipeableTabBarController)
 open class SwipeableTabBarController: UITabBarController {
 
-    // MARK: - Private API
-    private var swipeAnimatedTransitioning: SwipeTransitioningProtocol? = SwipeTransitionAnimator()
-    private var tapAnimatedTransitioning: SwipeTransitioningProtocol? = SwipeTransitionAnimator()
+    /// Animated transition to be performed while swiping
+    private(set) public var swipeAnimatedTransitioning: SwipeTransitioningProtocol? = SwipeTransitionAnimator()
+    
+    /// Animated transition to be performed when tapping on a tabbar item
+    private(set) public var tapAnimatedTransitioning: SwipeTransitioningProtocol? = SwipeTransitionAnimator()
+    
+    /// Animated transition being used currently
     private var currentAnimatedTransitioningType: SwipeTransitioningProtocol?
     
+    /// Pan gesture for the swiping interaction
     private var panGestureRecognizer: UIPanGestureRecognizer!
+    
+
+    @available(*, deprecated, message: "For the moment the diagonal swipe configuration is not available.")
+    /// Toggle the diagonal swipe to remove the just `perfect` horizontal swipe interaction
+    /// needed to perform the transition.
+    open var diagonalSwipeEnabled = true
+
+    /// Enables/Disables swipes on the tabbar controller.
+    open var isSwipeEnabled = true {
+        didSet { panGestureRecognizer.isEnabled = isSwipeEnabled }
+    }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -38,54 +54,6 @@ open class SwipeableTabBarController: UITabBarController {
         // Gesture setup
         panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerDidPan(_:)))
         view.addGestureRecognizer(panGestureRecognizer)
-    }
-
-    // MARK: - Public API
-    
-    /// Modify the swipe animation, it can be one of the default `SwipeAnimationType` or your own type
-    /// conforming to `SwipeAnimationTypeProtocol`.
-    ///
-    /// - Parameter type: object conforming to `SwipeAnimationTypeProtocol`.
-    open func setSwipeAnimation(type: SwipeAnimationTypeProtocol) {
-        swipeAnimatedTransitioning?.animationType = type
-    }
-
-    /// Modify the swipe animation, it can be one of the default `SwipeAnimationType` or your own type
-    /// conforming to `SwipeAnimationTypeProtocol`.
-    ///
-    /// - Parameter type: object conforming to `SwipeAnimationTypeProtocol`.
-    open func setTapAnimation(type: SwipeAnimationTypeProtocol) {
-        tapAnimatedTransitioning?.animationType = type
-    }
-
-    /// Modify the transitioning animation for swipes.
-    ///
-    /// - Parameter transition: UIViewControllerAnimatedTransitioning conforming to
-    /// `SwipeTransitioningProtocol`.
-    open func setSwipeTransitioning(transition: SwipeTransitioningProtocol?) {
-        swipeAnimatedTransitioning = transition
-    }
-    
-    /// Modify the transitioning animation for taps.
-    ///
-    /// - Parameter transition: UIViewControllerAnimatedTransitioning conforming to
-    /// `SwipeTransitioningProtocol`.
-    open func setTapTransitioning(transition: SwipeTransitioningProtocol?) {
-        tapAnimatedTransitioning = transition
-    }
-
-    /// Toggle the diagonal swipe to remove the just `perfect` horizontal swipe interaction
-    /// needed to perform the transition.
-    ///
-    /// - Parameter enabled: Bool value to the corresponding diagnoal swipe support.
-    @available(*, deprecated, message: "Currently diagonal swipe has been disabled.")
-    open func setDiagonalSwipe(enabled: Bool) {
-//        swipeInteractor.isDiagonalSwipeEnabled = enabled
-    }
-
-    /// Enables/Disables swipes on the tabbar controller.
-    open var isSwipeEnabled = true {
-        didSet { panGestureRecognizer.isEnabled = isSwipeEnabled }
     }
 
     @IBAction func panGestureRecognizerDidPan(_ sender: UIPanGestureRecognizer) {
@@ -107,6 +75,10 @@ open class SwipeableTabBarController: UITabBarController {
         }
     }
     
+    /// Starts the transition by changing the selected index if the
+    /// gesture allows it.
+    ///
+    /// - Parameter sender: gesture recognizer
     private func beginInteractiveTransitionIfPossible(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         

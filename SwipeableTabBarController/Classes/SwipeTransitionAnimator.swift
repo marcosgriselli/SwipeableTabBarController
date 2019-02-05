@@ -15,12 +15,11 @@ import UIKit
 class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
 
     /// Duration of the transition animation.
-    fileprivate var animationDuration: TimeInterval
+    private var animationDuration: TimeInterval
 
     // MARK: - SwipeTransitioningProtocol
     var targetEdge: UIRectEdge
     var animationType: SwipeAnimationTypeProtocol = SwipeAnimationType.sideBySide
-    var transitionStarted = false
 
     /// Init with injectable parameters
     ///

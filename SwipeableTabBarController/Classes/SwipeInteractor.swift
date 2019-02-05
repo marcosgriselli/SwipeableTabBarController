@@ -92,6 +92,7 @@ class SwipeInteractor: UIPercentDrivenInteractiveTransition {
             let velocityInContainerView = gestureRecognizer.velocity(in: transitionContainerView)
             let shouldComplete: Bool
             switch edge {
+            /// TODO (marcosgriselli): - Standarize and simplify 
             case .left:
                 shouldComplete = (percentForGesture(gestureRecognizer) >= 0.4 && velocityInContainerView.x < xVelocityForCancel) || velocityInContainerView.x < -xVelocityForComplete
             case .right:
