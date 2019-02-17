@@ -1,6 +1,6 @@
 //
-//  MGSwipeInteractor.swift
-//  MGSwipeableTabBarController
+//  SwipeInteractor.swift
+//  SwipeableTabBarController
 //
 //  Created by Marcos Griselli on 1/26/17.
 //  Copyright © 2017 Marcos Griselli. All rights reserved.
@@ -8,172 +8,106 @@
 
 import UIKit
 
-/// Responsible of adding the `UIPanGestureRecognizer` to the current 
-/// tab selected on the `UITabBarController` subclass.
+/// Responsible of driving the interactive transtion.
+@objc(SwipeInteractor)
 class SwipeInteractor: UIPercentDrivenInteractiveTransition {
     
     // MARK: - Private
-    private var viewController: UIViewController!
-    private var rightToLeftSwipe = false
-    private var shouldCompleteTransition = false
-    private var canceled = false
+    private weak var transitionContext: UIViewControllerContextTransitioning?
+    private var gestureRecognizer: UIPanGestureRecognizer
+    private var edge: UIRectEdge
+    private var initialLocationInContainerView: CGPoint = CGPoint()
+    private var initialTranslationInContainerView: CGPoint = CGPoint()
     
-    // MARK: - Fileprivate
-    fileprivate var panRecognizer: UIPanGestureRecognizer?
-    fileprivate struct InteractionConstants {
-        static let yTranslationForSuspend: CGFloat = 5.0
-        static let yVelocityForSuspend: CGFloat = 100.0
-        static let xVelocityForComplete: CGFloat = 200.0
-        static let xTranslationForRecognition: CGFloat = 5.0
-    }
+    private let xVelocityForComplete: CGFloat = 200.0
+    private let xVelocityForCancel: CGFloat = 30.0
     
-    fileprivate struct AssociatedKey {
-        static var swipeGestureKey = "kSwipeableTabBarControllerGestureKey"
-    }
-    
-    // MARK: - Public
-    var isDiagonalSwipeEnabled = false
-    var interactionInProgress = false
-    
-    typealias Closure = (() -> ())
-    var onfinishTransition: Closure?
-    var willBeginTransition: Closure?
-    
-    /// Sets the viewController to be the one in charge of handling the swipe transition.
-    ///
-    /// - Parameter viewController: `UIViewController` in charge of the the transition.
-    public func wireTo(viewController: UIViewController) {
-        if self.viewController === viewController { return }
-        self.viewController = viewController
-        prepareGestureRecognizer(inView: viewController.view)
-    }
-    
-    
-    /// Adds the `UIPanGestureRecognizer` to the controller's view to handle swiping.
-    ///
-    /// - Parameter view: `UITabBarController` tab controller's view (`UINavigationControllers` not included).
-    public func prepareGestureRecognizer(inView view: UIView) {
-        panRecognizer = objc_getAssociatedObject(view, &AssociatedKey.swipeGestureKey) as? UIPanGestureRecognizer
+    init(gestureRecognizer: UIPanGestureRecognizer, edge: UIRectEdge) {
+        self.gestureRecognizer = gestureRecognizer
+        self.edge = edge
+        super.init()
         
-        if let swipe = panRecognizer {
-            view.removeGestureRecognizer(swipe)
+        // Add self as an observer of the gesture recognizer so that this
+        // object receives updates as the user moves their finger.
+        gestureRecognizer.addTarget(self, action: #selector(gestureRecognizeDidUpdate(_:)))
+    }
+
+    deinit {
+        gestureRecognizer.removeTarget(self, action: #selector(gestureRecognizeDidUpdate(_:)))
+    }
+    
+    override func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
+        // Save the transitionContext, initial location, and the translation within
+        // the containing view.
+        self.transitionContext = transitionContext
+        initialLocationInContainerView = gestureRecognizer.location(in: transitionContext.containerView)
+        initialTranslationInContainerView = gestureRecognizer.translation(in: transitionContext.containerView)
+        
+        super.startInteractiveTransition(transitionContext)
+    }
+
+    /// Returns the offset of the pan gesture recognizer from its initial location
+    /// as a percentage of the transition container view's width.
+    ///
+    /// - Parameter gesture: swiping gesture
+    /// - Returns: percent completed for the interactive transition
+    private func percentForGesture(_ gesture: UIPanGestureRecognizer) -> CGFloat {
+        let transitionContainerView = transitionContext?.containerView
+        
+        let translationInContainerView = gesture.translation(in: transitionContainerView)
+        
+        // If the direction of the current touch along the horizontal axis does not
+        // match the initial direction, then the current touch position along
+        // the horizontal axis has crossed over the initial position.
+        if translationInContainerView.x > 0.0 && initialTranslationInContainerView.x < 0.0 ||
+            translationInContainerView.x < 0.0 && initialTranslationInContainerView.x > 0.0 {
+            return -1.0
         }
         
-        panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeInteractor.handlePan(_:)))
-        panRecognizer?.delegate = self
-        panRecognizer?.isEnabled = isEnabled
-        view.addGestureRecognizer(panRecognizer!)
-        objc_setAssociatedObject(view, &AssociatedKey.swipeGestureKey, panRecognizer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        // Figure out what percentage we've traveled.
+        return abs(translationInContainerView.x) / (transitionContainerView?.bounds ?? CGRect()).width
     }
     
-    
-    /// Handles the swiping with progress
-    ///
-    /// - Parameter recognizer: `UIPanGestureRecognizer` in the current tab controller's view.
-    @objc func handlePan(_ recognizer: UIPanGestureRecognizer) {
-        
-        let translation = recognizer.translation(in: recognizer.view?.superview)
-        let velocity = recognizer.velocity(in: recognizer.view)
-    
-        switch recognizer.state {
+    @IBAction func gestureRecognizeDidUpdate(_ gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
+        switch gestureRecognizer.state {
         case .began:
-
-            if shouldSuspendInteraction(yTranslation: translation.y, yVelocity: velocity.y) {
-                interactionInProgress = false
-                return
-            }
-            
-            rightToLeftSwipe = velocity.x < 0
-            if rightToLeftSwipe {
-                if viewController.tabBarController!.selectedIndex < viewController.tabBarController!.viewControllers!.count - 1 {
-                    willBeginTransition?()
-                    interactionInProgress = true
-                    viewController.tabBarController?.selectedIndex += 1
-                }
-            } else {
-                if viewController.tabBarController!.selectedIndex > 0 {
-                    willBeginTransition?()
-                    interactionInProgress = true
-                    viewController.tabBarController?.selectedIndex -= 1
-                }
-            }
+            // The Began state is handled by AAPLSlideTransitionDelegate.  In
+            // response to the gesture recognizer transitioning to this state,
+            // it will trigger the transition.
+            break
         case .changed:
-            if interactionInProgress {
-                let translationValue = translation.x/UIScreen.main.bounds.size.width
-                
-                // TODO (marcosgriselli): support dual side swipping in one drag.
-                if rightToLeftSwipe && translationValue > 0 {
-                    self.update(0)
-                    return
-                } else if !rightToLeftSwipe && translationValue < 0 {
-                    self.update(0)
-                    return
-                }
-                
-                var fraction = abs(translationValue)
-                fraction = min(max(fraction, 0.0), 0.99)
-                shouldCompleteTransition = (fraction > 0.5);
-                
-                self.update(fraction)
+            // -percentForGesture returns -1.f if the current position of the
+            // touch along the horizontal axis has crossed over the initial
+            // position.
+            if percentForGesture(gestureRecognizer) < 0.0 {
+                cancel()
+                // Need to remove our action from the gesture recognizer to
+                // ensure it will not be called again before deallocation.
+                gestureRecognizer.removeTarget(self, action: #selector(gestureRecognizeDidUpdate(_:)))
+            } else {
+                update(percentForGesture(gestureRecognizer))
             }
-            
-        case .ended, .cancelled:
-            if interactionInProgress {
-                interactionInProgress = false
-                if !shouldCompleteTransition {
-                    if (rightToLeftSwipe && velocity.x < -InteractionConstants.xVelocityForComplete) {
-                        shouldCompleteTransition = true
-                    } else if (!rightToLeftSwipe && velocity.x > InteractionConstants.xVelocityForComplete) {
-                        shouldCompleteTransition = true
-                    }
-                }
-                
-                if !shouldCompleteTransition || recognizer.state == .cancelled {
-                    cancel()
-                } else {
-                    // Avoid launching a new transaction while the previous one is finishing.
-                    recognizer.isEnabled = false
-                    finish()
-                    onfinishTransition?()
-                }
+        case .ended:
+            let transitionContainerView = transitionContext?.containerView
+            let velocityInContainerView = gestureRecognizer.velocity(in: transitionContainerView)
+            let shouldComplete: Bool
+            switch edge {
+            /// TODO (marcosgriselli): - Standarize and simplify 
+            case .left:
+                shouldComplete = (percentForGesture(gestureRecognizer) >= 0.4 && velocityInContainerView.x < xVelocityForCancel) || velocityInContainerView.x < -xVelocityForComplete
+            case .right:
+                shouldComplete = (percentForGesture(gestureRecognizer) >= 0.4 && velocityInContainerView.x > -xVelocityForCancel) || velocityInContainerView.x > xVelocityForComplete
+            default:
+                fatalError("\(edge) is unsupported.")
             }
-            
-        default : break
-        }
-    }
-    
-    /// enables/disables the entire interactor. 
-    public var isEnabled = true {
-        didSet { panRecognizer?.isEnabled = isEnabled }
-    }
-    
-    /// Checks for the diagonal swipe support. It evaluates if the current gesture is diagonal or Y-Axis based.
-    ///
-    /// - Parameters:
-    ///   - yTranslation: gesture translation on the Y-axis.
-    ///   - yVelocity: gesture velocity on the Y-axis.
-    /// - Returns: boolean determing wether the interaction should take place or not.
-    private func shouldSuspendInteraction(yTranslation: CGFloat, yVelocity: CGFloat) -> Bool {
-        if !isDiagonalSwipeEnabled {
-            // Cancel interaction if the movement is on the Y axis.
-            let isTranslatingOnYAxis = abs(yTranslation) > InteractionConstants.yTranslationForSuspend
-            let hasVelocityOnYAxis = abs(yVelocity) > InteractionConstants.yVelocityForSuspend
-            
-            return isTranslatingOnYAxis || hasVelocityOnYAxis
-        }
-        return false
-    }
-}
 
-// MARK: - UIGestureRecognizerDelegate
-extension SwipeInteractor: UIGestureRecognizerDelegate {
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if gestureRecognizer == panRecognizer {
-            if let point = panRecognizer?.translation(in: panRecognizer?.view?.superview) {
-                return abs(point.x) < InteractionConstants.xTranslationForRecognition
+            if shouldComplete {
+                finish()
+            } else {
+                cancel()
             }
+        default:
+            cancel()
         }
-        return true
     }
 }

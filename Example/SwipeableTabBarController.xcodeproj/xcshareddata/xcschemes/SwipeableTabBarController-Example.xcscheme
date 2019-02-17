@@ -52,6 +52,16 @@
                ReferencedContainer = "container:SwipeableTabBarController.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FB20333E2208FD310061EB89"
+               BuildableName = "SwipeableTabBarControllerUITests.xctest"
+               BlueprintName = "SwipeableTabBarControllerUITests"
+               ReferencedContainer = "container:SwipeableTabBarController.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -1,26 +1,41 @@
 //
-//  MGSwipeableTabBarController.swift
-//  MGSwipeableTabBarController
+//  SwipeableTabBarController.swift
+//  SwipeableTabBarController
 //
 //  Created by Marcos Griselli on 1/26/17.
 //  Copyright © 2017 Marcos Griselli. All rights reserved.
 //
 
-import UIKit
+import UIKit 
 
 /// `UITabBarController` subclass with a `selectedViewController` property observer,
 /// `SwipeInteractor` that handles the swiping between tabs gesture, and a `SwipeTransitioningProtocol`
 /// that determines the animation to be added. Use it or subclass it.
+@objc(SwipeableTabBarController)
 open class SwipeableTabBarController: UITabBarController {
 
-    // MARK: - Private API
-    fileprivate var swipeInteractor = SwipeInteractor()
-    fileprivate var swipeAnimatedTransitioning: SwipeTransitioningProtocol? = SwipeAnimation()
-    fileprivate var tapAnimatedTransitioning: SwipeTransitioningProtocol? = SwipeAnimation()
-    fileprivate var currentAnimatedTransitioningType: SwipeTransitioningProtocol? = SwipeAnimation()
+    /// Animated transition to be performed while swiping
+    private(set) public var swipeAnimatedTransitioning: SwipeTransitioningProtocol? = SwipeTransitionAnimator()
+    
+    /// Animated transition to be performed when tapping on a tabbar item
+    private(set) public var tapAnimatedTransitioning: SwipeTransitioningProtocol? = SwipeTransitionAnimator()
+    
+    /// Animated transition being used currently
+    private var currentAnimatedTransitioningType: SwipeTransitioningProtocol?
+    
+    /// Pan gesture for the swiping interaction
+    private var panGestureRecognizer: UIPanGestureRecognizer!
+    
 
-    private let kSelectedViewControllerKey = "selectedViewController"
-    private let kSelectedIndexKey = "selectedIndex"
+    @available(*, deprecated, message: "For the moment the diagonal swipe configuration is not available.")
+    /// Toggle the diagonal swipe to remove the just `perfect` horizontal swipe interaction
+    /// needed to perform the transition.
+    open var diagonalSwipeEnabled = true
+
+    /// Enables/Disables swipes on the tabbar controller.
+    open var isSwipeEnabled = true {
+        didSet { panGestureRecognizer.isEnabled = isSwipeEnabled }
+    }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,90 +48,63 @@ open class SwipeableTabBarController: UITabBarController {
     }
 
     private func setup() {
-        // Set the closure for finishing the transition
-        swipeInteractor.onfinishTransition = { [unowned self] in
-            if let controllers = self.viewControllers, let selectedController = controllers[safe: self.selectedIndex] {
-                self.selectedViewController = selectedController
-                self.delegate?.tabBarController?(self, didSelect: selectedController)
-            }
-        }
-
-        // Make swipeAnimatedTransitioning the current one when the user begins the
-        // swipe interaction.
-        swipeInteractor.willBeginTransition = { [unowned self] in
-            self.currentAnimatedTransitioningType = self.swipeAnimatedTransitioning
-        }
-
         // UITabBarControllerDelegate for transitions.
         delegate = self
-
-        // Observe selected index changes to wire the gesture recognizer to the viewController.
-        addObserver(self, forKeyPath: kSelectedViewControllerKey, options: .new, context: nil)
-        addObserver(self, forKeyPath: kSelectedIndexKey, options: .new, context: nil)
+        currentAnimatedTransitioningType = tapAnimatedTransitioning
+        // Gesture setup
+        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerDidPan(_:)))
+        view.addGestureRecognizer(panGestureRecognizer)
     }
 
-    /// Checks if a transition is being performed.
-    private var isTransitioning: Bool {
-        return [swipeAnimatedTransitioning, tapAnimatedTransitioning]
-            .compactMap { $0 }
-            .contains { $0.transitionStarted }
-    }
+    @IBAction func panGestureRecognizerDidPan(_ sender: UIPanGestureRecognizer) {
+        if sender.state == .ended {
+            currentAnimatedTransitioningType = tapAnimatedTransitioning
+        }
+        // Do not attempt to begin an interactive transition if one is already
+        // ongoing
+        if transitionCoordinator != nil {
+            return
+        }
+        
+        if sender.state == .began {
+            currentAnimatedTransitioningType = swipeAnimatedTransitioning
+        }
 
-    // MARK: - Public API
-
-    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-
-        // .selectedViewController changes so we setup the swipe interactor to the new selected Controller.
-        if keyPath == kSelectedViewControllerKey || keyPath == kSelectedIndexKey {
-            if let selectedController = selectedViewController {
-                swipeInteractor.wireTo(viewController: selectedController.firstController())
-            }
+        if sender.state == .began || sender.state == .changed {
+            beginInteractiveTransitionIfPossible(sender)
         }
     }
-
-    /// Modify the swipe animation, it can be one of the default `SwipeAnimationType` or your own type
-    /// conforming to `SwipeAnimationTypeProtocol`.
-    ///
-    /// - Parameter type: object conforming to `SwipeAnimationTypeProtocol`.
-    open func setSwipeAnimation(type: SwipeAnimationTypeProtocol) {
-        swipeAnimatedTransitioning?.animationType = type
-    }
-
-    /// Modify the swipe animation, it can be one of the default `SwipeAnimationType` or your own type
-    /// conforming to `SwipeAnimationTypeProtocol`.
-    ///
-    /// - Parameter type: object conforming to `SwipeAnimationTypeProtocol`.
-    open func setTapAnimation(type: SwipeAnimationTypeProtocol) {
-        tapAnimatedTransitioning?.animationType = type
-    }
-
-    /// Modify the transitioning animation for swipes.
-    ///
-    /// - Parameter transition: UIViewControllerAnimatedTransitioning conforming to
-    /// `SwipeTransitioningProtocol`.
-    open func setSwipeTransitioning(transition: SwipeTransitioningProtocol?) {
-        swipeAnimatedTransitioning = transition
-    }
     
-    /// Modify the transitioning animation for taps.
+    /// Starts the transition by changing the selected index if the
+    /// gesture allows it.
     ///
-    /// - Parameter transition: UIViewControllerAnimatedTransitioning conforming to
-    /// `SwipeTransitioningProtocol`.
-    open func setTapTransitioning(transition: SwipeTransitioningProtocol?) {
-        tapAnimatedTransitioning = transition
-    }
-
-    /// Toggle the diagonal swipe to remove the just `perfect` horizontal swipe interaction
-    /// needed to perform the transition.
-    ///
-    /// - Parameter enabled: Bool value to the corresponding diagnoal swipe support.
-    open func setDiagonalSwipe(enabled: Bool) {
-        swipeInteractor.isDiagonalSwipeEnabled = enabled
-    }
-
-    /// Enables/Disables swipes on the tabbar controller.
-    open var isSwipeEnabled = true {
-        didSet { swipeInteractor.isEnabled = isSwipeEnabled }
+    /// - Parameter sender: gesture recognizer
+    private func beginInteractiveTransitionIfPossible(_ sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
+        
+        if translation.x > 0.0 && selectedIndex > 0 {
+            // Panning right, transition to the left view controller.
+            selectedIndex -= 1
+        } else if translation.x < 0.0 && selectedIndex + 1 < viewControllers?.count ?? 0 {
+            // Panning left, transition to the right view controller.
+            selectedIndex += 1
+        } else {
+            // Don't reset the gesture recognizer if we skipped starting the
+            // transition because we don't have a translation yet (and thus, could
+            // not determine the transition direction).
+            if !translation.equalTo(CGPoint.zero) {
+                // There is not a view controller to transition to, force the
+                // gesture recognizer to fail.
+                sender.isEnabled = false
+                sender.isEnabled = true
+            }
+        }
+        
+        transitionCoordinator?.animate(alongsideTransition: nil) { [unowned self] context in
+            if context.isCancelled && sender.state == .changed {
+                self.beginInteractiveTransitionIfPossible(sender)
+            }
+        }
     }
 }
 
@@ -124,27 +112,21 @@ open class SwipeableTabBarController: UITabBarController {
 extension SwipeableTabBarController: UITabBarControllerDelegate {
 
     open func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-
         // Get the indexes of the ViewControllers involved in the animation to determine the animation flow.
         guard let fromVCIndex = tabBarController.viewControllers?.index(of: fromVC),
-            let toVCIndex   = tabBarController.viewControllers?.index(of: toVC) else {
+            let toVCIndex = tabBarController.viewControllers?.index(of: toVC) else {
                 return nil
         }
-
-        currentAnimatedTransitioningType?.fromLeft = fromVCIndex > toVCIndex
+        let edge: UIRectEdge = fromVCIndex > toVCIndex ? .right : .left
+        currentAnimatedTransitioningType?.targetEdge = edge
         return currentAnimatedTransitioningType
     }
 
     open func tabBarController(_ tabBarController: UITabBarController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return swipeInteractor.interactionInProgress ? swipeInteractor : nil
-    }
-
-    open func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        // Transitioning or interacting.
-        if isTransitioning || swipeInteractor.interactionInProgress {
-            return false
+        if panGestureRecognizer.state == .began || panGestureRecognizer.state == .changed {
+            return SwipeInteractor(gestureRecognizer: panGestureRecognizer, edge: currentAnimatedTransitioningType?.targetEdge ?? .right)
+        } else {
+            return nil
         }
-        currentAnimatedTransitioningType = tapAnimatedTransitioning
-        return true
     }
 }

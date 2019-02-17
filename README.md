@@ -1,10 +1,11 @@
 ![SwipeableTabBarController](https://github.com/Tobaloidee/SwipeableTabBarController/blob/master/Logo/logotype-a-readme.png)
 
 
-[![Version](https://img.shields.io/cocoapods/v/SwipeableTabBarController.svg?style=flat-square)](http://cocoapods.org/pods/SwipeableTabBarController)
-[![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg?style=flat-square)](http://cocoapods.org/pods/SwipeableTabBarController)
-![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg?style=flat-square)
-![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat-square)
+[![Version](https://img.shields.io/cocoapods/v/SwipeableTabBarController.svg)](http://cocoapods.org/pods/SwipeableTabBarController)
+![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg)
+![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg)
+![Cartage](https://img.shields.io/badge/carthage-compatible-4BC51D.svg)
+[![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg)](http://cocoapods.org/pods/SwipeableTabBarController)
 [![codebeat badge](https://codebeat.co/badges/0cb2f5b2-5bd1-4cbe-8581-3ca3df0e79ab)](https://codebeat.co/projects/github-com-marcosgriselli-swipeabletabbarcontroller-master)
 
 <a href="url"><img src="./GIFs/SwipeableTabBarController_new.gif"></a><br />
@@ -12,28 +13,42 @@
 
 Video created with [Morten Just](https://twitter.com/mortenjust)'s [Design Camera](https://www.designcamera.app)
 
-## Installation
+## 🌟 Features
 
-### CocoaPods
+- [x] Zero setup 
+- [x] Different animations
+- [x] Enable/Disable interactions easily
+- [x] Fluid gestures
 
-SwipeableTabBarController is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+## 📲 Installation
+
+#### Using [CocoaPods](https://cocoapods.org)
+
+Edit your `Podfile` and specify the dependency:
 
 ```ruby
-pod "SwipeableTabBarController"
+pod 'SwipeableTabBarController'
 ```
 
-### Manual
+#### Using [Carthage](https://github.com/carthage)
+
+Edit your `Cartfile` and specify the dependency:
+
+```bash
+github "marcosgriselli/SwipeableTabBarController"
+```
+
+#### Manual
 
 Drop the classes inside of SwipeableTabBarController/Classes into your project.
 
-## Usage
+## 👩‍💻 How to use
+
+### Setup
 
 If you don't need subclassing `UITabBarController` just set the `UITabBarController` on the Storyboard to be of type `SwipeableTabBarController`.
 
 Otherwise, make a subclass of `SwipeableTabBarController`.
-
-Example:
 
 ```swift
 import SwipeableTabBarController
@@ -48,7 +63,7 @@ class TabBarController: SwipeableTabBarController {
 `SwipeableTabBarController` supports 3 different types of animations out of the box. Setting the desired animation is easy. On your `SwipeableTabBarController` subclass just do:
 
 ```swift
-setSwipeAnimation(type: SwipeAnimationType.push)
+swipeAnimatedTransitioning?.animationType = SwipeAnimationType.sideBySide
 ```
 
 If you are supporting just one type of animation call it on `viewDidLoad()` otherwise call it as you need to change the desired animation.
@@ -71,6 +86,7 @@ The default animation is `SwipeAnimationType.sideBySide` where the newly selecte
 
 `SwipeAnimationType.push` follows iOS default push animation where the top view moves away while the bottom one slightly moves behind. In this case, the top view will be the previously selected tab view.
 
+<!-- 
 ### Restricted Swipe
 
 You can choose to restrict your swiping to perfect horizontal swipe or support diagonal movement as well. I recommend enabling horizontal swipe if you are not using any kind of scrollViews on your controllers.
@@ -80,6 +96,7 @@ Default value is ```false```
 ```swift
 setDiagonalSwipe(enabled: true)
 ```
+--->
 
 ### Disable Interaction
 
@@ -88,54 +105,49 @@ Support for disabling/enabling the interactor, this can be used on a controller 
 Default value is ```true```
 
 ```swift
-setTabBarSwipe(enabled: false)
+isSwipeEnabled = false
 ```
 
-## Example
+## ❤️ Contributing
+This is an open source project, so feel free to contribute. How?
+- Open an [issue](https://github.com/marcosgriselli/Sizes/issues/new).
+- Send feedback via [twitter](https://twitter.com/marcosgriselli).
+- Propose your own fixes, suggestions and open a pull request with the changes.
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Project Details
-
-### Requirements
-* Swift 4.1
-* Xcode 8.0+
-* iOS 8.0+
-
-### Contributing
-Feel free to collaborate with ideas 💭, issues ⁉️ and/or pull requests 🔃.
-
-If you use SwipeableTabBarController in your app I'd love to hear about it and feature your animation here!
-
-### Contributors
+**Contributors**
 
 [![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/0)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/0)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/1)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/1)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/2)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/2)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/3)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/3)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/4)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/4)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/5)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/5)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/6)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/6)[![](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/images/7)](https://sourcerer.io/fame/marcosgriselli/marcosgriselli/SwipeableTabBarController/links/7)
 
-### Author
+## 👨‍💻 Author
 
-Marcos Griselli | <a href="url"><img src="./Resources/twitterIcon.png" height="15" width="17" ></a> [@marcosgriselli](https://twitter.com/marcosgriselli)
-
+Marcos Griselli | <a href="url"><img src="./Resources/twitterIcon.png" height="17"></a> [@marcosgriselli](https://twitter.com/marcosgriselli)
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/marcosgriselli.svg?style=social)](https://twitter.com/marcosgriselli)
 
-### License
+[![GitHub Follow](https://img.shields.io/github/followers/marcosgriselli.svg?style=social&label=Follow)](https://github.com/marcosgriselli)
 
-> Copyright (c) 2017 Marcos Griselli
+## 🛡 License
 
-> Permission is hereby granted, free of charge, to any person obtaining a copy
+```
+MIT License
+
+Copyright (c) 2018 Marcos Griselli
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-> The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
