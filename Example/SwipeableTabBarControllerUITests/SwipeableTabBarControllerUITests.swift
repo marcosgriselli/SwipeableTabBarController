@@ -47,7 +47,7 @@ class SwipeableTabBarControllerUITests: XCTestCase {
         /// Assert that the tabBarItem is selected and that the new view controller
         /// exists and its ready to interact with.
         /// This is a simple test but it will be useful for unexpected states.
-        let assertTabSelected: (Tab) -> () = { tab in
+        let assertTabSelected: (Tab) -> Void = { tab in
             XCTAssert(tabBar.buttons.allElementsBoundByIndex[tab.index].isSelected)
             let navigationBar = app.navigationBars[tab.navBarTitle]
             XCTAssert(navigationBar.exists)

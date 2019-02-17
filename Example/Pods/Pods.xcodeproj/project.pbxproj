@@ -6,242 +6,268 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		0472FD5AD02681A6CA16673EDD3F836C /* SwiftLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 815F1E3DEA7215810E13127998958E73 /* Build configuration list for PBXAggregateTarget "SwiftLint" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = SwiftLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		34FC7993A6EDC4D45CA68815FAD4F8CA /* Pods-SwipeableTabBarController_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BC197D4B85F9131FA9B8206AF10D761 /* Pods-SwipeableTabBarController_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4DE5E9F3E7E3EB743BB6427824E1B38F /* SwipeableTabBarController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBA86CB844AB7700AB353F2FB56CD78 /* SwipeableTabBarController-dummy.m */; };
-		50B3921C3C624AFA71A41DF0869B5EFD /* SwipeAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FC2B68884BEE04E9089A945D5B5A10 /* SwipeAnimationType.swift */; };
-		603E8B2889BD7E7406660327EAA87358 /* SwipeTransitioningProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECBBE47AAF854F26DB95E7201D7498 /* SwipeTransitioningProtocol.swift */; };
-		6CA7676225778C1AAA4311AB3108C307 /* SwipeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1FFBE4625D75EDC0CCB9C151BD4C0B /* SwipeInteractor.swift */; };
-		7206FCB019DADADB07D08BC739EF9C7F /* SwipeTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5F030DFCA961D6DCC9822DD6A33FB /* SwipeTransitionAnimator.swift */; };
-		7E7F253C55D88F20E0539EE0E6525757 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		87B511AA1FE7820B68B65C5B7978A5EF /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC0B23A84A9A1965BB81718BC18ADE /* UIKit+Extensions.swift */; };
-		A670A112A9A32A198706C822D719B4D2 /* Pods-SwipeableTabBarController_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F63820FCF6D008582D472B31FF3A4B2 /* Pods-SwipeableTabBarController_Example-dummy.m */; };
-		D638D71FAB37CA82496EFD4BA8F731DF /* SwipeableTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE89CB48190FE8AE8574802744AC6C3 /* SwipeableTabBarController.swift */; };
-		F5309576B5952553BB84A22E944D858A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		FA72A7502FE8F05D6E3A2623D9C640C1 /* SwipeableTabBarController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 820E44ED0A31E6BD73911111169DC586 /* SwipeableTabBarController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1AC0357BA3314CBB7E8FD6841C57D1AD /* SwipeAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD00CDBA3467A8457E2BA9A467EF8E7 /* SwipeAnimationType.swift */; };
+		261B52BB8CF522806A026DBDCD34D4BF /* SwipeableTabBarController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E5791C96819DAFEFF7A8C415310643BD /* SwipeableTabBarController-dummy.m */; };
+		33B388829D26D8961678A696C3C1817A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		40C4C6AF34A8B01B71D072423C15CA28 /* SwipeTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32CC061D8408DB4F87518915EFC59F4 /* SwipeTransitionAnimator.swift */; };
+		58E6C20C009F3CF31EDBB992F8D2D71E /* SwipeTransitioningProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE4C86224C4659DD6A64108748F71D /* SwipeTransitioningProtocol.swift */; };
+		66E5AA9D0C83764C29C9235041CA7DF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		6D0A7544C36A29D54C7902B1FC362E06 /* SwipeableTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B04D7CBDB91C95C87CDA82A33F8C9C /* SwipeableTabBarController.swift */; };
+		A95B597A9633B1AE7552F90BA22AB6D2 /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B46FA38A9D3B971BD6B780B117A89C /* UIKit+Extensions.swift */; };
+		BD97564D0E1341AF2890B4AD5DA01C17 /* Pods-SwipeableTabBarController_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5342F9E38C87DDE87D98A12322206B /* Pods-SwipeableTabBarController_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE273B23DD1EE8B3D50BD8236C6D402D /* SwipeableTabBarController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FEA8A0A117F16BEC3BDE0F24BA4FED05 /* SwipeableTabBarController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E42179A230FCC11079915C95A72E8FF2 /* SwipeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93CFC3733852832EBF881BDB1E5E4E /* SwipeInteractor.swift */; };
+		FCA6DF562A1586163B5C015DCBD8E0B1 /* Pods-SwipeableTabBarController_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB85C5416979A5093E43C2F041C2D21E /* Pods-SwipeableTabBarController_Example-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		218AF4C68A311728E28FEA45D8160372 /* PBXContainerItemProxy */ = {
+		4B9C625E5774529D4CB5A961B8530B2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D8E2A92667D0968B2F4AFC456543292F;
+			remoteGlobalIDString = 4400EC8323FB92E160E6870E1FE247FF;
 			remoteInfo = SwipeableTabBarController;
+		};
+		534955C1F6758C1D384F09FF92AA1A50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0472FD5AD02681A6CA16673EDD3F836C;
+			remoteInfo = SwiftLint;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F1FFBE4625D75EDC0CCB9C151BD4C0B /* SwipeInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeInteractor.swift; path = SwipeableTabBarController/Classes/SwipeInteractor.swift; sourceTree = "<group>"; };
-		24ECBBE47AAF854F26DB95E7201D7498 /* SwipeTransitioningProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeTransitioningProtocol.swift; path = SwipeableTabBarController/Classes/SwipeTransitioningProtocol.swift; sourceTree = "<group>"; };
-		340BD47B7EEB88627F381113F448EA6E /* Pods-SwipeableTabBarController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwipeableTabBarController_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		39C62A42FE2A3BF18BC75D7F1AD0C4C9 /* SwipeableTabBarController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwipeableTabBarController.modulemap; sourceTree = "<group>"; };
-		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		5CECF2E3AA92B52F8B6855FD09BA3561 /* SwipeableTabBarController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwipeableTabBarController-prefix.pch"; sourceTree = "<group>"; };
-		5EEADB4D31FC4D03AE5C3CA90BEEB555 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		62DACCB0FE14002534E5263A515675C9 /* SwipeableTabBarController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwipeableTabBarController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6746352923E3BE9C1A1DF44CB66C42F9 /* Pods_SwipeableTabBarController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipeableTabBarController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6806A27490D79DFB12834EDCD7A960D0 /* Pods-SwipeableTabBarController_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwipeableTabBarController_Example-resources.sh"; sourceTree = "<group>"; };
-		7DAC0B23A84A9A1965BB81718BC18ADE /* UIKit+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIKit+Extensions.swift"; path = "SwipeableTabBarController/Classes/UIKit+Extensions.swift"; sourceTree = "<group>"; };
-		7F63820FCF6D008582D472B31FF3A4B2 /* Pods-SwipeableTabBarController_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwipeableTabBarController_Example-dummy.m"; sourceTree = "<group>"; };
-		7FDCEA6890A29AB6543A685455F44073 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		814303A9D5FD34073162A519E4E0CA8D /* Pods-SwipeableTabBarController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwipeableTabBarController_Example.release.xcconfig"; sourceTree = "<group>"; };
-		820E44ED0A31E6BD73911111169DC586 /* SwipeableTabBarController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwipeableTabBarController-umbrella.h"; sourceTree = "<group>"; };
-		84783B704B2568E5C5206A2CD8AF3567 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		897DECD45EBDA837AAC42006C091ADEE /* Pods-SwipeableTabBarController_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwipeableTabBarController_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		8BE89CB48190FE8AE8574802744AC6C3 /* SwipeableTabBarController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeableTabBarController.swift; path = SwipeableTabBarController/Classes/SwipeableTabBarController.swift; sourceTree = "<group>"; };
-		8D06C3AC22B92C485C5A890A5AC09C16 /* Pods-SwipeableTabBarController_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SwipeableTabBarController_Example.modulemap"; sourceTree = "<group>"; };
-		8FBA86CB844AB7700AB353F2FB56CD78 /* SwipeableTabBarController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwipeableTabBarController-dummy.m"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9BC197D4B85F9131FA9B8206AF10D761 /* Pods-SwipeableTabBarController_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwipeableTabBarController_Example-umbrella.h"; sourceTree = "<group>"; };
-		ABA08D0C30D844CF85A71BE830B40A79 /* Pods-SwipeableTabBarController_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwipeableTabBarController_Example-frameworks.sh"; sourceTree = "<group>"; };
-		C1AA2DE7341C5E1D97D48E75443314BC /* SwipeableTabBarController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwipeableTabBarController.xcconfig; sourceTree = "<group>"; };
-		C4FC2B68884BEE04E9089A945D5B5A10 /* SwipeAnimationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeAnimationType.swift; path = SwipeableTabBarController/Classes/SwipeAnimationType.swift; sourceTree = "<group>"; };
-		D4A5F030DFCA961D6DCC9822DD6A33FB /* SwipeTransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeTransitionAnimator.swift; path = SwipeableTabBarController/Classes/SwipeTransitionAnimator.swift; sourceTree = "<group>"; };
-		D9EE3860CBDA93FD4934BCD45FD46424 /* SwipeableTabBarController.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = SwipeableTabBarController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		E0D168B31BE6A67478ED5BBEDA40C06A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EE6E25E163AD6B81427F8487F5E08AAF /* Pods-SwipeableTabBarController_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwipeableTabBarController_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		106EAD453305B67AF4F446FD661EAF05 /* SwipeableTabBarController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwipeableTabBarController-prefix.pch"; sourceTree = "<group>"; };
+		15B46FA38A9D3B971BD6B780B117A89C /* UIKit+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIKit+Extensions.swift"; path = "SwipeableTabBarController/Classes/UIKit+Extensions.swift"; sourceTree = "<group>"; };
+		17B04D7CBDB91C95C87CDA82A33F8C9C /* SwipeableTabBarController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeableTabBarController.swift; path = SwipeableTabBarController/Classes/SwipeableTabBarController.swift; sourceTree = "<group>"; };
+		19B3055F17F7BAC4E23D4CD907CD0E2B /* SwipeableTabBarController.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = SwipeableTabBarController.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1E93CFC3733852832EBF881BDB1E5E4E /* SwipeInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeInteractor.swift; path = SwipeableTabBarController/Classes/SwipeInteractor.swift; sourceTree = "<group>"; };
+		2368ACE04CB9B53BBB287B2B81B35B21 /* Pods-SwipeableTabBarController_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SwipeableTabBarController_Example.modulemap"; sourceTree = "<group>"; };
+		3E8F70C0BC86F63BA6247F2B07E626C4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		521C2E6B20DC39CFD89EF8C10F8E9D5C /* SwipeableTabBarController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwipeableTabBarController.framework; path = SwipeableTabBarController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C14A503D6A996549E9416D2B1C89DC4 /* Pods_SwipeableTabBarController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SwipeableTabBarController_Example.framework; path = "Pods-SwipeableTabBarController_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A13F7C67252C0206EABCF43B8EAE302 /* Pods-SwipeableTabBarController_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwipeableTabBarController_Example-Info.plist"; sourceTree = "<group>"; };
+		72BD180DCC917B53D1666C6BD841507A /* Pods-SwipeableTabBarController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwipeableTabBarController_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		75AE4C86224C4659DD6A64108748F71D /* SwipeTransitioningProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeTransitioningProtocol.swift; path = SwipeableTabBarController/Classes/SwipeTransitioningProtocol.swift; sourceTree = "<group>"; };
+		7F58B31419279F3DDBE2E2CA593CFF8C /* SwipeableTabBarController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwipeableTabBarController.modulemap; sourceTree = "<group>"; };
+		89F85ACF3D78B39506B75103B4694B36 /* SwiftLint.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.xcconfig; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B9DD8295F780A40B87BE2F1203C0DAE2 /* Pods-SwipeableTabBarController_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwipeableTabBarController_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BB5342F9E38C87DDE87D98A12322206B /* Pods-SwipeableTabBarController_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwipeableTabBarController_Example-umbrella.h"; sourceTree = "<group>"; };
+		BB85C5416979A5093E43C2F041C2D21E /* Pods-SwipeableTabBarController_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwipeableTabBarController_Example-dummy.m"; sourceTree = "<group>"; };
+		BBE11A3F9AC5B6C998BCFEFD53FE4E2D /* SwipeableTabBarController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwipeableTabBarController.xcconfig; sourceTree = "<group>"; };
+		CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CFD00CDBA3467A8457E2BA9A467EF8E7 /* SwipeAnimationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeAnimationType.swift; path = SwipeableTabBarController/Classes/SwipeAnimationType.swift; sourceTree = "<group>"; };
+		D142C0AC618896D2D805070184B31827 /* Pods-SwipeableTabBarController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwipeableTabBarController_Example.release.xcconfig"; sourceTree = "<group>"; };
+		D60762E8C6728790843709647B8B8DDC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		D81AA3DEE4244156181AB2F42FBD6E99 /* SwipeableTabBarController-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwipeableTabBarController-Info.plist"; sourceTree = "<group>"; };
+		E32CC061D8408DB4F87518915EFC59F4 /* SwipeTransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeTransitionAnimator.swift; path = SwipeableTabBarController/Classes/SwipeTransitionAnimator.swift; sourceTree = "<group>"; };
+		E5791C96819DAFEFF7A8C415310643BD /* SwipeableTabBarController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwipeableTabBarController-dummy.m"; sourceTree = "<group>"; };
+		EE6667EE70BBD77CDF7FEC9230D62E77 /* Pods-SwipeableTabBarController_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwipeableTabBarController_Example-frameworks.sh"; sourceTree = "<group>"; };
+		EEDE6D11FF1E0C73960F5B291B53A459 /* Pods-SwipeableTabBarController_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwipeableTabBarController_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		FEA8A0A117F16BEC3BDE0F24BA4FED05 /* SwipeableTabBarController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwipeableTabBarController-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2FB30A305927E95F851B6FC49933FE0E /* Frameworks */ = {
+		B1122F28E7A66392793F10D705899907 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E7F253C55D88F20E0539EE0E6525757 /* Foundation.framework in Frameworks */,
+				66E5AA9D0C83764C29C9235041CA7DF7 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FB6ED273ADCD11F914CF3CEDF476006D /* Frameworks */ = {
+		C1932DF6D5B9DE7FD47970F135826560 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5309576B5952553BB84A22E944D858A /* Foundation.framework in Frameworks */,
+				33B388829D26D8961678A696C3C1817A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		030DE902F6C8548676E4E1E5A2291E01 /* Pods-SwipeableTabBarController_Example */ = {
+		25EC0EF17203DDD2076B4DE749FA96D3 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				E0D168B31BE6A67478ED5BBEDA40C06A /* Info.plist */,
-				8D06C3AC22B92C485C5A890A5AC09C16 /* Pods-SwipeableTabBarController_Example.modulemap */,
-				EE6E25E163AD6B81427F8487F5E08AAF /* Pods-SwipeableTabBarController_Example-acknowledgements.markdown */,
-				897DECD45EBDA837AAC42006C091ADEE /* Pods-SwipeableTabBarController_Example-acknowledgements.plist */,
-				7F63820FCF6D008582D472B31FF3A4B2 /* Pods-SwipeableTabBarController_Example-dummy.m */,
-				ABA08D0C30D844CF85A71BE830B40A79 /* Pods-SwipeableTabBarController_Example-frameworks.sh */,
-				6806A27490D79DFB12834EDCD7A960D0 /* Pods-SwipeableTabBarController_Example-resources.sh */,
-				9BC197D4B85F9131FA9B8206AF10D761 /* Pods-SwipeableTabBarController_Example-umbrella.h */,
-				340BD47B7EEB88627F381113F448EA6E /* Pods-SwipeableTabBarController_Example.debug.xcconfig */,
-				814303A9D5FD34073162A519E4E0CA8D /* Pods-SwipeableTabBarController_Example.release.xcconfig */,
-			);
-			name = "Pods-SwipeableTabBarController_Example";
-			path = "Target Support Files/Pods-SwipeableTabBarController_Example";
-			sourceTree = "<group>";
-		};
-		107940867C9EDBE7200AAC7875508DB0 /* SwipeableTabBarController */ = {
-			isa = PBXGroup;
-			children = (
-				8BE89CB48190FE8AE8574802744AC6C3 /* SwipeableTabBarController.swift */,
-				D4A5F030DFCA961D6DCC9822DD6A33FB /* SwipeTransitionAnimator.swift */,
-				C4FC2B68884BEE04E9089A945D5B5A10 /* SwipeAnimationType.swift */,
-				1F1FFBE4625D75EDC0CCB9C151BD4C0B /* SwipeInteractor.swift */,
-				24ECBBE47AAF854F26DB95E7201D7498 /* SwipeTransitioningProtocol.swift */,
-				7DAC0B23A84A9A1965BB81718BC18ADE /* UIKit+Extensions.swift */,
-				1A112B85A2842E077D9DB1F5371C17E0 /* Pod */,
-				3259844BFE084A15A6C1A59431268549 /* Support Files */,
-			);
-			name = SwipeableTabBarController;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		12024FF3A8A1C552ECCD1EBF38036541 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				107940867C9EDBE7200AAC7875508DB0 /* SwipeableTabBarController */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		1A112B85A2842E077D9DB1F5371C17E0 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				5EEADB4D31FC4D03AE5C3CA90BEEB555 /* LICENSE */,
-				7FDCEA6890A29AB6543A685455F44073 /* README.md */,
-				D9EE3860CBDA93FD4934BCD45FD46424 /* SwipeableTabBarController.podspec */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		3259844BFE084A15A6C1A59431268549 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				84783B704B2568E5C5206A2CD8AF3567 /* Info.plist */,
-				39C62A42FE2A3BF18BC75D7F1AD0C4C9 /* SwipeableTabBarController.modulemap */,
-				C1AA2DE7341C5E1D97D48E75443314BC /* SwipeableTabBarController.xcconfig */,
-				8FBA86CB844AB7700AB353F2FB56CD78 /* SwipeableTabBarController-dummy.m */,
-				5CECF2E3AA92B52F8B6855FD09BA3561 /* SwipeableTabBarController-prefix.pch */,
-				820E44ED0A31E6BD73911111169DC586 /* SwipeableTabBarController-umbrella.h */,
+				7F58B31419279F3DDBE2E2CA593CFF8C /* SwipeableTabBarController.modulemap */,
+				BBE11A3F9AC5B6C998BCFEFD53FE4E2D /* SwipeableTabBarController.xcconfig */,
+				E5791C96819DAFEFF7A8C415310643BD /* SwipeableTabBarController-dummy.m */,
+				D81AA3DEE4244156181AB2F42FBD6E99 /* SwipeableTabBarController-Info.plist */,
+				106EAD453305B67AF4F446FD661EAF05 /* SwipeableTabBarController-prefix.pch */,
+				FEA8A0A117F16BEC3BDE0F24BA4FED05 /* SwipeableTabBarController-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/SwipeableTabBarController";
 			sourceTree = "<group>";
 		};
-		53797B7804B2A2010BFE0664A322534B /* Products */ = {
+		53461DF622DAA71D6C0A1D60F4109413 /* SwipeableTabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				6746352923E3BE9C1A1DF44CB66C42F9 /* Pods_SwipeableTabBarController_Example.framework */,
-				62DACCB0FE14002534E5263A515675C9 /* SwipeableTabBarController.framework */,
+				17B04D7CBDB91C95C87CDA82A33F8C9C /* SwipeableTabBarController.swift */,
+				CFD00CDBA3467A8457E2BA9A467EF8E7 /* SwipeAnimationType.swift */,
+				1E93CFC3733852832EBF881BDB1E5E4E /* SwipeInteractor.swift */,
+				E32CC061D8408DB4F87518915EFC59F4 /* SwipeTransitionAnimator.swift */,
+				75AE4C86224C4659DD6A64108748F71D /* SwipeTransitioningProtocol.swift */,
+				15B46FA38A9D3B971BD6B780B117A89C /* UIKit+Extensions.swift */,
+				9498DBC578E65E8658214036C262C86D /* Pod */,
+				25EC0EF17203DDD2076B4DE749FA96D3 /* Support Files */,
 			);
-			name = Products;
+			name = SwipeableTabBarController;
+			path = ../..;
 			sourceTree = "<group>";
 		};
-		5E0D919E635D23B70123790B8308F8EF /* iOS */ = {
+		68813467A4F2DCFB544D17B8A0C7D9C9 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */,
+				53461DF622DAA71D6C0A1D60F4109413 /* SwipeableTabBarController */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		9498DBC578E65E8658214036C262C86D /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				D60762E8C6728790843709647B8B8DDC /* LICENSE */,
+				3E8F70C0BC86F63BA6247F2B07E626C4 /* README.md */,
+				19B3055F17F7BAC4E23D4CD907CD0E2B /* SwipeableTabBarController.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		965877409E01FB3D85D85E90E6B30185 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9AED61B9A1CFA211C061344F741DBA07 /* SwiftLint */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9AED61B9A1CFA211C061344F741DBA07 /* SwiftLint */ = {
+			isa = PBXGroup;
+			children = (
+				EEA599FE5C15138FF0981CCFB01E55AA /* Support Files */,
+			);
+			name = SwiftLint;
+			path = SwiftLint;
+			sourceTree = "<group>";
+		};
+		9B055D0CFEA43187E72B03DED11F5662 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		7DB346D0F39D3F0E887471402A8071AB = {
+		9EC46FB0860D633B07F01C41F934516E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				12024FF3A8A1C552ECCD1EBF38036541 /* Development Pods */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				53797B7804B2A2010BFE0664A322534B /* Products */,
-				E006230735996C16A4D18412B1A0E15B /* Targets Support Files */,
+				5C14A503D6A996549E9416D2B1C89DC4 /* Pods_SwipeableTabBarController_Example.framework */,
+				521C2E6B20DC39CFD89EF8C10F8E9D5C /* SwipeableTabBarController.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ABE9FD7D4E009C3B677A7F2671F89A80 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E9462EC8830A0E742B4D4AE0F0E3D131 /* Pods-SwipeableTabBarController_Example */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				68813467A4F2DCFB544D17B8A0C7D9C9 /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				965877409E01FB3D85D85E90E6B30185 /* Pods */,
+				9EC46FB0860D633B07F01C41F934516E /* Products */,
+				ABE9FD7D4E009C3B677A7F2671F89A80 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5E0D919E635D23B70123790B8308F8EF /* iOS */,
+				9B055D0CFEA43187E72B03DED11F5662 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E006230735996C16A4D18412B1A0E15B /* Targets Support Files */ = {
+		E9462EC8830A0E742B4D4AE0F0E3D131 /* Pods-SwipeableTabBarController_Example */ = {
 			isa = PBXGroup;
 			children = (
-				030DE902F6C8548676E4E1E5A2291E01 /* Pods-SwipeableTabBarController_Example */,
+				2368ACE04CB9B53BBB287B2B81B35B21 /* Pods-SwipeableTabBarController_Example.modulemap */,
+				B9DD8295F780A40B87BE2F1203C0DAE2 /* Pods-SwipeableTabBarController_Example-acknowledgements.markdown */,
+				EEDE6D11FF1E0C73960F5B291B53A459 /* Pods-SwipeableTabBarController_Example-acknowledgements.plist */,
+				BB85C5416979A5093E43C2F041C2D21E /* Pods-SwipeableTabBarController_Example-dummy.m */,
+				EE6667EE70BBD77CDF7FEC9230D62E77 /* Pods-SwipeableTabBarController_Example-frameworks.sh */,
+				6A13F7C67252C0206EABCF43B8EAE302 /* Pods-SwipeableTabBarController_Example-Info.plist */,
+				BB5342F9E38C87DDE87D98A12322206B /* Pods-SwipeableTabBarController_Example-umbrella.h */,
+				72BD180DCC917B53D1666C6BD841507A /* Pods-SwipeableTabBarController_Example.debug.xcconfig */,
+				D142C0AC618896D2D805070184B31827 /* Pods-SwipeableTabBarController_Example.release.xcconfig */,
 			);
-			name = "Targets Support Files";
+			name = "Pods-SwipeableTabBarController_Example";
+			path = "Target Support Files/Pods-SwipeableTabBarController_Example";
+			sourceTree = "<group>";
+		};
+		EEA599FE5C15138FF0981CCFB01E55AA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				89F85ACF3D78B39506B75103B4694B36 /* SwiftLint.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SwiftLint";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0E4805CEF0EEE284CE1986A8F8EBB464 /* Headers */ = {
+		74E72F98185F9132F449DD9469A0AFD3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34FC7993A6EDC4D45CA68815FAD4F8CA /* Pods-SwipeableTabBarController_Example-umbrella.h in Headers */,
+				BD97564D0E1341AF2890B4AD5DA01C17 /* Pods-SwipeableTabBarController_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		48CD5BD6B621F7129F5180EC5A982276 /* Headers */ = {
+		8FDD6522763DDBF65550F4A4674339AA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA72A7502FE8F05D6E3A2623D9C640C1 /* SwipeableTabBarController-umbrella.h in Headers */,
+				CE273B23DD1EE8B3D50BD8236C6D402D /* SwipeableTabBarController-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BF4F81A941CF525137FFD0585C11B518 /* Pods-SwipeableTabBarController_Example */ = {
+		4400EC8323FB92E160E6870E1FE247FF /* SwipeableTabBarController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8C24149C06EFBB2123528CB98FCE732A /* Build configuration list for PBXNativeTarget "Pods-SwipeableTabBarController_Example" */;
+			buildConfigurationList = B839398BE8DE1B0F05465E5895FED17B /* Build configuration list for PBXNativeTarget "SwipeableTabBarController" */;
 			buildPhases = (
-				0E4805CEF0EEE284CE1986A8F8EBB464 /* Headers */,
-				3055C12E038C2FC58317D696795DE99E /* Sources */,
-				FB6ED273ADCD11F914CF3CEDF476006D /* Frameworks */,
-				1EF3FC6ED5F8FFD7EA55790E9338F05A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A76A1F1F6530F3EF4AE5B93E5A001E4E /* PBXTargetDependency */,
-			);
-			name = "Pods-SwipeableTabBarController_Example";
-			productName = "Pods-SwipeableTabBarController_Example";
-			productReference = 6746352923E3BE9C1A1DF44CB66C42F9 /* Pods_SwipeableTabBarController_Example.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		D8E2A92667D0968B2F4AFC456543292F /* SwipeableTabBarController */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9BBB7629E56E063E24830ADE323EFBA2 /* Build configuration list for PBXNativeTarget "SwipeableTabBarController" */;
-			buildPhases = (
-				48CD5BD6B621F7129F5180EC5A982276 /* Headers */,
-				F72FE8A4888B2CC647C881A8D10AB631 /* Sources */,
-				2FB30A305927E95F851B6FC49933FE0E /* Frameworks */,
-				5DAF8523C72098485CA6CC86E52CECEB /* Resources */,
+				8FDD6522763DDBF65550F4A4674339AA /* Headers */,
+				C0DCEEC82C5F19C2CF5E220B8E9C6363 /* Sources */,
+				B1122F28E7A66392793F10D705899907 /* Frameworks */,
+				39CC7D6963F0AFC64B2F007D462BD0E3 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -249,45 +275,66 @@
 			);
 			name = SwipeableTabBarController;
 			productName = SwipeableTabBarController;
-			productReference = 62DACCB0FE14002534E5263A515675C9 /* SwipeableTabBarController.framework */;
+			productReference = 521C2E6B20DC39CFD89EF8C10F8E9D5C /* SwipeableTabBarController.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9ABD6CD8B8496188162116819D1D1508 /* Pods-SwipeableTabBarController_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7C5597D27A03FE23C0D262123F5843B /* Build configuration list for PBXNativeTarget "Pods-SwipeableTabBarController_Example" */;
+			buildPhases = (
+				74E72F98185F9132F449DD9469A0AFD3 /* Headers */,
+				393F235C50626B5868861DCC52C378C9 /* Sources */,
+				C1932DF6D5B9DE7FD47970F135826560 /* Frameworks */,
+				72E7C772252DC76CCFF95201EC26B62D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4323E95E2B8CFF51CC95EC805482B909 /* PBXTargetDependency */,
+				53818421B30F0D00850698565D71AD9C /* PBXTargetDependency */,
+			);
+			name = "Pods-SwipeableTabBarController_Example";
+			productName = "Pods-SwipeableTabBarController_Example";
+			productReference = 5C14A503D6A996549E9416D2B1C89DC4 /* Pods_SwipeableTabBarController_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
 			};
-			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 53797B7804B2A2010BFE0664A322534B /* Products */;
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 9EC46FB0860D633B07F01C41F934516E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BF4F81A941CF525137FFD0585C11B518 /* Pods-SwipeableTabBarController_Example */,
-				D8E2A92667D0968B2F4AFC456543292F /* SwipeableTabBarController */,
+				9ABD6CD8B8496188162116819D1D1508 /* Pods-SwipeableTabBarController_Example */,
+				0472FD5AD02681A6CA16673EDD3F836C /* SwiftLint */,
+				4400EC8323FB92E160E6870E1FE247FF /* SwipeableTabBarController */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1EF3FC6ED5F8FFD7EA55790E9338F05A /* Resources */ = {
+		39CC7D6963F0AFC64B2F007D462BD0E3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5DAF8523C72098485CA6CC86E52CECEB /* Resources */ = {
+		72E7C772252DC76CCFF95201EC26B62D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -297,43 +344,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3055C12E038C2FC58317D696795DE99E /* Sources */ = {
+		393F235C50626B5868861DCC52C378C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A670A112A9A32A198706C822D719B4D2 /* Pods-SwipeableTabBarController_Example-dummy.m in Sources */,
+				FCA6DF562A1586163B5C015DCBD8E0B1 /* Pods-SwipeableTabBarController_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F72FE8A4888B2CC647C881A8D10AB631 /* Sources */ = {
+		C0DCEEC82C5F19C2CF5E220B8E9C6363 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DE5E9F3E7E3EB743BB6427824E1B38F /* SwipeableTabBarController-dummy.m in Sources */,
-				D638D71FAB37CA82496EFD4BA8F731DF /* SwipeableTabBarController.swift in Sources */,
-				7206FCB019DADADB07D08BC739EF9C7F /* SwipeTransitionAnimator.swift in Sources */,
-				50B3921C3C624AFA71A41DF0869B5EFD /* SwipeAnimationType.swift in Sources */,
-				6CA7676225778C1AAA4311AB3108C307 /* SwipeInteractor.swift in Sources */,
-				603E8B2889BD7E7406660327EAA87358 /* SwipeTransitioningProtocol.swift in Sources */,
-				87B511AA1FE7820B68B65C5B7978A5EF /* UIKit+Extensions.swift in Sources */,
+				261B52BB8CF522806A026DBDCD34D4BF /* SwipeableTabBarController-dummy.m in Sources */,
+				6D0A7544C36A29D54C7902B1FC362E06 /* SwipeableTabBarController.swift in Sources */,
+				1AC0357BA3314CBB7E8FD6841C57D1AD /* SwipeAnimationType.swift in Sources */,
+				E42179A230FCC11079915C95A72E8FF2 /* SwipeInteractor.swift in Sources */,
+				40C4C6AF34A8B01B71D072423C15CA28 /* SwipeTransitionAnimator.swift in Sources */,
+				58E6C20C009F3CF31EDBB992F8D2D71E /* SwipeTransitioningProtocol.swift in Sources */,
+				A95B597A9633B1AE7552F90BA22AB6D2 /* UIKit+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A76A1F1F6530F3EF4AE5B93E5A001E4E /* PBXTargetDependency */ = {
+		4323E95E2B8CFF51CC95EC805482B909 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftLint;
+			target = 0472FD5AD02681A6CA16673EDD3F836C /* SwiftLint */;
+			targetProxy = 534955C1F6758C1D384F09FF92AA1A50 /* PBXContainerItemProxy */;
+		};
+		53818421B30F0D00850698565D71AD9C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwipeableTabBarController;
-			target = D8E2A92667D0968B2F4AFC456543292F /* SwipeableTabBarController */;
-			targetProxy = 218AF4C68A311728E28FEA45D8160372 /* PBXContainerItemProxy */;
+			target = 4400EC8323FB92E160E6870E1FE247FF /* SwipeableTabBarController */;
+			targetProxy = 4B9C625E5774529D4CB5A961B8530B2F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		94DB79C87B2F3A977980C8850F16154C /* Debug */ = {
+		03736A9E4EF6908544C0011C9A247FE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 340BD47B7EEB88627F381113F448EA6E /* Pods-SwipeableTabBarController_Example.debug.xcconfig */;
+			baseConfigurationReference = 72BD180DCC917B53D1666C6BD841507A /* Pods-SwipeableTabBarController_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -346,7 +399,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-SwipeableTabBarController_Example/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-SwipeableTabBarController_Example/Pods-SwipeableTabBarController_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -359,18 +412,18 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		9ECF89702BE4A3EB0FD028FFB714DA11 /* Debug */ = {
+		12372E7D15A69FC4C6EF3DC810B74E36 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C1AA2DE7341C5E1D97D48E75443314BC /* SwipeableTabBarController.xcconfig */;
+			baseConfigurationReference = D142C0AC618896D2D805070184B31827 /* Pods-SwipeableTabBarController_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -380,26 +433,27 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SwipeableTabBarController/SwipeableTabBarController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwipeableTabBarController/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-SwipeableTabBarController_Example/Pods-SwipeableTabBarController_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwipeableTabBarController/SwipeableTabBarController.modulemap";
-				PRODUCT_MODULE_NAME = SwipeableTabBarController;
-				PRODUCT_NAME = SwipeableTabBarController;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SwipeableTabBarController_Example/Pods-SwipeableTabBarController_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		C92782E717C52E3633C9A5F211E7987A /* Debug */ = {
+		3048B0C5C704DFFF688DA57F5380ED58 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -431,8 +485,98 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		53579C3E9A6FCB776654E1C76E6C594E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBE11A3F9AC5B6C998BCFEFD53FE4E2D /* SwipeableTabBarController.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SwipeableTabBarController/SwipeableTabBarController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwipeableTabBarController/SwipeableTabBarController-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwipeableTabBarController/SwipeableTabBarController.modulemap";
+				PRODUCT_MODULE_NAME = SwipeableTabBarController;
+				PRODUCT_NAME = SwipeableTabBarController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5B0C8287D755FD95091CF35D87FB8B2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -459,14 +603,15 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		DBA4558E20D91F427CEF4F0032F7F1FF /* Release */ = {
+		89377C18E3BBF68F57DC45D5E71C7703 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C1AA2DE7341C5E1D97D48E75443314BC /* SwipeableTabBarController.xcconfig */;
+			baseConfigurationReference = BBE11A3F9AC5B6C998BCFEFD53FE4E2D /* SwipeableTabBarController.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -478,7 +623,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREFIX_HEADER = "Target Support Files/SwipeableTabBarController/SwipeableTabBarController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwipeableTabBarController/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/SwipeableTabBarController/SwipeableTabBarController-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -488,142 +633,80 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		EA8C7AF90938697605468604B2A17B9F /* Release */ = {
+		E1457C3BD33A8874DF4838E3AD4FECF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89F85ACF3D78B39506B75103B4694B36 /* SwiftLint.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_VERSION = 4.2;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Release;
-		};
-		F84F891C18FD0B72F56AD2467080FC4E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 814303A9D5FD34073162A519E4E0CA8D /* Pods-SwipeableTabBarController_Example.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-SwipeableTabBarController_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SwipeableTabBarController_Example/Pods-SwipeableTabBarController_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EAC63185F26CF5355F21B8A02C945772 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89F85ACF3D78B39506B75103B4694B36 /* SwiftLint.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C92782E717C52E3633C9A5F211E7987A /* Debug */,
-				EA8C7AF90938697605468604B2A17B9F /* Release */,
+				5B0C8287D755FD95091CF35D87FB8B2D /* Debug */,
+				3048B0C5C704DFFF688DA57F5380ED58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8C24149C06EFBB2123528CB98FCE732A /* Build configuration list for PBXNativeTarget "Pods-SwipeableTabBarController_Example" */ = {
+		815F1E3DEA7215810E13127998958E73 /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				94DB79C87B2F3A977980C8850F16154C /* Debug */,
-				F84F891C18FD0B72F56AD2467080FC4E /* Release */,
+				E1457C3BD33A8874DF4838E3AD4FECF4 /* Debug */,
+				EAC63185F26CF5355F21B8A02C945772 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9BBB7629E56E063E24830ADE323EFBA2 /* Build configuration list for PBXNativeTarget "SwipeableTabBarController" */ = {
+		B839398BE8DE1B0F05465E5895FED17B /* Build configuration list for PBXNativeTarget "SwipeableTabBarController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9ECF89702BE4A3EB0FD028FFB714DA11 /* Debug */,
-				DBA4558E20D91F427CEF4F0032F7F1FF /* Release */,
+				89377C18E3BBF68F57DC45D5E71C7703 /* Debug */,
+				53579C3E9A6FCB776654E1C76E6C594E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7C5597D27A03FE23C0D262123F5843B /* Build configuration list for PBXNativeTarget "Pods-SwipeableTabBarController_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03736A9E4EF6908544C0011C9A247FE2 /* Debug */,
+				12372E7D15A69FC4C6EF3DC810B74E36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 }

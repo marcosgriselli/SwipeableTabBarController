@@ -3,6 +3,7 @@ default_platform(:ios)
 platform :ios do
 
   lane :test do
+    cocoapods(podfile: "./Example/Podfile")
     scan(
 	    workspace: "./Example/SwipeableTabBarController.xcworkspace",
 	    scheme: "SwipeableTabBarController-Example",

@@ -43,8 +43,10 @@ class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
+        //swiftlint:disable force_unwrapping
         let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from)!
         let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)!
+        //swiftlint:enable force_unwrapping
         let fromRight = targetEdge == .right
 
         animationType.addTo(containerView: containerView, fromView: fromView, toView: toView)
@@ -52,8 +54,11 @@ class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
         
         let duration = transitionDuration(using: transitionContext)
         
-        UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
-            self.animationType.animation(fromView: fromView, toView: toView, direction: fromRight)
+        UIView.animate(withDuration: duration,
+                       delay: 0,
+                       options: [.curveLinear],
+                       animations: {
+                        self.animationType.animation(fromView: fromView, toView: toView, direction: fromRight)
         }, completion: { _ in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })

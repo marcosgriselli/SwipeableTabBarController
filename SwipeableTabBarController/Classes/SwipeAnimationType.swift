@@ -56,7 +56,7 @@ public enum SwipeAnimationType: SwipeAnimationTypeProtocol {
             from.frame.origin.x = 0
             to.frame.origin.x = direction ? -screenWidth : screenWidth
         case .push:
-            let scaledWidth = screenWidth/6
+            let scaledWidth = screenWidth / 6
             to.frame.origin.x = direction ? -scaledWidth : scaledWidth
             from.frame.origin.x = 0
         }

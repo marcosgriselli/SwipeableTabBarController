@@ -24,9 +24,9 @@ open class SwipeableTabBarController: UITabBarController {
     private var currentAnimatedTransitioningType: SwipeTransitioningProtocol?
     
     /// Pan gesture for the swiping interaction
+    //swiftlint:disable next implicitly_unwrapped_optional
     private var panGestureRecognizer: UIPanGestureRecognizer!
     
-
     @available(*, deprecated, message: "For the moment the diagonal swipe configuration is not available.")
     /// Toggle the diagonal swipe to remove the just `perfect` horizontal swipe interaction
     /// needed to perform the transition.

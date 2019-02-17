@@ -6,14 +6,17 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
 import SwipeableTabBarController
+import UIKit
 
 class TabBarController: SwipeableTabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedViewController = viewControllers![1]
+        if let viewControllers = viewControllers {
+            selectedViewController = viewControllers[1]
+        }
+        
         /// Set the animation type for swipe
         swipeAnimatedTransitioning?.animationType = SwipeAnimationType.sideBySide
         
