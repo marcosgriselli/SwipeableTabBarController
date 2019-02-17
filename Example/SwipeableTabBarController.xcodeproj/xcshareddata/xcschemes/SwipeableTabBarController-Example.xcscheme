@@ -20,20 +20,6 @@
                ReferencedContainer = "container:SwipeableTabBarController.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "SwipeableTabBarController_Tests.xctest"
-               BlueprintName = "SwipeableTabBarController_Tests"
-               ReferencedContainer = "container:SwipeableTabBarController.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -45,7 +31,6 @@
       <Testables>
          <TestableReference
             skipped = "NO"
-            parallelizable = "YES"
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"

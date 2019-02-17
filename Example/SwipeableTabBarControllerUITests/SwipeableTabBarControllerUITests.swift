@@ -34,7 +34,7 @@ class SwipeableTabBarControllerUITests: XCTestCase {
         
     }
 
-    /// Tests navigation with swiping and tapping. 
+    /// Tests navigation with swiping and tapping.
     func testTabBarInteractions() {
         let app = XCUIApplication()
         app.launch()
@@ -42,7 +42,7 @@ class SwipeableTabBarControllerUITests: XCTestCase {
         /// We want to keep tests updated with the ammount of view controllers on the
         /// tabBar. If we add a new view controller the tests should navigate to it as well.
         let tabBar = app.tabBars.firstMatch
-        XCTAssertEqual(tabBar.buttons.allElementsBoundByIndex.count, 3, "Unexpected number of view controllers on the TabBar. Please update tests to reflect these changes.)
+        XCTAssertEqual(tabBar.buttons.allElementsBoundByIndex.count, 3, "Unexpected number of view controllers on the TabBar. Please update tests to reflect these changes.")
         
         /// Assert that the tabBarItem is selected and that the new view controller
         /// exists and its ready to interact with.

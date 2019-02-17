@@ -3,7 +3,11 @@ default_platform(:ios)
 platform :ios do
 
   lane :test do
-    scan(scheme: "SwipeableTabBarController-Example", device: "iPhone X")
+    scan(
+	    workspace: "./Example/SwipeableTabBarController.xcworkspace",
+	    scheme: "SwipeableTabBarController-Example",
+	    device: "iPhone X"
+    )
   end
 
   desc "Release a new version with a patch bump_type"
