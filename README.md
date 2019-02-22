@@ -1,5 +1,4 @@
-![SwipeableTabBarController](https://github.com/Tobaloidee/SwipeableTabBarController/blob/master/Logo/logotype-a-readme.png)
-
+![SwipeableTabBarController](./Resources/Logo/logotype-a-readme.png)
 
 [![Version](https://img.shields.io/cocoapods/v/SwipeableTabBarController.svg)](http://cocoapods.org/pods/SwipeableTabBarController)
 ![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg)
@@ -8,7 +7,7 @@
 [![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg)](http://cocoapods.org/pods/SwipeableTabBarController)
 [![codebeat badge](https://codebeat.co/badges/0cb2f5b2-5bd1-4cbe-8581-3ca3df0e79ab)](https://codebeat.co/projects/github-com-marcosgriselli-swipeabletabbarcontroller-master)
 
-<a href="url"><img src="./GIFs/SwipeableTabBarController_new.gif"></a><br />
+<a href="url"><img src="./Resources/GIFs/SwipeableTabBarController_new.gif"></a><br />
 
 
 Video created with [Morten Just](https://twitter.com/mortenjust)'s [Design Camera](https://www.designcamera.app)
@@ -70,19 +69,19 @@ If you are supporting just one type of animation call it on `viewDidLoad()` othe
 
 #### Side by Side (default)
 
-<a href="url"><img src="./GIFs/SideBySideAnimation.gif" height="216" width="125" ></a>
+<a href="url"><img src="./Resources/GIFs/SideBySideAnimation.gif" height="216" width="125" ></a>
 
 The default animation is `SwipeAnimationType.sideBySide` where the newly selected tab will move in at the same speed the previous one moves out.
 
 #### Overlap
 
-<a href="url"><img src="./GIFs/OverlapAnimation.gif" height="240" width="125" ></a>
+<a href="url"><img src="./Resources/GIFs/OverlapAnimation.gif" height="240" width="125" ></a>
 
 `SwipeAnimationType.overlap` the newly selected tab will move in to take the central place on top of the previous one which will hold it's position.
 
 #### Push
 
-<a href="url"><img src="./GIFs/PushAnimation.gif" height="240" width="125" ></a>
+<a href="url"><img src="./Resources/GIFs/PushAnimation.gif" height="240" width="125" ></a>
 
 `SwipeAnimationType.push` follows iOS default push animation where the top view moves away while the bottom one slightly moves behind. In this case, the top view will be the previously selected tab view.
 
