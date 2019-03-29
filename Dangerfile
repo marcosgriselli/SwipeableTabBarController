@@ -9,6 +9,9 @@ warn "This PR does not have any assignees yet." unless github.pr_json["assignee"
 # Warn when there is a big PR
 warn("Big PR, try to keep changes smaller if you can") if git.lines_of_code > 500
 
+# Thanks other people!
+message("Thanks @#{github.pr_author}! :tada:") if github.pr_author != "marcosgriselli"
+
 # Lint
 swiftlint.verbose = true
 swiftlint.config_file = './Example/.swiftlint.yml'
