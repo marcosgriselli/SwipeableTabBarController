@@ -24,7 +24,7 @@ class TabBarController: SwipeableTabBarController {
         tapAnimatedTransitioning?.animationType = SwipeAnimationType.push
 
         /// if you want cycling switch tab, set true 'isCyclingEnabled'
-//        isCyclingEnabled = true
+        isCyclingEnabled = true
 
         /// Disable custom transition on tap.
         //tapAnimatedTransitioning = nil

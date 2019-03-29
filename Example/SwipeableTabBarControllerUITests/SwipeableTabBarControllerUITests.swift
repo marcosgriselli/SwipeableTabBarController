@@ -65,5 +65,13 @@ class SwipeableTabBarControllerUITests: XCTestCase {
         assertTabSelected(.team)
         app.tabBars.buttons.element(boundBy: 2).tap()
         assertTabSelected(.settings)
+
+        // Tests Cycling tabBar
+        app.swipeLeft()
+        assertTabSelected(.comments)
+        app.swipeRight()
+        assertTabSelected(.settings)
+        app.swipeRight()
+        assertTabSelected(.team)
     }
 }
