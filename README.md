@@ -97,6 +97,15 @@ setDiagonalSwipe(enabled: true)
 ```
 --->
 
+### Enable Cycling Swipe Tab Bar
+
+`SwipeableTabBarController` supports cycling switch tab. If you want cycling switch tab, set true `isCyclingEnabled`
+
+Default value is `false`
+```swift
+isCyclingEnabled = true
+```
+
 ### Disable Interaction
 
 Support for disabling/enabling the interactor, this can be used on a controller that uses horizontal scrollView or a Map (in the example).
