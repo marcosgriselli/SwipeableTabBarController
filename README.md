@@ -99,7 +99,7 @@ setDiagonalSwipe(enabled: true)
 
 ### Enable Cycling Swipe Tab Bar
 
-`SwipeableTabBarController` supports cycling switch tab. If you want cycling switch tab, set true `isCyclingEnabled`
+`SwipeableTabBarController` supports cycling between the first and last tab like a carousel. Simply set `isCyclingEnabled` to `true`.
 
 Default value is `false`
 ```swift
