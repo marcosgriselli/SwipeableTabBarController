@@ -26,7 +26,7 @@ open class SwipeableTabBarController: UITabBarController {
     /// Pan gesture for the swiping interaction
     //swiftlint:disable next implicitly_unwrapped_optional
     private var panGestureRecognizer: UIPanGestureRecognizer!
-    
+
     @available(*, deprecated, message: "For the moment the diagonal swipe configuration is not available.")
     /// Toggle the diagonal swipe to remove the just `perfect` horizontal swipe interaction
     /// needed to perform the transition.
@@ -36,6 +36,9 @@ open class SwipeableTabBarController: UITabBarController {
     open var isSwipeEnabled = true {
         didSet { panGestureRecognizer.isEnabled = isSwipeEnabled }
     }
+
+    /// Enables/Disables cycling swipes on the tabBar controller. default value is 'false'
+    open var isCyclingEnabled = false
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -88,6 +91,14 @@ open class SwipeableTabBarController: UITabBarController {
         } else if translation.x < 0.0 && selectedIndex + 1 < viewControllers?.count ?? 0 {
             // Panning left, transition to the right view controller.
             selectedIndex += 1
+        } else if isCyclingEnabled && translation.x > 0.0 && selectedIndex == 0 {
+            // Panning right at first view controller, transition to the last view controller.
+            if let count = viewControllers?.count, count >= 2 {
+                selectedIndex = count - 1
+            }
+        } else if isCyclingEnabled && translation.x < 0.0 && selectedIndex + 1 == viewControllers?.count ?? 0 {
+            // Panning left at last view controller, transition to the first view controller
+            selectedIndex = 0
         } else {
             // Don't reset the gesture recognizer if we skipped starting the
             // transition because we don't have a translation yet (and thus, could
@@ -117,7 +128,15 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
             let toVCIndex = tabBarController.viewControllers?.index(of: toVC) else {
                 return nil
         }
-        let edge: UIRectEdge = fromVCIndex > toVCIndex ? .right : .left
+        var edge: UIRectEdge = fromVCIndex > toVCIndex ? .right : .left
+
+        let controllersCount = viewControllers?.count ?? 0
+        if isCyclingEnabled && fromVCIndex == controllersCount - 1 && toVCIndex == 0 {
+            edge = .left
+        } else if isCyclingEnabled && fromVCIndex == 0 && toVCIndex == controllersCount - 1 {
+            edge = .right
+        }
+
         currentAnimatedTransitioningType?.targetEdge = edge
         return currentAnimatedTransitioningType
     }

@@ -97,6 +97,15 @@ setDiagonalSwipe(enabled: true)
 ```
 --->
 
+### Enable Cycling 
+
+`SwipeableTabBarController` supports cycling between the first and last tab like a carousel. Simply set `isCyclingEnabled` to `true`.
+
+Default value is `false`
+```swift
+isCyclingEnabled = true
+```
+
 ### Disable Interaction
 
 Support for disabling/enabling the interactor, this can be used on a controller that uses horizontal scrollView or a Map (in the example).
