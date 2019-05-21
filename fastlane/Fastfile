@@ -27,7 +27,7 @@ platform :ios do
   end
 
   def release(type)
-    pod_lib_lint
+    pod_lib_lint(allow_warnings: true)
     podspec_name = "SwipeableTabBarController.podspec"
     version = version_bump_podspec(path: podspec_name,
                                    bump_type: type)
@@ -38,6 +38,6 @@ platform :ios do
                message: "#{version} release")
     add_git_tag(tag: "#{version}")
     push_to_git_remote
-    pod_push
+    pod_push(allow_warnings: true)
   end
 end
