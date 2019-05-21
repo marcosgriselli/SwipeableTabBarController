@@ -148,4 +148,8 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
             return nil
         }
     }
+    
+    open func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        return transitionCoordinator == nil 
+    }
 }
