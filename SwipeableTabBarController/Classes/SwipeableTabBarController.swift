@@ -78,6 +78,15 @@ open class SwipeableTabBarController: UITabBarController {
         }
     }
     
+    /// Asks whether the given view controll should get selected during an interactive
+    /// transition.
+    @objc dynamic open func swipeableTabBarController(_ tabBarController: SwipeableTabBarController, shouldSelectInteractively viewController: UIViewController) -> Bool {
+        // By default, just ask the normal tab bar delegate whether the view controller
+        // may be selected.
+        return delegate?.tabBarController?(tabBarController, shouldSelect: viewController)
+            ?? true
+    }
+    
     /// Starts the transition by changing the selected index if the
     /// gesture allows it.
     ///
@@ -85,20 +94,20 @@ open class SwipeableTabBarController: UITabBarController {
     private func beginInteractiveTransitionIfPossible(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         
-        if translation.x > 0.0 && selectedIndex > 0 {
+        let candidateIndex: Int?
+        
+        if translation.x > 0.0 {
             // Panning right, transition to the left view controller.
-            selectedIndex -= 1
+            candidateIndex = indexForDirection(.left)
         } else if translation.x < 0.0 && selectedIndex + 1 < viewControllers?.count ?? 0 {
             // Panning left, transition to the right view controller.
-            selectedIndex += 1
-        } else if isCyclingEnabled && translation.x > 0.0 && selectedIndex == 0 {
-            // Panning right at first view controller, transition to the last view controller.
-            if let count = viewControllers?.count, count >= 2 {
-                selectedIndex = count - 1
-            }
-        } else if isCyclingEnabled && translation.x < 0.0 && selectedIndex + 1 == viewControllers?.count ?? 0 {
-            // Panning left at last view controller, transition to the first view controller
-            selectedIndex = 0
+            candidateIndex = indexForDirection(.right)
+        } else {
+            candidateIndex = nil
+        }
+        
+        if let targetIndex = candidateIndex {
+            selectedIndex = targetIndex
         } else {
             // Don't reset the gesture recognizer if we skipped starting the
             // transition because we don't have a translation yet (and thus, could
@@ -117,6 +126,66 @@ open class SwipeableTabBarController: UITabBarController {
             }
         }
     }
+    
+    /// Determines the next index that may be selected for a given direction.
+    ///
+    /// - Parameter direction: Direction in which to search. Only `.left` and
+    ///   `.right` are supported.
+    /// - Returns: An index to select or `nil` if no valid index was found.
+    private func indexForDirection(_ direction: UIRectEdge) -> Int? {
+        let delta: Int
+
+        // Derive value to add to/subtract from the index for the given direction.
+        switch direction {
+        case .left:
+            delta = -1
+            
+        case .right:
+            delta = 1
+            
+        default:
+            return nil
+        }
+        
+        // Check whether the view controller is in a state where we have a chance
+        // of deriving a meaningful value.
+        guard
+            let viewControllers = self.viewControllers,
+            viewControllers.count >= 2,
+            selectedIndex != NSNotFound
+        else { return nil }
+        
+        var candidateIndex = selectedIndex
+        let startController = viewControllers[candidateIndex]
+        
+        repeat {
+            // Advance to the next index, if possible.
+            candidateIndex += delta
+            if candidateIndex < 0 {
+                if isCyclingEnabled {
+                    candidateIndex = viewControllers.count - 1
+                } else {
+                    return nil
+                }
+            } else if candidateIndex >= viewControllers.count {
+                if isCyclingEnabled {
+                    candidateIndex = 0
+                } else {
+                    return nil
+                }
+            }
+            
+            let candidate = viewControllers[candidateIndex]
+            // If we arrived back at the start there's no selectable view controller.
+            guard candidate != startController else { return nil }
+            
+            // Check whether we want the view controller to be selected.
+            if self.swipeableTabBarController(self, shouldSelectInteractively: candidate) {
+                return candidateIndex
+            }
+        } while true
+    }
+    
 }
 
 // MARK: - UITabBarControllerDelegate
