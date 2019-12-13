@@ -11,15 +11,15 @@ import UIKit
 /// Swipe animation conforming to `UIViewControllerAnimatedTransitioning`
 /// Can be replaced by any other class confirming to `UIViewControllerTransitioning`
 /// on your `SwipeableTabBarController` subclass.
-@objc(SwipeTransitionAnimator)
+@objc(SwipeTransitionAnimator) public
 class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
 
     /// Duration of the transition animation.
-    private var animationDuration: TimeInterval
+    public var animationDuration: TimeInterval
 
     // MARK: - SwipeTransitioningProtocol
-    var targetEdge: UIRectEdge
-    var animationType: SwipeAnimationTypeProtocol = SwipeAnimationType.sideBySide
+    public var targetEdge: UIRectEdge
+    public var animationType: SwipeAnimationTypeProtocol = SwipeAnimationType.sideBySide
 
     /// Init with injectable parameters
     ///
@@ -37,11 +37,11 @@ class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
 
     // MARK: - UIViewControllerAnimatedTransitioning
     
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return (transitionContext?.isAnimated == true) ? animationDuration : 0
     }
     
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
         //swiftlint:disable force_unwrapping
         let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from)!
