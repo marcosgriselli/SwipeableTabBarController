@@ -13,6 +13,9 @@ import UIKit
 /// Added to support custom `UIViewControllerAnimatedTransitioning` in different applications.
 public protocol SwipeTransitioningProtocol: UIViewControllerAnimatedTransitioning {
 
+    /// Duration of the transition animation.
+    var animationDuration: TimeInterval { get set }
+
     /// Direction in which the animation will occur.
     var targetEdge: UIRectEdge { get set }
 
