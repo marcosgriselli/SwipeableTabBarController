@@ -1,4 +1,4 @@
-![SwipeableTabBarController](./Resources/Logo/logotype-a-readme.png)
+![SwipeableTabBarController](./Resources/GIFs/SwipeableTabBarController_logo.gif)
 
 [![Version](https://img.shields.io/cocoapods/v/SwipeableTabBarController.svg)](http://cocoapods.org/pods/SwipeableTabBarController)
 ![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg)
@@ -6,11 +6,6 @@
 ![Cartage](https://img.shields.io/badge/carthage-compatible-4BC51D.svg)
 [![License](https://img.shields.io/cocoapods/l/SwipeableTabBarController.svg)](http://cocoapods.org/pods/SwipeableTabBarController)
 [![codebeat badge](https://codebeat.co/badges/0cb2f5b2-5bd1-4cbe-8581-3ca3df0e79ab)](https://codebeat.co/projects/github-com-marcosgriselli-swipeabletabbarcontroller-master)
-
-<a href="url"><img src="./Resources/GIFs/SwipeableTabBarController_new.gif"></a><br />
-
-
-Video created with [Morten Just](https://twitter.com/mortenjust)'s [Design Camera](https://www.designcamera.app)
 
 ## 🌟 Features
 
