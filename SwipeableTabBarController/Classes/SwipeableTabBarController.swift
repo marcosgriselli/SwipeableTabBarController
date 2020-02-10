@@ -43,7 +43,9 @@ open class SwipeableTabBarController: UITabBarController {
     /// The minimum number of touches required to match. default value is '1'
     open var minimumNumberOfTouches: Int = 1 {
         didSet {
-            guard panGestureRecognizer != nil else { return }
+            guard panGestureRecognizer != nil else {
+                return
+            }
             panGestureRecognizer.minimumNumberOfTouches = minimumNumberOfTouches
         }
     }
@@ -51,7 +53,9 @@ open class SwipeableTabBarController: UITabBarController {
     /// The maximum number of touches that can be down. default value is 'UINT_MAX'
     open var maximumNumberOfTouches: Int = .max {
         didSet {
-            guard panGestureRecognizer != nil else { return }
+            guard panGestureRecognizer != nil else {
+                return
+            }
             panGestureRecognizer.maximumNumberOfTouches = maximumNumberOfTouches
         }
     }
