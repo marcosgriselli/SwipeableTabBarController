@@ -13,11 +13,10 @@ import UIKit
 /// on your `SwipeableTabBarController` subclass.
 @objc(SwipeTransitionAnimator)
 class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
-
     // MARK: - SwipeTransitioningProtocol
     var animationDuration: TimeInterval
     var targetEdge: UIRectEdge
-    var animationType: SwipeAnimationTypeProtocol = SwipeAnimationType.sideBySide
+    var animationType: SwipeTransitionAnimationType
 
     /// Init with injectable parameters
     ///
@@ -26,7 +25,7 @@ class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
     ///   - animationType: animation type to perform while transitioning
     init(animationDuration: TimeInterval = 0.33,
          targetEdge: UIRectEdge = .right,
-         animationType: SwipeAnimationTypeProtocol = SwipeAnimationType.sideBySide) {
+         animationType: SwipeTransitionAnimationType = .sideBySide) {
         self.animationDuration = animationDuration
         self.targetEdge = targetEdge
         self.animationType = animationType
@@ -36,29 +35,27 @@ class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
     // MARK: - UIViewControllerAnimatedTransitioning
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return (transitionContext?.isAnimated == true) ? animationDuration : 0
+        return transitionContext?.isAnimated == true ? animationDuration : 0
+        
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
-        //swiftlint:disable force_unwrapping
-        let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from)!
-        let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)!
-        //swiftlint:enable force_unwrapping
-        let fromRight = targetEdge == .right
-
-        animationType.addTo(containerView: containerView, fromView: fromView, toView: toView)
-        animationType.prepare(fromView: fromView, toView: toView, direction: fromRight)
+        guard let fromView = transitionContext.view(forKey: .from),
+            let toView = transitionContext.view(forKey: .to) else {
+                return
+        }
         
         let duration = transitionDuration(using: transitionContext)
+        let direction = SwipeTransitionAnimationDirection(rectEdge: targetEdge)
+        let animationContext = SwipeTransitionAnimationContext(containerView: containerView, fromView: fromView, toView: toView)
         
-        UIView.animate(withDuration: duration,
-                       delay: 0,
-                       options: [.curveLinear],
-                       animations: {
-                        self.animationType.animation(fromView: fromView, toView: toView, direction: fromRight)
-        }, completion: { _ in
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-        })
+        animationType.prepareForAnimate(withContext: animationContext)
+        
+        animationType.animate(duration: duration,
+                              direction: direction,
+                              context: animationContext) { _ in
+                                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        }
     }
 }

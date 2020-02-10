@@ -18,10 +18,10 @@ class TabBarController: SwipeableTabBarController {
         }
         
         /// Set the animation type for swipe
-        swipeAnimatedTransitioning?.animationType = SwipeAnimationType.sideBySide
+        swipeAnimatedTransitioning?.animationType = .sideBySide
         
         /// Set the animation type for tap
-        tapAnimatedTransitioning?.animationType = SwipeAnimationType.push
+        tapAnimatedTransitioning?.animationType = .push
 
         /// if you want cycling switch tab, set true 'isCyclingEnabled'
         isCyclingEnabled = true

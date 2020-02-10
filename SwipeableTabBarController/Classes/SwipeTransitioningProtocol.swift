@@ -20,5 +20,5 @@ public protocol SwipeTransitioningProtocol: UIViewControllerAnimatedTransitionin
     var targetEdge: UIRectEdge { get set }
 
     /// Animation type used.
-    var animationType: SwipeAnimationTypeProtocol { get set }
+    var animationType: SwipeTransitionAnimationType { get set }
 }
