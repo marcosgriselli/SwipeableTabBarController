@@ -101,6 +101,20 @@ Default value is `false`
 isCyclingEnabled = true
 ```
 
+### Minimum/Maximum number of touches 
+
+You can set both the minimum and the maximum number of touches needed to handle the swipe gesture. Simply set `minimumNumberOfTouches` or `maximumNumberOfTouches`  property.
+
+Default value is `1`
+```swift
+minimumNumberOfTouches = 2
+```
+
+Default value is `Int.max`
+```swift
+maximumNumberOfTouches = 2
+```
+
 ### Disable Interaction
 
 Support for disabling/enabling the interactor, this can be used on a controller that uses horizontal scrollView or a Map (in the example).
