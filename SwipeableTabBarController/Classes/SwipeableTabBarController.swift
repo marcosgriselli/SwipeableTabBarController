@@ -39,6 +39,20 @@ open class SwipeableTabBarController: UITabBarController {
 
     /// Enables/Disables cycling swipes on the tabBar controller. default value is 'false'
     open var isCyclingEnabled = false
+    
+    /// The minimum number of touches required to match. default value is '1'
+    open var minimumNumberOfTouches: Int = 1 {
+        didSet {
+            setUpGestureRecognizer()
+        }
+    }
+    
+    /// The maximum number of touches that can be down. default value is 'UINT_MAX'
+    open var maximumNumberOfTouches: Int = .max {
+        didSet {
+            setUpGestureRecognizer()
+        }
+    }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -55,7 +69,17 @@ open class SwipeableTabBarController: UITabBarController {
         delegate = self
         currentAnimatedTransitioningType = tapAnimatedTransitioning
         // Gesture setup
+        setUpGestureRecognizer()
+    }
+    
+    private func setUpGestureRecognizer() {
+        if panGestureRecognizer != nil {
+            view.removeGestureRecognizer(panGestureRecognizer)
+        }
+        
         panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerDidPan(_:)))
+        panGestureRecognizer.minimumNumberOfTouches = minimumNumberOfTouches
+        panGestureRecognizer.maximumNumberOfTouches = maximumNumberOfTouches
         view.addGestureRecognizer(panGestureRecognizer)
     }
 
