@@ -39,6 +39,26 @@ open class SwipeableTabBarController: UITabBarController {
 
     /// Enables/Disables cycling swipes on the tabBar controller. default value is 'false'
     open var isCyclingEnabled = false
+    
+    /// The minimum number of touches required to match. default value is '1'
+    open var minimumNumberOfTouches: Int = 1 {
+        didSet {
+            guard panGestureRecognizer != nil else {
+                return
+            }
+            panGestureRecognizer.minimumNumberOfTouches = minimumNumberOfTouches
+        }
+    }
+    
+    /// The maximum number of touches that can be down. default value is 'UINT_MAX'
+    open var maximumNumberOfTouches: Int = .max {
+        didSet {
+            guard panGestureRecognizer != nil else {
+                return
+            }
+            panGestureRecognizer.maximumNumberOfTouches = maximumNumberOfTouches
+        }
+    }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
