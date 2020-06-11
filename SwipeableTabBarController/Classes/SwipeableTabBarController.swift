@@ -80,7 +80,7 @@ open class SwipeableTabBarController: UITabBarController {
     }
 
     @IBAction func panGestureRecognizerDidPan(_ sender: UIPanGestureRecognizer) {
-        if sender.state == .ended {
+        if sender.state == .ended || sender.state == .cancelled {
             currentAnimatedTransitioningType = tapAnimatedTransitioning
         }
         // Do not attempt to begin an interactive transition if one is already
