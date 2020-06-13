@@ -37,3 +37,25 @@ class TabBarController: SwipeableTabBarController {
         // Handle didSelect viewController method here
     }
 }
+
+class IssueViewController: UIViewController {
+    var currentVC = 0
+    var x = 0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            self.timerFunc()
+        }
+    }
+    
+    func timerFunc() {
+        guard x < 30 else {
+            return
+        }
+        let random = Int.random(in: 0...2)
+        print(x, ": ", random)
+        x += 1
+        tabBarController?.selectedIndex = random
+    }
+}

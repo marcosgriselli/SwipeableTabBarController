@@ -63,6 +63,18 @@ open class SwipeableTabBarController: UITabBarController {
             panGestureRecognizer.maximumNumberOfTouches = maximumNumberOfTouches
         }
     }
+    
+    /// Override selectedIndex for Programmatic changes
+    open override var selectedIndex: Int {
+        get { return super.selectedIndex }
+        set {
+            guard transitionCoordinator == nil else {
+                print("Attempting to update selectedIndex while a transition is in progress. The change will be ignored.")
+                return
+            }
+            super.selectedIndex = newValue
+        }
+    }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -147,6 +159,9 @@ open class SwipeableTabBarController: UITabBarController {
 extension SwipeableTabBarController: UITabBarControllerDelegate {
 
     open func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        guard transitionCoordinator == nil else {
+            return nil
+        }
         // Get the indexes of the ViewControllers involved in the animation to determine the animation flow.
         guard let fromVCIndex = tabBarController.viewControllers?.firstIndex(of: fromVC),
             let toVCIndex = tabBarController.viewControllers?.firstIndex(of: toVC) else {
@@ -166,6 +181,9 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
     }
 
     open func tabBarController(_ tabBarController: UITabBarController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        guard transitionCoordinator == nil else {
+            return nil
+        }
         if panGestureRecognizer.state == .began || panGestureRecognizer.state == .changed {
             return SwipeInteractor(gestureRecognizer: panGestureRecognizer, edge: currentAnimatedTransitioningType?.targetEdge ?? .right)
         } else {
