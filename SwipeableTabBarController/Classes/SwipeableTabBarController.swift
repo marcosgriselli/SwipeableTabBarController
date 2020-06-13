@@ -75,6 +75,7 @@ open class SwipeableTabBarController: UITabBarController {
     }
 
     private func setup() {
+        currentAnimatedTransitioningType = tapAnimatedTransitioning
         // UITabBarControllerDelegate for transitions.
         delegate = self
         // Gesture setup
