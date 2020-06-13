@@ -25,5 +25,5 @@ swiftlint.lint_files(
 xcov.report(
    scheme: 'SwipeableTabBarController-Example',
    workspace: './Example/SwipeableTabBarController.xcworkspace',
-   exclude_targets: 'Pods_SwipeableTabBarController_Example, SwipeableTabBarController_Example'
+   include_targets: 'SwipeableTabBarController'
 )
