@@ -29,7 +29,7 @@
         <!--Team-->
         <scene sceneID="mBO-s7-vNi">
             <objects>
-                <viewController id="4Ne-fv-cGU" customClass="IssueViewController" customModule="SwipeableTabBarController_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4Ne-fv-cGU" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UNl-yO-wlR"/>
                         <viewControllerLayoutGuide type="bottom" id="n8c-9C-4rd"/>

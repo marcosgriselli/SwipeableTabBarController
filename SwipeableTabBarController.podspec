@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
 
   s.homepage         = 'https://github.com/marcosgriselli/SwipeableTabBarController'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
   s.license      = "MIT"
 
   s.author   	 = "Marcos Griselli"

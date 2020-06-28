@@ -68,9 +68,8 @@ open class SwipeableTabBarController: UITabBarController {
     open override var selectedIndex: Int {
         get { return super.selectedIndex }
         set {
-            guard transitionCoordinator == nil else {
-                print("Attempting to update selectedIndex while a transition is in progress. The change will be ignored.")
-                return
+            if transitionCoordinator != nil {
+                [swipeAnimatedTransitioning, tapAnimatedTransitioning].forEach { $0?.forceTransitionToFinish() }
             }
             super.selectedIndex = newValue
         }
@@ -99,17 +98,13 @@ open class SwipeableTabBarController: UITabBarController {
         if sender.state == .ended || sender.state == .cancelled {
             currentAnimatedTransitioningType = tapAnimatedTransitioning
         }
-        // Do not attempt to begin an interactive transition if one is already
-        // ongoing
-        if transitionCoordinator != nil {
-            return
-        }
         
-        if sender.state == .began {
-            currentAnimatedTransitioningType = swipeAnimatedTransitioning
-        }
-
         if sender.state == .began || sender.state == .changed {
+            // Do not attempt to begin an interactive transition if one is already happening
+            guard transitionCoordinator == nil else {
+                return
+            }
+            currentAnimatedTransitioningType = swipeAnimatedTransitioning
             beginInteractiveTransitionIfPossible(sender)
         }
     }
@@ -159,9 +154,6 @@ open class SwipeableTabBarController: UITabBarController {
 extension SwipeableTabBarController: UITabBarControllerDelegate {
 
     open func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        guard transitionCoordinator == nil else {
-            return nil
-        }
         // Get the indexes of the ViewControllers involved in the animation to determine the animation flow.
         guard let fromVCIndex = tabBarController.viewControllers?.firstIndex(of: fromVC),
             let toVCIndex = tabBarController.viewControllers?.firstIndex(of: toVC) else {
@@ -181,9 +173,6 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
     }
 
     open func tabBarController(_ tabBarController: UITabBarController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        guard transitionCoordinator == nil else {
-            return nil
-        }
         if panGestureRecognizer.state == .began || panGestureRecognizer.state == .changed {
             return SwipeInteractor(gestureRecognizer: panGestureRecognizer, edge: currentAnimatedTransitioningType?.targetEdge ?? .right)
         } else {
@@ -192,6 +181,6 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
     }
     
     open func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        return transitionCoordinator == nil 
+        return transitionCoordinator == nil
     }
 }
