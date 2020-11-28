@@ -48,7 +48,7 @@ public enum SwipeAnimationType: SwipeAnimationTypeProtocol {
     ///   - to: New selected tab view.
     ///   - direction: Direction in which the views will animate.
     public func prepare(fromView from: UIView, toView to: UIView, direction: Bool) {
-        let screenWidth = UIScreen.main.bounds.size.width
+        let screenWidth = from.frame.size.width
         switch self {
         case .overlap:
             to.frame.origin.x = direction ? -screenWidth : screenWidth
@@ -69,7 +69,7 @@ public enum SwipeAnimationType: SwipeAnimationTypeProtocol {
     ///   - to: New selected tab view.
     ///   - direction: Direction in which the views will animate.
     public func animation(fromView from: UIView, toView to: UIView, direction: Bool) {
-        let screenWidth = UIScreen.main.bounds.size.width
+        let screenWidth = from.frame.size.width
         switch self {
         case .overlap:
             to.frame.origin.x = 0
