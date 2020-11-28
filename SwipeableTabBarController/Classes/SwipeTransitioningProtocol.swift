@@ -21,4 +21,7 @@ public protocol SwipeTransitioningProtocol: UIViewControllerAnimatedTransitionin
 
     /// Animation type used.
     var animationType: SwipeAnimationTypeProtocol { get set }
+
+    /// Forces the ongoing transition to reach the end state immediately
+    func forceTransitionToFinish() 
 }

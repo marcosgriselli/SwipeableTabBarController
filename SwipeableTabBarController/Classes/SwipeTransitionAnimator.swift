@@ -18,6 +18,8 @@ class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
     var animationDuration: TimeInterval
     var targetEdge: UIRectEdge
     var animationType: SwipeAnimationTypeProtocol = SwipeAnimationType.sideBySide
+    
+    private var propertyAnimator: UIViewAnimating?
 
     /// Init with injectable parameters
     ///
@@ -40,25 +42,40 @@ class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        interruptibleAnimator(using: transitionContext).startAnimation()
+    }
+    
+    func interruptibleAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {
         let containerView = transitionContext.containerView
         //swiftlint:disable force_unwrapping
         let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from)!
         let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)!
         //swiftlint:enable force_unwrapping
         let fromRight = targetEdge == .right
-
+        
         animationType.addTo(containerView: containerView, fromView: fromView, toView: toView)
         animationType.prepare(fromView: fromView, toView: toView, direction: fromRight)
         
         let duration = transitionDuration(using: transitionContext)
         
-        UIView.animate(withDuration: duration,
-                       delay: 0,
-                       options: [.curveLinear],
-                       animations: {
-                        self.animationType.animation(fromView: fromView, toView: toView, direction: fromRight)
-        }, completion: { _ in
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        let animator = UIViewPropertyAnimator(duration: duration, curve: .linear, animations: {
+            self.animationType.animation(fromView: fromView, toView: toView, direction: fromRight)
         })
+        animator.addCompletion { [weak self] _ in
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            self?.propertyAnimator = nil
+        }
+        propertyAnimator = animator
+        return animator
+    }
+    
+    func forceTransitionToFinish() {
+        guard let animator = propertyAnimator else {
+            return
+        }
+        animator.stopAnimation(false)
+            if animator.state == .stopped {
+                animator.finishAnimation(at: .end)
+            }
     }
 }

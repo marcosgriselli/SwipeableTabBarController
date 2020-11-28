@@ -63,6 +63,17 @@ open class SwipeableTabBarController: UITabBarController {
             panGestureRecognizer.maximumNumberOfTouches = maximumNumberOfTouches
         }
     }
+    
+    /// Override selectedIndex for Programmatic changes
+    open override var selectedIndex: Int {
+        get { return super.selectedIndex }
+        set {
+            if transitionCoordinator != nil {
+                [swipeAnimatedTransitioning, tapAnimatedTransitioning].forEach { $0?.forceTransitionToFinish() }
+            }
+            super.selectedIndex = newValue
+        }
+    }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -87,17 +98,13 @@ open class SwipeableTabBarController: UITabBarController {
         if sender.state == .ended || sender.state == .cancelled {
             currentAnimatedTransitioningType = tapAnimatedTransitioning
         }
-        // Do not attempt to begin an interactive transition if one is already
-        // ongoing
-        if transitionCoordinator != nil {
-            return
-        }
         
-        if sender.state == .began {
-            currentAnimatedTransitioningType = swipeAnimatedTransitioning
-        }
-
         if sender.state == .began || sender.state == .changed {
+            // Do not attempt to begin an interactive transition if one is already happening
+            guard transitionCoordinator == nil else {
+                return
+            }
+            currentAnimatedTransitioningType = swipeAnimatedTransitioning
             beginInteractiveTransitionIfPossible(sender)
         }
     }
@@ -174,6 +181,6 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
     }
     
     open func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        return transitionCoordinator == nil 
+        return transitionCoordinator == nil
     }
 }
