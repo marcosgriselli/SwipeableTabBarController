@@ -1,7 +1,0 @@
-use_frameworks!
-
-target 'SwipeableTabBarController_Example' do
-  pod 'SwipeableTabBarController', :path => '../'
-  pod 'SwiftLint'
-  
-end
