@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/marcosgriselli"
 
   s.source       = { :git => "https://github.com/marcosgriselli/SwipeableTabBarController.git", :tag => s.version.to_s }
-  s.source_files  = "SwipeableTabBarController", "SwipeableTabBarController/**/*.{h,m,swift}"
+  s.source_files  = "SwipeableTabBarController", "Sources/**/*.{h,m,swift}"
   
   s.swift_version = "5.1"
   s.swift_versions = ['4.0', '4.2', '5.0']
