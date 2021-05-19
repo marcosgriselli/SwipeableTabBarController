@@ -30,8 +30,6 @@ platform :ios do
     podspec_name = "SwipeableTabBarController.podspec"
     version = version_bump_podspec(path: podspec_name,
                                    bump_type: type)
-    increment_version_number(version_number: version)
-    #cocoapods
     git_add
     git_commit(path: ".",
                message: "#{version} release")
