@@ -41,6 +41,9 @@ open class SwipeableTabBarController: UITabBarController {
         didSet { panGestureRecognizer?.isEnabled = isSwipeEnabled }
     }
 
+    /// Allowed swipe directions. Only applied if `isSwipeEnabled` equals `true`.
+    open var allowedSwipeDirection: AllowedSwipeDirection = .both
+
     /// Enables/Disables cycling swipes on the tabBar controller. default value is 'false'
     open var isCyclingEnabled = false
     
@@ -91,6 +94,7 @@ open class SwipeableTabBarController: UITabBarController {
         delegate = self
         // Gesture setup
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerDidPan(_:)))
+        panGesture.delegate = self
         view.addGestureRecognizer(panGesture)
         panGestureRecognizer = panGesture
     }
@@ -147,6 +151,29 @@ open class SwipeableTabBarController: UITabBarController {
             if context.isCancelled && sender.state == .changed {
                 self.beginInteractiveTransitionIfPossible(sender)
             }
+        }
+    }
+}
+
+extension SwipeableTabBarController {
+    public enum AllowedSwipeDirection {
+        case left
+        case right
+        case both
+    }
+}
+
+extension SwipeableTabBarController: UIGestureRecognizerDelegate {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let panGesture = gestureRecognizer as? UIPanGestureRecognizer, isSwipeEnabled else { return true }
+        let translation = panGesture.translation(in: view)
+        switch allowedSwipeDirection {
+        case .left:
+            return translation.x > 0
+        case .right:
+            return translation.x > 0
+        case .both:
+            return true
         }
     }
 }
