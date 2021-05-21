@@ -29,7 +29,7 @@ open class SwipeableTabBarController: UITabBarController {
     
     /// Pan gesture for the swiping interaction
     //swiftlint:disable next implicitly_unwrapped_optional
-    private var panGestureRecognizer: UIPanGestureRecognizer!
+    private var panGestureRecognizer: UIPanGestureRecognizer?
 
     @available(*, deprecated, message: "For the moment the diagonal swipe configuration is not available.")
     /// Toggle the diagonal swipe to remove the just `perfect` horizontal swipe interaction
@@ -38,8 +38,11 @@ open class SwipeableTabBarController: UITabBarController {
 
     /// Enables/Disables swipes on the tabbar controller.
     open var isSwipeEnabled = true {
-        didSet { panGestureRecognizer.isEnabled = isSwipeEnabled }
+        didSet { panGestureRecognizer?.isEnabled = isSwipeEnabled }
     }
+
+    /// Allowed swipe directions. Only applied if `isSwipeEnabled` equals `true`.
+    open var allowedSwipeDirection: AllowedSwipeDirection = .both
 
     /// Enables/Disables cycling swipes on the tabBar controller. default value is 'false'
     open var isCyclingEnabled = false
@@ -50,7 +53,7 @@ open class SwipeableTabBarController: UITabBarController {
             guard panGestureRecognizer != nil else {
                 return
             }
-            panGestureRecognizer.minimumNumberOfTouches = minimumNumberOfTouches
+            panGestureRecognizer?.minimumNumberOfTouches = minimumNumberOfTouches
         }
     }
     
@@ -60,7 +63,7 @@ open class SwipeableTabBarController: UITabBarController {
             guard panGestureRecognizer != nil else {
                 return
             }
-            panGestureRecognizer.maximumNumberOfTouches = maximumNumberOfTouches
+            panGestureRecognizer?.maximumNumberOfTouches = maximumNumberOfTouches
         }
     }
     
@@ -90,8 +93,10 @@ open class SwipeableTabBarController: UITabBarController {
         // UITabBarControllerDelegate for transitions.
         delegate = self
         // Gesture setup
-        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerDidPan(_:)))
-        view.addGestureRecognizer(panGestureRecognizer)
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerDidPan(_:)))
+        panGesture.delegate = self
+        view.addGestureRecognizer(panGesture)
+        panGestureRecognizer = panGesture
     }
 
     @IBAction func panGestureRecognizerDidPan(_ sender: UIPanGestureRecognizer) {
@@ -150,6 +155,29 @@ open class SwipeableTabBarController: UITabBarController {
     }
 }
 
+extension SwipeableTabBarController {
+    public enum AllowedSwipeDirection {
+        case left
+        case right
+        case both
+    }
+}
+
+extension SwipeableTabBarController: UIGestureRecognizerDelegate {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let panGesture = gestureRecognizer as? UIPanGestureRecognizer, isSwipeEnabled else { return true }
+        let translation = panGesture.translation(in: view)
+        switch allowedSwipeDirection {
+        case .left:
+            return translation.x > 0
+        case .right:
+            return translation.x > 0
+        case .both:
+            return true
+        }
+    }
+}
+
 // MARK: - UITabBarControllerDelegate
 extension SwipeableTabBarController: UITabBarControllerDelegate {
 
@@ -173,8 +201,9 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
     }
 
     open func tabBarController(_ tabBarController: UITabBarController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        if panGestureRecognizer.state == .began || panGestureRecognizer.state == .changed {
-            return SwipeInteractor(gestureRecognizer: panGestureRecognizer, edge: currentAnimatedTransitioningType?.targetEdge ?? .right)
+        guard let panGesture = panGestureRecognizer else { return nil }
+        if panGesture.state == .began || panGesture.state == .changed {
+            return SwipeInteractor(gestureRecognizer: panGesture, edge: currentAnimatedTransitioningType?.targetEdge ?? .right)
         } else {
             return nil
         }
