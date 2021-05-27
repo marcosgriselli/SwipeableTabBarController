@@ -34,7 +34,7 @@ public enum SwipeAnimationType: SwipeAnimationTypeProtocol {
     ///   - toView: New selected tab view.
     public func addTo(containerView: UIView, fromView: UIView, toView: UIView) {
         switch self {
-        case .push:
+        case .push, .sideBySide:
             containerView.insertSubview(toView, belowSubview: fromView)
         default:
             containerView.addSubview(toView)
