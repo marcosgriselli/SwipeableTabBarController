@@ -11,4 +11,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build and Test
-        run: set -o pipefail && xcodebuild -project Example/Example.xcodeproj -scheme Example -destination "platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4" test | xcpretty --color
+        run: set -o pipefail && xcodebuild -project Example.xcodeproj -scheme Example -destination "platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4" test | xcpretty --color
