@@ -10,7 +10,8 @@ let package = Package(
     targets: [
         .target(
             name: "SwipeableTabBarController",
-            path: "./Sources"
+            path: "./SwipeableTabBarController",
+            exclude: ["Info.plist"]
         )
     ]
 )
