@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,9 +15,14 @@
 		FB42C4C62684A9F6004E19FD /* SwipeableTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = FB42C4C42684A9F6004E19FD /* SwipeableTabBarController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FB42C4C92684A9F6004E19FD /* SwipeableTabBarController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB42C4C22684A9F6004E19FD /* SwipeableTabBarController.framework */; };
 		FB42C4CA2684A9F6004E19FD /* SwipeableTabBarController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FB42C4C22684A9F6004E19FD /* SwipeableTabBarController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FB42C4D02684AA65004E19FD /* SwipeableTabBarController in Frameworks */ = {isa = PBXBuildFile; productRef = FB42C4CF2684AA65004E19FD /* SwipeableTabBarController */; };
 		FB884EE420FA547E00876693 /* Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB884EE320FA547E00876693 /* Designable.swift */; };
 		FBA2190D1E42743A008DF29E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA2190C1E42743A008DF29E /* TabBarController.swift */; };
+		FBC3CDE02684AE540054E8D7 /* SwipeTransitioningProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC3CDDD2684AE540054E8D7 /* SwipeTransitioningProtocol.swift */; };
+		FBC3CDE12684AE540054E8D7 /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC3CDDA2684AE530054E8D7 /* UIKit+Extensions.swift */; };
+		FBC3CDE22684AE540054E8D7 /* SwipeAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC3CDDF2684AE540054E8D7 /* SwipeAnimationType.swift */; };
+		FBC3CDE32684AE540054E8D7 /* SwipeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC3CDDB2684AE530054E8D7 /* SwipeInteractor.swift */; };
+		FBC3CDE42684AE540054E8D7 /* SwipeableTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC3CDDC2684AE530054E8D7 /* SwipeableTabBarController.swift */; };
+		FBC3CDE52684AE540054E8D7 /* SwipeTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC3CDDE2684AE540054E8D7 /* SwipeTransitionAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,15 +57,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4673BE0068B4118BE88FFB52 /* SwipeableTabBarController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwipeableTabBarController.podspec; path = ../SwipeableTabBarController.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		C3528B053D04AB01140FD5D6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		D6C027CBAE6C33E555F01AEC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FB20333F2208FD310061EB89 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB2033412208FD310061EB89 /* SwipeableTabBarControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableTabBarControllerUITests.swift; sourceTree = "<group>"; };
 		FB2033432208FD310061EB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -69,7 +71,12 @@
 		FB42C4C52684A9F6004E19FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB884EE320FA547E00876693 /* Designable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Designable.swift; sourceTree = "<group>"; };
 		FBA2190C1E42743A008DF29E /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		FBC3CDD92684ABFE0054E8D7 /* SwipeableTabBarController */ = {isa = PBXFileReference; lastKnownFileType = text; name = SwipeableTabBarController; sourceTree = SOURCE_ROOT; };
+		FBC3CDDA2684AE530054E8D7 /* UIKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
+		FBC3CDDB2684AE530054E8D7 /* SwipeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeInteractor.swift; sourceTree = "<group>"; };
+		FBC3CDDC2684AE530054E8D7 /* SwipeableTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableTabBarController.swift; sourceTree = "<group>"; };
+		FBC3CDDD2684AE540054E8D7 /* SwipeTransitioningProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTransitioningProtocol.swift; sourceTree = "<group>"; };
+		FBC3CDDE2684AE540054E8D7 /* SwipeTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTransitionAnimator.swift; sourceTree = "<group>"; };
+		FBC3CDDF2684AE540054E8D7 /* SwipeAnimationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAnimationType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +99,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB42C4D02684AA65004E19FD /* SwipeableTabBarController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +108,6 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				FB42C4C32684A9F6004E19FD /* SwipeableTabBarController */,
 				607FACD21AFB9204008FA782 /* Example */,
 				FB2033402208FD310061EB89 /* ExampleUITests */,
@@ -143,16 +148,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
-			isa = PBXGroup;
-			children = (
-				4673BE0068B4118BE88FFB52 /* SwipeableTabBarController.podspec */,
-				D6C027CBAE6C33E555F01AEC /* README.md */,
-				C3528B053D04AB01140FD5D6 /* LICENSE */,
-			);
-			name = "Podspec Metadata";
-			sourceTree = "<group>";
-		};
 		FB2033402208FD310061EB89 /* ExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,7 +160,12 @@
 		FB42C4C32684A9F6004E19FD /* SwipeableTabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				FBC3CDD92684ABFE0054E8D7 /* SwipeableTabBarController */,
+				FBC3CDDC2684AE530054E8D7 /* SwipeableTabBarController.swift */,
+				FBC3CDDF2684AE540054E8D7 /* SwipeAnimationType.swift */,
+				FBC3CDDB2684AE530054E8D7 /* SwipeInteractor.swift */,
+				FBC3CDDE2684AE540054E8D7 /* SwipeTransitionAnimator.swift */,
+				FBC3CDDD2684AE540054E8D7 /* SwipeTransitioningProtocol.swift */,
+				FBC3CDDA2684AE530054E8D7 /* UIKit+Extensions.swift */,
 				FB42C4C42684A9F6004E19FD /* SwipeableTabBarController.h */,
 				FB42C4C52684A9F6004E19FD /* Info.plist */,
 			);
@@ -247,7 +247,6 @@
 			);
 			name = SwipeableTabBarController;
 			packageProductDependencies = (
-				FB42C4CF2684AA65004E19FD /* SwipeableTabBarController */,
 			);
 			productName = SwipeableTabBarController;
 			productReference = FB42C4C22684A9F6004E19FD /* SwipeableTabBarController.framework */;
@@ -278,6 +277,8 @@
 					};
 					FB42C4C12684A9F6004E19FD = {
 						CreatedOnToolsVersion = 12.5;
+						DevelopmentTeam = 8PC4X7QUY9;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -351,6 +352,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBC3CDE42684AE540054E8D7 /* SwipeableTabBarController.swift in Sources */,
+				FBC3CDE12684AE540054E8D7 /* UIKit+Extensions.swift in Sources */,
+				FBC3CDE22684AE540054E8D7 /* SwipeAnimationType.swift in Sources */,
+				FBC3CDE02684AE540054E8D7 /* SwipeTransitioningProtocol.swift in Sources */,
+				FBC3CDE52684AE540054E8D7 /* SwipeTransitionAnimator.swift in Sources */,
+				FBC3CDE32684AE540054E8D7 /* SwipeInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,8 +498,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -505,10 +511,7 @@
 				DEVELOPMENT_TEAM = 8PC4X7QUY9;
 				INFOPLIST_FILE = Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -525,10 +528,7 @@
 				DEVELOPMENT_TEAM = 8PC4X7QUY9;
 				INFOPLIST_FILE = Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -553,11 +553,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcosgriselli.SwipeableTabBarControllerUITests;
@@ -585,11 +581,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcosgriselli.SwipeableTabBarControllerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -621,11 +613,7 @@
 				INFOPLIST_FILE = SwipeableTabBarController/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcosgriselli.SwipeableTabBarController;
@@ -660,11 +648,7 @@
 				INFOPLIST_FILE = SwipeableTabBarController/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcosgriselli.SwipeableTabBarController;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -717,13 +701,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		FB42C4CF2684AA65004E19FD /* SwipeableTabBarController */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SwipeableTabBarController;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 607FACC81AFB9204008FA782 /* Project object */;
 }
