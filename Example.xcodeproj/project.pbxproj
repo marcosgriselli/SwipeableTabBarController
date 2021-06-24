@@ -69,7 +69,7 @@
 		FB42C4C52684A9F6004E19FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB884EE320FA547E00876693 /* Designable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Designable.swift; sourceTree = "<group>"; };
 		FBA2190C1E42743A008DF29E /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		FBC91ACA262B9962009A088F /* SwipeableTabBarController */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwipeableTabBarController; path = ../..; sourceTree = "<group>"; };
+		FBC3CDD92684ABFE0054E8D7 /* SwipeableTabBarController */ = {isa = PBXFileReference; lastKnownFileType = text; name = SwipeableTabBarController; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +165,7 @@
 		FB42C4C32684A9F6004E19FD /* SwipeableTabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				FBC91ACA262B9962009A088F /* SwipeableTabBarController */,
+				FBC3CDD92684ABFE0054E8D7 /* SwipeableTabBarController */,
 				FB42C4C42684A9F6004E19FD /* SwipeableTabBarController.h */,
 				FB42C4C52684A9F6004E19FD /* Info.plist */,
 			);
