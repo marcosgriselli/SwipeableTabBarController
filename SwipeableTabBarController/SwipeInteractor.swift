@@ -4,7 +4,6 @@
 //
 //  Created by Marcos Griselli on 1/26/17.
 //  Copyright © 2017 Marcos Griselli. All rights reserved.
-// Test
 
 import UIKit
 

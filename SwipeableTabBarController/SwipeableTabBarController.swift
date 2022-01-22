@@ -41,6 +41,9 @@ open class SwipeableTabBarController: UITabBarController {
         didSet { panGestureRecognizer?.isEnabled = isSwipeEnabled }
     }
 
+    /// Enables/Disables RTL diraction. default is 'false'.
+    open var isRTL = false
+
     /// Allowed swipe directions. Only applied if `isSwipeEnabled` equals `true`.
     open var allowedSwipeDirection: AllowedSwipeDirection = .both
 
@@ -121,18 +124,23 @@ open class SwipeableTabBarController: UITabBarController {
     private func beginInteractiveTransitionIfPossible(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         
-        if translation.x > 0.0 && selectedIndex > 0 {
+        if !isRTL && translation.x > 0.0 && selectedIndex > 0 {
             // Panning right, transition to the left view controller.
             selectedIndex -= 1
-        } else if translation.x < 0.0 && selectedIndex + 1 < viewControllers?.count ?? 0 {
+        } else if isRTL && translation.x > 0.0 && selectedIndex >= 0 {
+            selectedIndex += 1
+        } else if !isRTL && translation.x < 0.0 && selectedIndex + 1 < viewControllers?.count ?? 0 {
             // Panning left, transition to the right view controller.
             selectedIndex += 1
-        } else if isCyclingEnabled && translation.x > 0.0 && selectedIndex == 0 {
+        } else if isRTL && translation.x < 0.0 && selectedIndex - 1 < viewControllers?.count ?? 0 {
+            // Panning left, transition to the right view controller.
+            selectedIndex -= 1
+        } else if !isRTL && isCyclingEnabled && translation.x > 0.0 && selectedIndex == 0 {
             // Panning right at first view controller, transition to the last view controller.
             if let count = viewControllers?.count, count >= 2 {
                 selectedIndex = count - 1
             }
-        } else if isCyclingEnabled && translation.x < 0.0 && selectedIndex + 1 == viewControllers?.count ?? 0 {
+        } else if !isRTL && isCyclingEnabled && translation.x < 0.0 && selectedIndex + 1 == viewControllers?.count ?? 0 {
             // Panning left at last view controller, transition to the first view controller
             selectedIndex = 0
         } else {
@@ -168,9 +176,7 @@ extension SwipeableTabBarController: UIGestureRecognizerDelegate {
         guard let panGesture = gestureRecognizer as? UIPanGestureRecognizer, isSwipeEnabled else { return true }
         let translation = panGesture.translation(in: view)
         switch allowedSwipeDirection {
-        case .left:
-            return translation.x > 0
-        case .right:
+        case .left, .right:
             return translation.x > 0
         case .both:
             return true
@@ -188,7 +194,10 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
                 return nil
         }
         var edge: UIRectEdge = fromVCIndex > toVCIndex ? .right : .left
-
+        if (isRTL) {
+            edge = fromVCIndex < toVCIndex ? .right : .left
+        }
+        
         let controllersCount = viewControllers?.count ?? 0
         if isCyclingEnabled && fromVCIndex == controllersCount - 1 && toVCIndex == 0 {
             edge = .left
