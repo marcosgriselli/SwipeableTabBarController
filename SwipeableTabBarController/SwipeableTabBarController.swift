@@ -26,6 +26,9 @@ open class SwipeableTabBarController: UITabBarController {
     
     /// Animated transition being used currently
     private var currentAnimatedTransitioningType: SwipeTransitioningProtocol?
+
+    /// Programmatic tab changes requested while UIKit is still completing a transition.
+    private var pendingSelectedIndex: Int?
     
     /// Pan gesture for the swiping interaction
     //swiftlint:disable next implicitly_unwrapped_optional
@@ -71,8 +74,18 @@ open class SwipeableTabBarController: UITabBarController {
     open override var selectedIndex: Int {
         get { return super.selectedIndex }
         set {
-            if transitionCoordinator != nil {
+            guard newValue != super.selectedIndex else {
+                pendingSelectedIndex = nil
+                return
+            }
+
+            if let coordinator = transitionCoordinator {
+                pendingSelectedIndex = newValue
                 [swipeAnimatedTransitioning, tapAnimatedTransitioning].forEach { $0?.forceTransitionToFinish() }
+                coordinator.animate(alongsideTransition: nil) { [weak self] _ in
+                    self?.applyPendingSelectedIndexIfNeeded()
+                }
+                return
             }
             super.selectedIndex = newValue
         }
@@ -97,6 +110,20 @@ open class SwipeableTabBarController: UITabBarController {
         panGesture.delegate = self
         view.addGestureRecognizer(panGesture)
         panGestureRecognizer = panGesture
+    }
+
+    private func applyPendingSelectedIndexIfNeeded() {
+        guard let pendingSelectedIndex = pendingSelectedIndex else {
+            return
+        }
+
+        self.pendingSelectedIndex = nil
+
+        guard pendingSelectedIndex != super.selectedIndex else {
+            return
+        }
+
+        selectedIndex = pendingSelectedIndex
     }
 
     @IBAction func panGestureRecognizerDidPan(_ sender: UIPanGestureRecognizer) {
