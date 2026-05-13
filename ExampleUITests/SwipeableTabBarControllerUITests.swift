@@ -74,4 +74,25 @@ class SwipeableTabBarControllerUITests: XCTestCase {
         app.swipeRight()
         assertTabSelected(.team)
     }
+
+    func testRapidProgrammaticTransitionsRemainInteractive() {
+        let app = XCUIApplication()
+        app.launchArguments = ["StressSelectedIndexTransitions"]
+        app.launch()
+
+        let tabBar = app.tabBars.firstMatch
+        XCTAssertEqual(tabBar.buttons.allElementsBoundByIndex.count, 3, "Unexpected number of view controllers on the TabBar. Please update tests to reflect these changes.")
+
+        let commentsButton = tabBar.buttons.allElementsBoundByIndex[0]
+        let settingsButton = tabBar.buttons.allElementsBoundByIndex[2]
+
+        XCTAssertTrue(settingsButton.waitForExistence(timeout: 4))
+        settingsButton.tap()
+        XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 2))
+        XCTAssertTrue(settingsButton.isSelected)
+
+        commentsButton.tap()
+        XCTAssertTrue(app.navigationBars["Comments"].waitForExistence(timeout: 2))
+        XCTAssertTrue(commentsButton.isSelected)
+    }
 }

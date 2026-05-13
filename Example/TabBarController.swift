@@ -31,6 +31,28 @@ class TabBarController: SwipeableTabBarController {
         
         /// Set swipe to only work when strictly horizontal.
 //        diagonalSwipeEnabled = true
+
+        if ProcessInfo.processInfo.arguments.contains("StressSelectedIndexTransitions") {
+            stressSelectedIndexTransitions()
+        }
+    }
+
+    private func stressSelectedIndexTransitions() {
+        var transitionCount = 0
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
+            guard let self = self else {
+                timer.invalidate()
+                return
+            }
+
+            guard transitionCount < 10 else {
+                timer.invalidate()
+                return
+            }
+
+            self.selectedIndex = abs(self.selectedIndex - 1)
+            transitionCount += 1
+        }
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
