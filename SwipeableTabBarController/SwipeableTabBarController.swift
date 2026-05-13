@@ -26,6 +26,12 @@ open class SwipeableTabBarController: UITabBarController {
     
     /// Animated transition being used currently
     private var currentAnimatedTransitioningType: SwipeTransitioningProtocol?
+
+    /// Latest tab selection requested while UIKit is still completing a transition.
+    private var pendingSelectedIndex: Int?
+
+    /// Prevents registering the same transition completion more than once.
+    private var isPendingSelectedIndexHandlerScheduled = false
     
     /// Pan gesture for the swiping interaction
     //swiftlint:disable next implicitly_unwrapped_optional
@@ -72,7 +78,8 @@ open class SwipeableTabBarController: UITabBarController {
         get { return super.selectedIndex }
         set {
             if transitionCoordinator != nil {
-                [swipeAnimatedTransitioning, tapAnimatedTransitioning].forEach { $0?.forceTransitionToFinish() }
+                queueSelectedIndex(newValue)
+                return
             }
             super.selectedIndex = newValue
         }
@@ -99,6 +106,55 @@ open class SwipeableTabBarController: UITabBarController {
         panGestureRecognizer = panGesture
     }
 
+    private func queueSelectedIndex(_ index: Int) {
+        guard index != super.selectedIndex else {
+            pendingSelectedIndex = nil
+            return
+        }
+
+        pendingSelectedIndex = index
+        schedulePendingSelectedIndexHandler()
+        [swipeAnimatedTransitioning, tapAnimatedTransitioning].forEach { $0?.forceTransitionToFinish() }
+    }
+
+    private func schedulePendingSelectedIndexHandler() {
+        guard !isPendingSelectedIndexHandlerScheduled else {
+            return
+        }
+
+        guard let coordinator = transitionCoordinator else {
+            applyPendingSelectedIndexIfNeeded()
+            return
+        }
+
+        isPendingSelectedIndexHandlerScheduled = true
+        let didSchedule = coordinator.animate(alongsideTransition: nil) { [weak self] _ in
+            self?.isPendingSelectedIndexHandlerScheduled = false
+            self?.applyPendingSelectedIndexIfNeeded()
+        }
+
+        if !didSchedule {
+            isPendingSelectedIndexHandlerScheduled = false
+            DispatchQueue.main.async { [weak self] in
+                self?.applyPendingSelectedIndexIfNeeded()
+            }
+        }
+    }
+
+    private func applyPendingSelectedIndexIfNeeded() {
+        guard let nextSelectedIndex = pendingSelectedIndex else {
+            return
+        }
+
+        pendingSelectedIndex = nil
+
+        guard nextSelectedIndex != super.selectedIndex else {
+            return
+        }
+
+        selectedIndex = nextSelectedIndex
+    }
+
     @IBAction func panGestureRecognizerDidPan(_ sender: UIPanGestureRecognizer) {
         if sender.state == .ended || sender.state == .cancelled {
             currentAnimatedTransitioningType = tapAnimatedTransitioning
@@ -107,6 +163,9 @@ open class SwipeableTabBarController: UITabBarController {
         if sender.state == .began || sender.state == .changed {
             // Do not attempt to begin an interactive transition if one is already happening
             guard transitionCoordinator == nil else {
+                if let queuedIndex = selectedIndex(for: sender.translation(in: view)) {
+                    queueSelectedIndex(queuedIndex)
+                }
                 return
             }
             currentAnimatedTransitioningType = swipeAnimatedTransitioning
@@ -120,21 +179,9 @@ open class SwipeableTabBarController: UITabBarController {
     /// - Parameter sender: gesture recognizer
     private func beginInteractiveTransitionIfPossible(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
-        
-        if translation.x > 0.0 && selectedIndex > 0 {
-            // Panning right, transition to the left view controller.
-            selectedIndex -= 1
-        } else if translation.x < 0.0 && selectedIndex + 1 < viewControllers?.count ?? 0 {
-            // Panning left, transition to the right view controller.
-            selectedIndex += 1
-        } else if isCyclingEnabled && translation.x > 0.0 && selectedIndex == 0 {
-            // Panning right at first view controller, transition to the last view controller.
-            if let count = viewControllers?.count, count >= 2 {
-                selectedIndex = count - 1
-            }
-        } else if isCyclingEnabled && translation.x < 0.0 && selectedIndex + 1 == viewControllers?.count ?? 0 {
-            // Panning left at last view controller, transition to the first view controller
-            selectedIndex = 0
+
+        if let nextSelectedIndex = selectedIndex(for: translation) {
+            selectedIndex = nextSelectedIndex
         } else {
             // Don't reset the gesture recognizer if we skipped starting the
             // transition because we don't have a translation yet (and thus, could
@@ -152,6 +199,26 @@ open class SwipeableTabBarController: UITabBarController {
                 self.beginInteractiveTransitionIfPossible(sender)
             }
         }
+    }
+
+    private func selectedIndex(for translation: CGPoint) -> Int? {
+        if translation.x > 0.0 && selectedIndex > 0 {
+            // Panning right, transition to the left view controller.
+            return selectedIndex - 1
+        } else if translation.x < 0.0 && selectedIndex + 1 < viewControllers?.count ?? 0 {
+            // Panning left, transition to the right view controller.
+            return selectedIndex + 1
+        } else if isCyclingEnabled && translation.x > 0.0 && selectedIndex == 0 {
+            // Panning right at first view controller, transition to the last view controller.
+            if let count = viewControllers?.count, count >= 2 {
+                return count - 1
+            }
+        } else if isCyclingEnabled && translation.x < 0.0 && selectedIndex + 1 == viewControllers?.count ?? 0 {
+            // Panning left at last view controller, transition to the first view controller
+            return 0
+        }
+
+        return nil
     }
 }
 
@@ -210,6 +277,13 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
     }
     
     open func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        return transitionCoordinator == nil
+        guard transitionCoordinator == nil else {
+            if let queuedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) {
+                queueSelectedIndex(queuedIndex)
+            }
+            return false
+        }
+
+        return true
     }
 }
