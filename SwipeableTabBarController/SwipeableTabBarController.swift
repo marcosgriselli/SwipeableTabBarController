@@ -31,6 +31,9 @@ open class SwipeableTabBarController: UITabBarController {
     //swiftlint:disable next implicitly_unwrapped_optional
     private var panGestureRecognizer: UIPanGestureRecognizer?
 
+    /// Prevents starting a second transition while one is still finishing.
+    private var isTransitionInProgress = false
+
     @available(*, deprecated, message: "For the moment the diagonal swipe configuration is not available.")
     /// Toggle the diagonal swipe to remove the just `perfect` horizontal swipe interaction
     /// needed to perform the transition.
@@ -106,7 +109,7 @@ open class SwipeableTabBarController: UITabBarController {
         
         if sender.state == .began || sender.state == .changed {
             // Do not attempt to begin an interactive transition if one is already happening
-            guard transitionCoordinator == nil else {
+            guard transitionCoordinator == nil, !isTransitionInProgress else {
                 return
             }
             currentAnimatedTransitioningType = swipeAnimatedTransitioning
@@ -120,20 +123,29 @@ open class SwipeableTabBarController: UITabBarController {
     /// - Parameter sender: gesture recognizer
     private func beginInteractiveTransitionIfPossible(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
-        
+        var didStartTransition = false
+
         if translation.x > 0.0 && selectedIndex > 0 {
             // Panning right, transition to the left view controller.
+            isTransitionInProgress = true
+            didStartTransition = true
             selectedIndex -= 1
         } else if translation.x < 0.0 && selectedIndex + 1 < viewControllers?.count ?? 0 {
             // Panning left, transition to the right view controller.
+            isTransitionInProgress = true
+            didStartTransition = true
             selectedIndex += 1
         } else if isCyclingEnabled && translation.x > 0.0 && selectedIndex == 0 {
             // Panning right at first view controller, transition to the last view controller.
             if let count = viewControllers?.count, count >= 2 {
+                isTransitionInProgress = true
+                didStartTransition = true
                 selectedIndex = count - 1
             }
         } else if isCyclingEnabled && translation.x < 0.0 && selectedIndex + 1 == viewControllers?.count ?? 0 {
             // Panning left at last view controller, transition to the first view controller
+            isTransitionInProgress = true
+            didStartTransition = true
             selectedIndex = 0
         } else {
             // Don't reset the gesture recognizer if we skipped starting the
@@ -146,8 +158,13 @@ open class SwipeableTabBarController: UITabBarController {
                 sender.isEnabled = true
             }
         }
-        
+
+        if !didStartTransition {
+            isTransitionInProgress = false
+        }
+
         transitionCoordinator?.animate(alongsideTransition: nil) { [unowned self] context in
+            self.isTransitionInProgress = false
             if context.isCancelled && sender.state == .changed {
                 self.beginInteractiveTransitionIfPossible(sender)
             }
@@ -210,6 +227,6 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
     }
     
     open func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        return transitionCoordinator == nil
+        return transitionCoordinator == nil && !isTransitionInProgress
     }
 }
