@@ -34,6 +34,14 @@ class SwipeableTabBarControllerUITests: XCTestCase {
         
     }
 
+    private func assertTabSelected(_ tab: Tab, in app: XCUIApplication, file: StaticString = #file, line: UInt = #line) {
+        let tabBar = app.tabBars.firstMatch
+        let navigationBar = app.navigationBars[tab.navBarTitle]
+        XCTAssert(navigationBar.waitForExistence(timeout: 2), file: file, line: line)
+        XCTAssert(navigationBar.isHittable, file: file, line: line)
+        XCTAssert(tabBar.buttons.allElementsBoundByIndex[tab.index].isSelected, file: file, line: line)
+    }
+
     /// Tests navigation with swiping and tapping.
     func testTabBarInteractions() {
         let app = XCUIApplication()
@@ -47,31 +55,54 @@ class SwipeableTabBarControllerUITests: XCTestCase {
         /// Assert that the tabBarItem is selected and that the new view controller
         /// exists and its ready to interact with.
         /// This is a simple test but it will be useful for unexpected states.
-        let assertTabSelected: (Tab) -> Void = { tab in
-            XCTAssert(tabBar.buttons.allElementsBoundByIndex[tab.index].isSelected)
-            let navigationBar = app.navigationBars[tab.navBarTitle]
-            XCTAssert(navigationBar.exists)
-            XCTAssert(navigationBar.isHittable)
-        }
         app.swipeRight()
-        assertTabSelected(.comments)
+        assertTabSelected(.comments, in: app)
         app.swipeLeft()
-        assertTabSelected(.team)
+        assertTabSelected(.team, in: app)
         app.swipeLeft()
-        assertTabSelected(.settings)
+        assertTabSelected(.settings, in: app)
         app.tabBars.buttons.element(boundBy: 0).tap()
-        assertTabSelected(.comments)
+        assertTabSelected(.comments, in: app)
         app.tabBars.buttons.element(boundBy: 1).tap()
-        assertTabSelected(.team)
+        assertTabSelected(.team, in: app)
         app.tabBars.buttons.element(boundBy: 2).tap()
-        assertTabSelected(.settings)
+        assertTabSelected(.settings, in: app)
 
         // Tests Cycling tabBar
         app.swipeLeft()
-        assertTabSelected(.comments)
+        assertTabSelected(.comments, in: app)
         app.swipeRight()
-        assertTabSelected(.settings)
+        assertTabSelected(.settings, in: app)
         app.swipeRight()
-        assertTabSelected(.team)
+        assertTabSelected(.team, in: app)
+    }
+
+    func testRapidSelectedIndexTransitionsRemainInteractive() {
+        assertRapidProgrammaticTransitionsRemainInteractive("StressSelectedIndexTransitions")
+    }
+
+    func testRapidSelectedViewControllerTransitionsRemainInteractive() {
+        assertRapidProgrammaticTransitionsRemainInteractive("StressSelectedViewControllerTransitions")
+    }
+
+    private func assertRapidProgrammaticTransitionsRemainInteractive(_ launchArgument: String) {
+        let app = XCUIApplication()
+        app.launchArguments = [launchArgument]
+        app.launch()
+
+        let tabBar = app.tabBars.firstMatch
+        XCTAssertTrue(tabBar.waitForExistence(timeout: 4))
+        XCTAssertEqual(tabBar.buttons.allElementsBoundByIndex.count, 3, "Unexpected number of view controllers on the TabBar. Please update tests to reflect these changes.")
+
+        Thread.sleep(forTimeInterval: 2)
+
+        app.tabBars.buttons.element(boundBy: Tab.settings.index).tap()
+        assertTabSelected(.settings, in: app)
+
+        app.tabBars.buttons.element(boundBy: Tab.comments.index).tap()
+        assertTabSelected(.comments, in: app)
+
+        app.swipeLeft()
+        assertTabSelected(.team, in: app)
     }
 }
