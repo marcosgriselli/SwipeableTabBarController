@@ -6,7 +6,7 @@
 //  Copyright © 2017 Marcos Griselli. All rights reserved.
 //
 
-import UIKit 
+import UIKit
 
 /// `UITabBarController` subclass with a `selectedViewController` property observer,
 /// `SwipeInteractor` that handles the swiping between tabs gesture, and a `SwipeTransitioningProtocol`
@@ -66,15 +66,33 @@ open class SwipeableTabBarController: UITabBarController {
             panGestureRecognizer?.maximumNumberOfTouches = maximumNumberOfTouches
         }
     }
+
+    /// Selection requested while a transition is still finishing. Applying a new
+    /// selectedIndex mid-transition (and force-finishing the animator) can leave
+    /// UIKit without a completion callback and freeze the tab bar on fast swipes.
+    private var pendingSelectedIndex: Int?
+    private var isObservingTransitionCompletion = false
     
     /// Override selectedIndex for Programmatic changes
     open override var selectedIndex: Int {
         get { return super.selectedIndex }
         set {
-            if transitionCoordinator != nil {
-                [swipeAnimatedTransitioning, tapAnimatedTransitioning].forEach { $0?.forceTransitionToFinish() }
+            applySelectedIndex(newValue)
+        }
+    }
+
+    /// Override selectedViewController so both selection APIs serialize the same way.
+    open override var selectedViewController: UIViewController? {
+        get { return super.selectedViewController }
+        set {
+            guard let viewController = newValue,
+                let index = viewControllers?.firstIndex(where: { $0 === viewController }) else {
+                    if transitionCoordinator == nil {
+                        super.selectedViewController = newValue
+                    }
+                    return
             }
-            super.selectedIndex = newValue
+            applySelectedIndex(index)
         }
     }
 
@@ -99,6 +117,64 @@ open class SwipeableTabBarController: UITabBarController {
         panGestureRecognizer = panGesture
     }
 
+    private func applySelectedIndex(_ index: Int) {
+        guard viewControllers?.indices.contains(index) == true else {
+            return
+        }
+
+        if transitionCoordinator != nil {
+            pendingSelectedIndex = index
+            observeTransitionCompletionIfNeeded()
+            return
+        }
+
+        pendingSelectedIndex = nil
+        super.selectedIndex = index
+    }
+
+    private func observeTransitionCompletionIfNeeded() {
+        guard !isObservingTransitionCompletion, let coordinator = transitionCoordinator else {
+            return
+        }
+
+        isObservingTransitionCompletion = true
+        let scheduled = coordinator.animate(alongsideTransition: nil) { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.finishPendingSelectionAfterTransition()
+            }
+        }
+
+        if !scheduled {
+            DispatchQueue.main.async { [weak self] in
+                self?.finishPendingSelectionAfterTransition()
+            }
+        }
+    }
+
+    private func finishPendingSelectionAfterTransition() {
+        isObservingTransitionCompletion = false
+
+        guard let pendingIndex = pendingSelectedIndex else {
+            return
+        }
+
+        pendingSelectedIndex = nil
+
+        if transitionCoordinator != nil {
+            // Still transitioning (nested finish). Re-queue and wait again.
+            pendingSelectedIndex = pendingIndex
+            observeTransitionCompletionIfNeeded()
+            return
+        }
+
+        guard pendingIndex != super.selectedIndex else {
+            return
+        }
+
+        currentAnimatedTransitioningType = tapAnimatedTransitioning
+        super.selectedIndex = pendingIndex
+    }
+
     @IBAction func panGestureRecognizerDidPan(_ sender: UIPanGestureRecognizer) {
         if sender.state == .ended || sender.state == .cancelled {
             currentAnimatedTransitioningType = tapAnimatedTransitioning
@@ -107,6 +183,10 @@ open class SwipeableTabBarController: UITabBarController {
         if sender.state == .began || sender.state == .changed {
             // Do not attempt to begin an interactive transition if one is already happening
             guard transitionCoordinator == nil else {
+                if let nextIndex = nextSelectedIndex(for: sender.translation(in: view)) {
+                    pendingSelectedIndex = nextIndex
+                    observeTransitionCompletionIfNeeded()
+                }
                 return
             }
             currentAnimatedTransitioningType = swipeAnimatedTransitioning
@@ -120,21 +200,9 @@ open class SwipeableTabBarController: UITabBarController {
     /// - Parameter sender: gesture recognizer
     private func beginInteractiveTransitionIfPossible(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
-        
-        if translation.x > 0.0 && selectedIndex > 0 {
-            // Panning right, transition to the left view controller.
-            selectedIndex -= 1
-        } else if translation.x < 0.0 && selectedIndex + 1 < viewControllers?.count ?? 0 {
-            // Panning left, transition to the right view controller.
-            selectedIndex += 1
-        } else if isCyclingEnabled && translation.x > 0.0 && selectedIndex == 0 {
-            // Panning right at first view controller, transition to the last view controller.
-            if let count = viewControllers?.count, count >= 2 {
-                selectedIndex = count - 1
-            }
-        } else if isCyclingEnabled && translation.x < 0.0 && selectedIndex + 1 == viewControllers?.count ?? 0 {
-            // Panning left at last view controller, transition to the first view controller
-            selectedIndex = 0
+
+        if let nextIndex = nextSelectedIndex(for: translation) {
+            selectedIndex = nextIndex
         } else {
             // Don't reset the gesture recognizer if we skipped starting the
             // transition because we don't have a translation yet (and thus, could
@@ -152,6 +220,25 @@ open class SwipeableTabBarController: UITabBarController {
                 self.beginInteractiveTransitionIfPossible(sender)
             }
         }
+    }
+
+    private func nextSelectedIndex(for translation: CGPoint) -> Int? {
+        if translation.x > 0.0 && selectedIndex > 0 {
+            // Panning right, transition to the left view controller.
+            return selectedIndex - 1
+        } else if translation.x < 0.0 && selectedIndex + 1 < viewControllers?.count ?? 0 {
+            // Panning left, transition to the right view controller.
+            return selectedIndex + 1
+        } else if isCyclingEnabled && translation.x > 0.0 && selectedIndex == 0 {
+            // Panning right at first view controller, transition to the last view controller.
+            if let count = viewControllers?.count, count >= 2 {
+                return count - 1
+            }
+        } else if isCyclingEnabled && translation.x < 0.0 && selectedIndex + 1 == viewControllers?.count ?? 0 {
+            // Panning left at last view controller, transition to the first view controller
+            return 0
+        }
+        return nil
     }
 }
 
@@ -210,6 +297,14 @@ extension SwipeableTabBarController: UITabBarControllerDelegate {
     }
     
     open func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        return transitionCoordinator == nil
+        // While a transition is finishing, remember the tap and apply it after.
+        if transitionCoordinator != nil {
+            if let index = viewControllers?.firstIndex(where: { $0 === viewController }) {
+                pendingSelectedIndex = index
+                observeTransitionCompletionIfNeeded()
+            }
+            return false
+        }
+        return true
     }
 }

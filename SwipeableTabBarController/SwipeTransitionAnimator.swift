@@ -73,9 +73,14 @@ class SwipeTransitionAnimator: NSObject, SwipeTransitioningProtocol {
         guard let animator = propertyAnimator else {
             return
         }
-        animator.stopAnimation(false)
-            if animator.state == .stopped {
-                animator.finishAnimation(at: .end)
-            }
+        // Stopping without finishing can leave UIKit waiting on a completion
+        // that never runs (observed with high-velocity interactive swipes).
+        if animator.state == .active {
+            animator.stopAnimation(false)
+        }
+        if animator.state == .stopped {
+            animator.finishAnimation(at: .end)
+        }
+        propertyAnimator = nil
     }
 }
